@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Kaos - Desain Minimalis & Modern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Add smooth scrolling to the entire page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Light gray background for the entire page */
+            color: #1a1a1a; /* Dark text */
+            font-weight: 300; /* Default body font to light/thin */
+        }
+        /* Custom font sizes and weights for Apple-like proportionality */
+        h1 {
+            font-size: 2.75rem; /* Slightly smaller than before, still prominent */
+            line-height: 1.2;
+            font-weight: 600; /* Semibold for main heading */
+            letter-spacing: -0.02em; /* Subtle letter spacing for modern feel */
+        }
+        h2 {
+            font-size: 2rem; /* Adjusted for section headings */
+            line-height: 1.25;
+            font-weight: 600; /* Semibold */
+            letter-spacing: -0.01em;
+        }
+        h3 { /* Product Name - This will be the "main" size for product info */
+            font-size: 1.375rem; /* Slightly smaller than previous xl */
+            line-height: 1.375;
+            font-weight: 500; /* Medium for product names */
+            letter-spacing: -0.01em;
+        }
+        p, a, span { /* General text */
+            font-size: 0.95rem; /* Base font size, slightly smaller */
+            line-height: 1.5;
+            font-weight: 300; /* Light/thin for body text */
+        }
+        .size-option { /* For size options */
+            font-size: 0.8rem; /* Smaller than product name (h3) */
+            line-height: 1.25rem;
+            font-weight: 400; /* Regular */
+            padding: 0.35rem 0.75rem; /* Adjusted padding */
+        }
+
+        /* Header specific styles for a more minimal look */
+        .main-header {
+            padding-top: 1rem; /* py-4 */
+            padding-bottom: 1rem; /* py-4 */
+        }
+        .header-brand {
+            font-size: 1.5rem; /* Smaller brand text */
+            line-height: 2rem;
+        }
+        .header-nav-item {
+            font-size: 0.9rem; /* Smaller nav item text */
+            line-height: 1.25rem;
+        }
+
+        /* Hamburger Icon Styles */
+        .hamburger-menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px; /* Width of the icon */
+            height: 18px; /* Height of the icon */
+            cursor: pointer;
+            z-index: 60; /* Above header elements */
+        }
+        .hamburger-menu span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #1a1a1a; /* Dark color for lines */
+            transition: all 0.3s ease-in-out;
+            border-radius: 1px;
+        }
+        .hamburger-menu.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger-menu.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-menu.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white overlay */
+            z-index: 55; /* Below hamburger, above content */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-nav-overlay ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        .mobile-nav-overlay ul li {
+            margin-bottom: 1.5rem; /* Space between nav items */
+        }
+        .mobile-nav-overlay ul li a {
+            font-size: 1.8rem; /* Larger font for mobile nav items */
+            font-weight: 500; /* Medium weight */
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+        .mobile-nav-overlay ul li a:hover {
+            color: #555;
+        }
+
+        .product-card {
+            transition: transform 0.2s ease-in-out; /* Removed box-shadow transition */
+            background-color: transparent; /* Make product card background transparent to blend with body */
+            border-radius: 0; /* Ensure no rounding on the card itself */
+            border: none; /* Ensure no border on the card itself */
+            padding: 1.5rem; /* Increased internal padding for more breathing room */
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow on hover */
+        }
+        .size-option {
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            border-radius: 9999px; /* rounded-full */
+            border: 1px solid #d1d5db; /* border-gray-300 */
+        }
+        .size-option.selected {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border-color: #1a1a1a; /* Dark border when selected */
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+            cursor: pointer;
+        }
+
+        /* Carousel specific styles for product cards - 5:4 Aspect Ratio */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 125%; /* 5 (height) / 4 (width) * 100% = 125% */
+            height: 0; /* Important for padding-bottom trick */
+            overflow: hidden;
+            border-radius: 0.75rem; /* Proportional rounding for the image container */
+            border: none; /* Ensure no border */
+            cursor: grab; /* Indicate draggable */
+            touch-action: pan-y; /* Allow vertical pan, handle horizontal in JS */
+        }
+        .carousel-container.dragging {
+            cursor: grabbing;
+        }
+        .carousel-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image covers the area, cropping if necessary */
+            display: none; /* Changed from opacity: 0 to display: none */
+            border-radius: 0.75rem; /* Apply rounding directly to the image */
+        }
+        .carousel-image.active {
+            display: block; /* Changed from opacity: 1 to display: block */
+        }
+        .carousel-dots {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .carousel-dot.active {
+            background-color: #1a1a1a; /* Dark dot for active */
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* "Lihat Detail" Button - small and minimalist */
+        .detail-button {
+            background-color: transparent;
+            color: #1a1a1a; /* Dark text */
+            border: 1px solid #d1d5db; /* Light gray border */
+            padding: 0.6rem 1.5rem; /* Smaller padding */
+            border-radius: 9999px; /* Rounded full */
+            font-weight: 400; /* Regular font weight */
+            font-size: 0.9rem; /* Smaller font size */
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            width: auto; /* Allow button to size based on content */
+            display: inline-block; /* For proper padding and sizing */
+        }
+        .detail-button:hover {
+            background-color: #e5e7eb; /* Light gray background on hover */
+            border-color: #9ca3af; /* Slightly darker border on hover */
+            color: #1a1a1a;
+        }
+
+        /* "Lihat Selengkapnya" Button - similar style, perhaps slightly wider */
+        .view-more-button {
+            background-color: transparent;
+            color: #1a1a1a;
+            border: 1px solid #d1d5db;
+            padding: 0.8rem 2rem; /* Slightly larger padding */
+            border-radius: 9999px;
+            font-weight: 500; /* Medium font weight */
+            font-size: 1rem; /* Slightly larger font size */
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            display: inline-block; /* For proper padding and sizing */
+            margin-top: 2rem; /* Space from the product grid */
+        }
+        .view-more-button:hover {
+            background-color: #e5e7eb;
+            border-color: #9ca3af;
+            color: #1a1a1a;
+        }
+
+        /* Generic Modal Overlay (used for both image preview and product detail) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Modal Content for Image Preview (UPDATED STYLES) */
+        #image-preview-modal .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent; /* Make content background transparent */
+            border-radius: 0; /* Remove rounding */
+            padding: 0; /* Remove padding */
+            box-sizing: border-box;
+        }
+        #image-preview-modal .modal-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 0; /* Remove rounding */
+        }
+        #image-preview-modal .modal-image {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+            border-radius: 0; /* Remove rounding */
+        }
+        #image-preview-modal .modal-image.zoomed {
+            transform: scale(2);
+            cursor: zoom-out;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        /* New close button style for image preview modal */
+        #image-preview-modal .modal-close-button {
+            position: fixed; /* Use fixed to ensure it's always visible relative to viewport */
+            top: 20px; /* More padding from top */
+            right: 20px; /* More padding from right */
+            background: none;
+            border: none;
+            font-size: 2.5rem; /* Slightly larger for better touch */
+            color: #ffffff; /* White color */
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0.5rem; /* Minimal padding */
+            line-height: 1;
+            opacity: 0.7; /* Slightly transparent */
+            transition: opacity 0.2s ease;
+        }
+        #image-preview-modal .modal-close-button:hover {
+            opacity: 1; /* Full opacity on hover */
+        }
+
+        /* New navigation button style for image preview modal (UPDATED) */
+        #image-preview-modal .modal-nav-button {
+            position: absolute;
+            top: 50%; /* Keep vertically centered for now */
+            transform: translateY(-50%);
+            background-color: transparent; /* NO BACKGROUND */
+            color: white;
+            border: none;
+            padding: 0.5rem; /* Minimal padding */
+            font-size: 2.5rem; /* Larger arrow for visibility */
+            cursor: pointer;
+            border-radius: 0; /* No background, so no radius needed */
+            transition: opacity 0.3s ease; /* Only opacity transition */
+            z-index: 100;
+            opacity: 0.7; /* Lighter appearance */
+        }
+        #image-preview-modal .modal-nav-button:hover {
+            opacity: 1; /* Full opacity on hover */
+        }
+        #image-preview-modal .modal-nav-button.left {
+            left: 20px; /* More padding from left */
+        }
+        #image-preview-modal .modal-nav-button.right {
+            right: 20px; /* More padding from right */
+        }
+
+        /* Modal dots for image preview (UPDATED) */
+        #image-preview-modal .modal-carousel-dots {
+            position: absolute;
+            bottom: 20px; /* More space from bottom */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px; /* More space between dots */
+            z-index: 100;
+        }
+        #image-preview-modal .modal-carousel-dot {
+            width: 10px; /* Slightly larger dots */
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.3); /* Lighter background for inactive dots */
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #image-preview-modal .modal-carousel-dot.active {
+            background-color: #ffffff; /* White for active dot */
+            border: none; /* REMOVE BORDER for cleaner look */
+        }
+
+        /* Modal Content for Product Detail (existing styles, unchanged) */
+        #product-detail-modal .modal-content {
+            background-color: #fff;
+            border-radius: 0.75rem;
+            padding: 2rem; /* Increased padding for detail modal */
+            max-width: 500px; /* Max width for a clean look */
+            width: 90%; /* Responsive width */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        /* Specific carousel container for the product detail modal */
+        #product-detail-modal .carousel-container {
+            width: 100%;
+            padding-bottom: 125%; /* Same aspect ratio as main cards */
+            margin-bottom: 1.5rem; /* Space below carousel */
+        }
+        #product-detail-modal .modal-product-name {
+            font-size: 1.75rem; /* Larger font for product name */
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        #product-detail-modal .modal-size-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        #product-detail-modal .modal-size-option {
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            border-radius: 9999px;
+            border: 1px solid #d1d5db;
+            padding: 0.5rem 1rem; /* Slightly larger padding for modal sizes */
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        #product-detail-modal .modal-size-option.selected {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border-color: #1a1a1a;
+        }
+        #product-detail-modal .buy-now-button {
+            background-color: #007aff; /* Apple blue */
+            color: white;
+            padding: 0.8rem 2.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s ease-in-out;
+            text-decoration: none; /* Remove underline for link */
+            display: inline-block; /* For proper padding and sizing */
+        }
+        #product-detail-modal .buy-now-button:hover {
+            background-color: #005bb5; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="bg-white shadow-sm main-header px-2 md:px-8 lg:px-16 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="font-bold tracking-tight uppercase text-gray-900 header-brand">
+                SIAZ*
+            </a>
+            <button id="hamburger-button" class="md:hidden hamburger-menu" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="desktop-nav" class="hidden md:block">
+                <ul class="flex space-x-4">
+                    <li><a href="#katalog-section" class="text-gray-600 hover:text-gray-900 font-medium header-nav-item">Katalog</a></li>
+                    <li><a href="#tentang-kami-section" class="text-gray-600 hover:text-gray-900 font-medium header-nav-item">Tentang Kami</a></li>
+                    <li><a href="#kontak-section" class="text-gray-600 hover:text-gray-900 font-medium header-nav-item">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div id="mobile-nav-overlay" class="mobile-nav-overlay md:hidden">
+        <ul>
+            <li><a href="#katalog-section" class="mobile-nav-link">Katalog</a></li>
+            <li><a href="#tentang-kami-section" class="mobile-nav-link">Tentang Kami</a></li>
+            <li><a href="#kontak-section" class="mobile-nav-link">Kontak</a></li>
+        </ul>
+    </div>
+
+    <section class="container mx-auto py-12 px-2 md:px-8 lg:px-16 text-center">
+        <p class="text-gray-700 leading-relaxed max-w-3xl mx-auto mb-6 text-lg">
+            Selamat datang di SIAZ*! Temukan koleksi kaos terbaru kami yang dirancang dengan semangat minimalis dan kualitas tinggi.
+        </p>
+        <a href="#tentang-kami-section" class="text-blue-600 hover:underline font-medium text-base">
+            Pelajari Kisah di Balik Merek Kami &rarr;
+        </a>
+    </section>
+
+    <main class="container mx-auto py-12 px-2 md:px-8 lg:px-16">
+        <h1 id="katalog-section" class="text-center mb-12 tracking-tight text-gray-900">
+            Koleksi Kaos Terbaru
+        </h1>
+
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            </div>
+
+        <div class="text-center mt-12">
+            <a href="https://siaz.com/shop" target="_blank" rel="noopener noreferrer" class="view-more-button">
+                Lihat Selengkapnya di E-commerce &rarr;
+            </a>
+        </div>
+    </main>
+
+    <section id="tentang-kami-section" class="container mx-auto py-12 px-2 md:px-8 lg:px-16 bg-white rounded-lg shadow-md mt-12">
+        <h2 class="text-center mb-6 text-gray-900">Tentang Kami</h2>
+        <p class="text-gray-700 leading-relaxed text-center max-w-2xl mx-auto">
+            SIAZ* didirikan dengan semangat untuk menghadirkan desain kaos yang unik, minimalis, dan berkualitas tinggi. Kami percaya bahwa pakaian adalah bentuk ekspresi diri, dan setiap desain kami dibuat dengan cermat untuk mencerminkan gaya modern dan kenyamanan. Kami berkomitmen untuk menggunakan bahan terbaik dan praktik produksi yang etis.
+        </p>
+    </section>
+
+    <section id="kontak-section" class="container mx-auto py-12 px-2 md:px-8 lg:px-16 bg-white rounded-lg shadow-md mt-12">
+        <h2 class="text-center mb-6 text-gray-900">Hubungi Kami</h2>
+        <div class="text-center text-gray-700 max-w-xl mx-auto">
+            <p class="mb-2">Email: <a href="mailto:info@siaz.com" class="text-blue-600 hover:underline">info@siaz.com</a></p>
+            <p class="mb-2">Telepon: <a href="tel:+628123456789" class="text-blue-600 hover:underline">+62 812 3456 789</a></p>
+            <p>Alamat: Jl. Contoh No. 123, Jakarta, Indonesia</p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8 px-2 md:px-8 lg:px-16 mt-12">
+        <div class="container mx-auto text-center text-gray-400">
+            <p>&copy; 2025 SIAZ*. Semua Hak Dilindungi.</p>
+            <p class="mt-2 text-sm">Desain oleh Gemini AI</p>
+        </div>
+    </footer>
+
+    <div id="image-preview-modal" class="modal-overlay">
+        <button class="modal-close-button" aria-label="Tutup Pratinjau">&times;</button>
+        <div class="modal-content">
+            <div class="modal-image-wrapper">
+                <img src="" alt="Pratinjau Gambar Produk" class="modal-image" id="modal-image">
+            </div>
+            <button class="modal-nav-button left" id="modal-prev-button">&#10094;</button>
+            <button class="modal-nav-button right" id="modal-next-button">&#10095;</button>
+            <div class="modal-carousel-dots" id="modal-carousel-dots">
+                </div>
+        </div>
+    </div>
+
+    <div id="product-detail-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-button" aria-label="Tutup Detail Produk">&times;</button>
+            <div class="carousel-container mb-4" id="modal-product-carousel-container"> </div>
+            <h3 class="modal-product-name" id="modal-product-name"></h3>
+            <div class="modal-size-options" id="modal-product-sizes">
+                </div>
+            <a href="https://siaz.com/checkout" target="_blank" rel="noopener noreferrer" class="buy-now-button" id="modal-buy-now-button">
+                Beli Sekarang
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Data produk kaos (24 desain) dengan multiple images
+        const products = [
+            { id: 'design1', name: 'Desain Abstrak Minimalis', price: 185000, imageUrls: ['https://placehold.co/400x500/e0e0e0/333333?text=Design+01-1', 'https://placehold.co/400x500/d0d0d0/444444?text=01-2', 'https://placehold.co/400x500/c0c0c0/555555?text=01-3', 'https://placehold.co/400x500/b0b0b0/666666?text=01-4'] },
+            { id: 'design2', name: 'Kaos Logo Klasik', price: 195000, imageUrls: ['https://placehold.co/400x500/d0d0d0/444444?text=Design+02-1', 'https://placehold.co/400x500/c0c0c0/555555?text=02-2', 'https://placehold.co/400x500/b0b0b0/666666?text=02-3'] },
+            { id: 'design3', name: 'Motif Geometris', price: 175000, imageUrls: ['https://placehold.co/400x500/c0c0c0/555555?text=Design+03-1', 'https://placehold.co/400x500/b0b0b0/666666?text=03-2', 'https://placehold.co/400x500/a0a0a0/777777?text=03-3'] },
+            { id: 'design4', name: 'Ilustrasi Kota', price: 200000, imageUrls: ['https://placehold.co/400x500/b0b0b0/666666?text=Design+04-1', 'https://placehold.co/400x500/a0a0a0/777777?text=04-2', 'https://placehold.co/400x500/909090/888888?text=04-3', 'https://placehold.co/400x500/808080/999999?text=04-4'] },
+            { id: 'design5', name: 'Kaos Polos Premium', price: 160000, imageUrls: ['https://placehold.co/400x500/a0a0a0/777777?text=Design+05-1', 'https://placehold.co/400x500/909090/888888?text=05-2'] },
+            { id: 'design6', name: 'Tipografi Unik', price: 180000, imageUrls: ['https://placehold.co/400x500/909090/888888?text=Design+06-1', 'https://placehold.co/400x500/808080/999999?text=06-2', 'https://placehold.co/400x500/707070/aaaaaa?text=06-3'] },
+            { id: 'design7', name: 'Gambar Fauna', price: 190000, imageUrls: ['https://placehold.co/400x500/808080/999999?text=Design+07-1', 'https://placehold.co/400x500/707070/aaaaaa?text=07-2', 'https://placehold.co/400x500/606060/bbbbbb?text=07-3', 'https://placehold.co/400x500/505050/cccccc?text=07-4'] },
+            { id: 'design8', name: 'Pola Batik Modern', price: 210000, imageUrls: ['https://placehold.co/400x500/707070/aaaaaa?text=Design+08-1', 'https://placehold.co/400x500/606060/bbbbbb?text=08-2'] },
+            { id: 'design9', name: 'Slogan Inspiratif', price: 170000, imageUrls: ['https://placehold.co/400x500/606060/bbbbbb?text=Design+09-1', 'https://placehold.co/400x500/505050/cccccc?text=09-2', 'https://placehold.co/400x500/404040/dddddd?text=09-3'] },
+            { id: 'design10', name: 'Kaos Vintage', price: 205000, imageUrls: ['https://placehold.co/400x500/505050/cccccc?text=Design+10-1', 'https://placehold.co/400x500/404040/dddddd?text=10-2', 'https://placehold.co/400x500/303030/eeeeee?text=10-3', 'https://placehold.co/400x500/e0e0e0/333333?text=10-4'] },
+            { id: 'design11', name: 'Desain Garis', price: 165000, imageUrls: ['https://placehold.co/400x500/404040/dddddd?text=Design+11-1', 'https://placehold.co/400x500/303030/eeeeee?text=11-2'] },
+            { id: 'design12', name: 'Ilustrasi Alam', price: 195000, imageUrls: ['https://placehold.co/400x500/303030/eeeeee?text=Design+12-1', 'https://placehold.co/400x500/e0e0e0/333333?text=12-2', 'https://placehold.co/400x500/d0d0d0/444444?text=12-3'] },
+            { id: 'design13', name: 'Kaos Minimalis', price: 185000, imageUrls: ['https://placehold.co/400x500/e0e0e0/333333?text=Design+13-1', 'https://placehold.co/400x500/d0d0d0/444444?text=13-2', 'https://placehold.co/400x500/c0c0c0/555555?text=13-3', 'https://placehold.co/400x500/b0b0b0/666666?text=13-4'] },
+            { id: 'design14', name: 'Logo Brand Baru', price: 195000, imageUrls: ['https://placehold.co/400x500/d0d0d0/444444?text=Design+14-1', 'https://placehold.co/400x500/c0c0c0/555555?text=14-2', 'https://placehold.co/400x500/b0b0b0/666666?text=14-3'] },
+            { id: 'design15', name: 'Motif Abstrak', price: 175000, imageUrls: ['https://placehold.co/400x500/c0c0c0/555555?text=Design+15-1', 'https://placehold.co/400x500/b0b0b0/666666?text=15-2', 'https://placehold.co/400x500/a0a0a0/777777?text=15-3'] },
+            { id: 'design16', name: 'Gambar Pemandangan', price: 200000, imageUrls: ['https://placehold.co/400x500/b0b0b0/666666?text=Design+16-1', 'https://placehold.co/400x500/a0a0a0/777777?text=16-2', 'https://placehold.co/400x500/909090/888888?text=16-3', 'https://placehold.co/400x500/808080/999999?text=16-4'] },
+            { id: 'design17', name: 'Kaos Basic', price: 160000, imageUrls: ['https://placehold.co/400x500/a0a0a0/777777?text=Design+17-1', 'https://placehold.co/400x500/909090/888888?text=17-2'] },
+            { id: 'design18', name: 'Tipografi Modern', price: 180000, imageUrls: ['https://placehold.co/400x500/909090/888888?text=Design+18-1', 'https://placehold.co/400x500/808080/999999?text=18-2', 'https://placehold.co/400x500/707070/aaaaaa?text=18-3'] },
+            { id: 'design19', name: 'Gambar Flora', price: 190000, imageUrls: ['https://placehold.co/400x500/808080/999999?text=Design+19-1', 'https://placehold.co/400x500/707070/aaaaaa?text=19-2', 'https://placehold.co/400x500/606060/bbbbbb?text=19-3', 'https://placehold.co/400x500/505050/cccccc?text=19-4'] },
+            { id: 'design20', name: 'Pola Etnik', price: 210000, imageUrls: ['https://placehold.co/400x500/707070/aaaaaa?text=Design+20-1', 'https://placehold.co/400x500/606060/bbbbbb?text=20-2'] },
+            { id: 'design21', name: 'Quotes Lucu', price: 170000, imageUrls: ['https://placehold.co/400x500/606060/bbbbbb?text=Design+21-1', 'https://placehold.co/400x500/505050/cccccc?text=21-2', 'https://placehold.co/400x500/404040/dddddd?text=21-3'] },
+            { id: 'design22', name: 'Kaos Band', price: 205000, imageUrls: ['https://placehold.co/400x500/505050/cccccc?text=Design+22-1', 'https://placehold.co/400x500/404040/dddddd?text=22-2', 'https://placehold.co/400x500/303030/eeeeee?text=22-3', 'https://placehold.co/400x500/e0e0e0/333333?text=22-4'] },
+            { id: 'design23', name: 'Desain Titik', price: 165000, imageUrls: ['https://placehold.co/400x500/404040/dddddd/text=Design+23-1', 'https://placehold.co/400x500/303030/eeeeee?text=23-2'] },
+            { id: 'design24', name: 'Ilustrasi Abstrak', price: 195000, imageUrls: ['https://placehold.co/400x500/303030/eeeeee?text=Design+24-1', 'https://placehold.co/400x500/e0e0e0/333333?text=24-2', 'https://placehold.co/400x500/d0d0d0/444444?text=24-3'] },
+        ];
+
+        // Updated sizes array
+        const sizes = ['M', 'L', 'XL'];
+        const productGrid = document.getElementById('product-grid');
+
+        // Image Preview Modal elements (existing)
+        const imagePreviewModal = document.getElementById('image-preview-modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalCloseButton = document.querySelector('#image-preview-modal .modal-close-button'); // Specific to image modal
+        const modalPrevButton = document.getElementById('modal-prev-button');
+        const modalNextButton = document.getElementById('modal-next-button');
+        const modalCarouselDotsContainer = document.getElementById('modal-carousel-dots');
+
+        // Product Detail Modal elements (NEW)
+        const productDetailModal = document.getElementById('product-detail-modal');
+        const productDetailModalCloseButton = document.querySelector('#product-detail-modal .modal-close-button'); // Specific to product detail modal
+        const modalProductCarouselContainer = document.getElementById('modal-product-carousel-container'); // New: carousel container for detail modal
+        const modalProductName = document.getElementById('modal-product-name');
+        const modalProductSizes = document.getElementById('modal-product-sizes');
+        const modalBuyNowButton = document.getElementById('modal-buy-now-button');
+
+
+        // Hamburger menu elements
+        const hamburgerButton = document.getElementById('hamburger-button');
+        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+
+        // Keep track of current image index for each carousel (using element IDs or data-product-id as keys)
+        const currentCarouselIndexes = {}; // Renamed from currentImageIndexes
+        const carouselIntervals = {};
+
+        // Global state for the modal's current product and image (for image preview modal only)
+        let currentImagePreviewModalProductId = null; // Renamed
+        let currentImagePreviewModalImageIndex = 0; // Renamed
+
+        // Fungsi untuk memformat harga ke IDR
+        const formatPrice = (price) => {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(price);
+        };
+
+        /**
+         * Menampilkan gambar carousel tertentu pada kontainer carousel yang diberikan.
+         * @param {HTMLElement} carouselElement - Elemen kontainer carousel (misalnya, div.carousel-container).
+         * @param {Array<string>} imageUrls - Array URL gambar untuk carousel ini.
+         * @param {number} index - Indeks gambar yang akan ditampilkan.
+         * @param {string} carouselId - ID unik untuk carousel ini (misalnya, product.id atau 'modal-detail').
+         */
+        const showCarouselImage = (carouselElement, imageUrls, index, carouselId) => {
+            const images = carouselElement.querySelectorAll('.carousel-image');
+            const dotsContainer = carouselElement.querySelector('.carousel-dots');
+            let dots = [];
+            if (dotsContainer) {
+                dots = dotsContainer.querySelectorAll('.carousel-dot');
+            }
+
+            images.forEach((img, i) => {
+                img.classList.remove('active');
+                if (i === index) {
+                    img.classList.add('active');
+                }
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.remove('active');
+                if (i === index) {
+                    dot.classList.add('active');
+                }
+            });
+            currentCarouselIndexes[carouselId] = index;
+        };
+
+        /**
+         * Menggeser carousel ke gambar berikutnya.
+         * @param {HTMLElement} carouselElement - Elemen kontainer carousel.
+         * @param {Array<string>} imageUrls - Array URL gambar untuk carousel ini.
+         * @param {string} carouselId - ID unik untuk carousel ini.
+         */
+        const nextCarouselImage = (carouselElement, imageUrls, carouselId) => {
+            let currentIndex = currentCarouselIndexes[carouselId] || 0;
+            currentIndex = (currentIndex + 1) % imageUrls.length;
+            showCarouselImage(carouselElement, imageUrls, currentIndex, carouselId);
+        };
+
+        /**
+         * Menggeser carousel ke gambar sebelumnya.
+         * @param {HTMLElement} carouselElement - Elemen kontainer carousel.
+         * @param {Array<string>} imageUrls - Array URL gambar untuk carousel ini.
+         * @param {string} carouselId - ID unik untuk carousel ini.
+         */
+        const prevCarouselImage = (carouselElement, imageUrls, carouselId) => {
+            let currentIndex = currentCarouselIndexes[carouselId] || 0;
+            currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length; // Ensure index wraps around correctly for negative values
+            showCarouselImage(carouselElement, imageUrls, currentIndex, carouselId);
+        };
+
+        // Fungsi untuk menampilkan gambar tertentu di modal (Image Preview Modal)
+        const showImagePreviewModalImage = (productId, imageIndex) => {
+            const product = products.find(p => p.id === productId);
+            if (!product || imageIndex < 0 || imageIndex >= product.imageUrls.length) {
+                console.error("Invalid product ID or image index for image preview modal. Product:", product, "Index:", imageIndex);
+                modalImage.src = '';
+                modalImage.alt = 'Gambar tidak tersedia';
+                modalCarouselDotsContainer.innerHTML = '';
+                modalPrevButton.style.display = 'none';
+                modalNextButton.style.display = 'none';
+                modalCarouselDotsContainer.style.display = 'none';
+                return;
+            }
+
+            modalImage.src = product.imageUrls[imageIndex];
+            modalImage.alt = `${product.name} - Gambar ${imageIndex + 1}`;
+            modalImage.classList.remove('zoomed');
+
+            modalCarouselDotsContainer.innerHTML = '';
+            if (product.imageUrls.length > 1) {
+                product.imageUrls.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.className = `modal-carousel-dot ${index === imageIndex ? 'active' : ''}`;
+                    dot.dataset.imageIndex = index;
+                    dot.addEventListener('click', () => showImagePreviewModalImage(productId, index));
+                    modalCarouselDotsContainer.appendChild(dot);
+                });
+            }
+
+            if (product.imageUrls.length <= 1) {
+                modalPrevButton.style.display = 'none';
+                modalNextButton.style.display = 'none';
+                modalCarouselDotsContainer.style.display = 'none';
+            } else {
+                modalPrevButton.style.display = 'block';
+                modalNextButton.style.display = 'block';
+                modalCarouselDotsContainer.style.display = 'flex';
+            }
+
+            currentImagePreviewModalProductId = productId; // Keep track for navigation
+            currentImagePreviewModalImageIndex = imageIndex; // Keep track for navigation
+        };
+
+        // Fungsi untuk membuka modal pratinjau gambar
+        const openImagePreviewModal = (productId, initialImageIndex) => {
+            showImagePreviewModalImage(productId, initialImageIndex);
+            imagePreviewModal.classList.add('visible');
+        };
+
+        // Fungsi untuk navigasi gambar di modal pratinjau
+        const navigateImagePreviewModal = (direction) => {
+            if (!currentImagePreviewModalProductId) return;
+
+            const product = products.find(p => p.id === currentImagePreviewModalProductId);
+            if (!product) return;
+
+            let newIndex = currentImagePreviewModalImageIndex + direction;
+            if (newIndex < 0) {
+                newIndex = product.imageUrls.length - 1;
+            } else if (newIndex >= product.imageUrls.length) {
+                newIndex = 0;
+            }
+            showImagePreviewModalImage(currentImagePreviewModalProductId, newIndex);
+        };
+
+        // Fungsi untuk membuka modal detail produk
+        const openProductDetailModal = (productId) => {
+            const product = products.find(p => p.id === productId);
+            if (!product) {
+                console.error("Product not found for ID:", productId);
+                return;
+            }
+
+            // Clear existing content and build carousel for detail modal
+            modalProductCarouselContainer.innerHTML = '';
+            modalProductCarouselContainer.innerHTML = `
+                ${product.imageUrls.map((url, index) => `
+                    <img src="${url}" alt="${product.name} - Gambar ${index + 1}" class="carousel-image ${index === 0 ? 'active' : ''}" data-image-index="${index}">
+                `).join('')}
+                ${product.imageUrls.length > 1 ? `
+                    <div class="carousel-dots">
+                        ${product.imageUrls.map((_, index) => `
+                            <span class="carousel-dot ${index === 0 ? 'active' : ''}" data-dot-index="${index}"></span>
+                        `).join('')}
+                    </div>
+                ` : ''}
+            `;
+
+            // Initialize and start carousel for the modal
+            const modalCarouselId = `modal-detail-${productId}`; // Unique ID for this modal's carousel instance
+            currentCarouselIndexes[modalCarouselId] = 0;
+            showCarouselImage(modalProductCarouselContainer, product.imageUrls, 0, modalCarouselId);
+
+            if (product.imageUrls.length > 1) {
+                // Clear any existing interval for this modal's carousel before setting a new one
+                if (carouselIntervals[modalCarouselId]) {
+                    clearInterval(carouselIntervals[modalCarouselId]);
+                }
+                carouselIntervals[modalCarouselId] = setInterval(() => nextCarouselImage(modalProductCarouselContainer, product.imageUrls, modalCarouselId), 3000);
+            }
+
+            modalProductName.textContent = product.name;
+
+            // Populate size options
+            modalProductSizes.innerHTML = '';
+            sizes.forEach(size => {
+                const sizeOption = document.createElement('span');
+                sizeOption.className = `modal-size-option px-3 py-1 hover:bg-gray-100`;
+                sizeOption.dataset.size = size;
+                sizeOption.textContent = size;
+                sizeOption.addEventListener('click', () => {
+                    modalProductSizes.querySelectorAll('.modal-size-option').forEach(opt => opt.classList.remove('selected'));
+                    sizeOption.classList.add('selected');
+                    console.log(`Ukuran ${size} dipilih untuk ${product.name} di modal detail.`);
+                });
+                modalProductSizes.appendChild(sizeOption);
+            });
+
+            // Set "Beli Sekarang" button link
+            modalBuyNowButton.href = `https://siaz.com/checkout?product=${product.id}`;
+            
+            productDetailModal.classList.add('visible');
+
+            // Attach swipe listeners to the modal's carousel container
+            attachCarouselSwipeListeners(modalProductCarouselContainer, product.imageUrls, modalCarouselId);
+
+            // Add event listeners for dots within the modal carousel
+            const modalDots = modalProductCarouselContainer.querySelectorAll('.carousel-dot');
+            modalDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const index = parseInt(dot.dataset.dotIndex);
+                    showCarouselImage(modalProductCarouselContainer, product.imageUrls, index, modalCarouselId);
+                    clearInterval(carouselIntervals[modalCarouselId]);
+                    carouselIntervals[modalCarouselId] = setInterval(() => nextCarouselImage(modalProductCarouselContainer, product.imageUrls, modalCarouselId), 3000);
+                });
+            });
+        };
+
+        // Fungsi untuk menutup modal detail produk
+        const closeProductDetailModal = () => {
+            productDetailModal.classList.remove('visible');
+            // Clear the interval for the modal's carousel when it's closed
+            // We need to find the product ID from the modal's current content to clear the correct interval
+            const currentProductNameInModal = modalProductName.textContent; 
+            const product = products.find(p => p.name === currentProductNameInModal); 
+            if (product) {
+                const modalCarouselId = `modal-detail-${product.id}`;
+                if (carouselIntervals[modalCarouselId]) {
+                    clearInterval(carouselIntervals[modalCarouselId]);
+                    delete carouselIntervals[modalCarouselId]; // Clean up
+                }
+            }
+        };
+
+        /**
+         * Melampirkan event listener geser/seret ke elemen carousel.
+         * @param {HTMLElement} carouselElement - Elemen kontainer carousel.
+         * @param {Array<string>} imageUrls - Array URL gambar untuk carousel ini.
+         * @param {string} carouselId - ID unik untuk carousel ini.
+         */
+        const attachCarouselSwipeListeners = (carouselElement, imageUrls, carouselId) => {
+            let startX = 0;
+            let startY = 0;
+            let isDragging = false;
+            let isHorizontalSwipe = false;
+            const swipeThreshold = 50;
+            const scrollThreshold = 10;
+
+            const handlePointerDown = (e) => {
+                isDragging = true;
+                isHorizontalSwipe = false;
+                startX = e.touches ? e.touches[0].clientX : e.clientX;
+                startY = e.touches ? e.touches[0].clientY : e.clientY;
+                clearInterval(carouselIntervals[carouselId]); // Stop auto-carousel on manual interaction
+                carouselElement.classList.add('dragging');
+            };
+
+            const handlePointerMove = (e) => {
+                if (!isDragging) return;
+
+                const currentX = e.touches ? e.touches[0].clientX : e.clientX;
+                const currentY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                const diffX = currentX - startX;
+                const diffY = currentY - startY;
+
+                if (!isHorizontalSwipe && (Math.abs(diffX) > scrollThreshold || Math.abs(diffY) > scrollThreshold)) {
+                    if (Math.abs(diffX) > Math.abs(diffY)) {
+                        isHorizontalSwipe = true;
+                    } else {
+                        isDragging = false;
+                        carouselElement.classList.remove('dragging');
+                        // No need to restart auto-carousel here, it will be restarted on pointerUp
+                        return; // Allow default scroll behavior
+                    }
+                }
+
+                if (isHorizontalSwipe) {
+                    e.preventDefault();
+                }
+            };
+
+            const handlePointerUp = (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                carouselElement.classList.remove('dragging');
+
+                if (isHorizontalSwipe) {
+                    const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+                    const diffX = endX - startX;
+
+                    if (diffX > swipeThreshold) {
+                        prevCarouselImage(carouselElement, imageUrls, carouselId);
+                    } else if (diffX < -swipeThreshold) {
+                        nextCarouselImage(carouselElement, imageUrls, carouselId);
+                    }
+                }
+                carouselIntervals[carouselId] = setInterval(() => nextCarouselImage(carouselElement, imageUrls, carouselId), 3000);
+            };
+
+            // Remove previous listeners to prevent duplicates if function is called multiple times
+            // This is crucial for dynamically added carousels or re-attaching listeners
+            carouselElement.removeEventListener('mousedown', handlePointerDown);
+            carouselElement.removeEventListener('mousemove', handlePointerMove);
+            carouselElement.removeEventListener('mouseup', handlePointerUp);
+            carouselElement.removeEventListener('mouseleave', handlePointerUp);
+            carouselElement.removeEventListener('touchstart', handlePointerDown);
+            carouselElement.removeEventListener('touchmove', handlePointerMove);
+            carouselElement.removeEventListener('touchend', handlePointerUp);
+            carouselElement.removeEventListener('touchcancel', handlePointerUp);
+
+            // Add new listeners
+            carouselElement.addEventListener('mousedown', handlePointerDown);
+            carouselElement.addEventListener('mousemove', handlePointerMove);
+            carouselElement.addEventListener('mouseup', handlePointerUp);
+            carouselElement.addEventListener('mouseleave', handlePointerUp);
+            carouselElement.addEventListener('touchstart', handlePointerDown);
+            carouselElement.addEventListener('touchmove', handlePointerMove);
+            carouselElement.addEventListener('touchend', handlePointerUp);
+            carouselElement.addEventListener('touchcancel', handlePointerUp);
+        };
+
+
+        // Render produk ke halaman
+        // Limit the number of products to display on the landing page
+        const displayedProducts = products.slice(0, 12); // Display only the first 12 products
+
+        displayedProducts.forEach(product => { // Loop through the limited array
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card flex flex-col items-center text-center';
+            productCard.dataset.productId = product.id; // Add data-product-id for easy lookup
+
+            // Build the carousel HTML string
+            const carouselHtml = `
+                <div class="carousel-container mb-4">
+                    ${product.imageUrls.map((url, index) => `
+                        <img src="${url}" alt="${product.name} - Gambar ${index + 1}" class="carousel-image ${index === 0 ? 'active' : ''}" data-image-index="${index}">
+                    `).join('')}
+                    ${product.imageUrls.length > 1 ? `
+                        <div class="carousel-dots">
+                            ${product.imageUrls.map((_, index) => `
+                                <span class="carousel-dot ${index === 0 ? 'active' : ''}" data-dot-index="${index}"></span>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            // Build the rest of the product card HTML string (EXCLUDING SIZE OPTIONS)
+            const cardContentHtml = `
+                <h3 class="text-gray-800 mb-2">${product.name}</h3>
+                <button class="detail-button" data-product-id="${product.id}">
+                    Lihat Detail
+                </button>
+            `;
+
+            // Set innerHTML once
+            productCard.innerHTML = carouselHtml + cardContentHtml;
+            productGrid.appendChild(productCard);
+
+            // --- IMPORTANT: Get references to elements AFTER they are in the DOM ---
+            const carouselContainer = productCard.querySelector('.carousel-container');
+            const productCarouselId = `product-card-${product.id}`;
+
+            // Initialize and start automatic carousel for product card
+            currentCarouselIndexes[productCarouselId] = 0;
+            showCarouselImage(carouselContainer, product.imageUrls, 0, productCarouselId);
+
+            if (product.imageUrls.length > 1) {
+                carouselIntervals[productCarouselId] = setInterval(() => nextCarouselImage(carouselContainer, product.imageUrls, productCarouselId), 3000);
+            }
+
+            // Size options event listener removed from here as they are no longer in the HTML
+            // const sizeOptions = productCard.querySelectorAll('.size-option');
+            // sizeOptions.forEach(option => {
+            //     option.addEventListener('click', () => {
+            //         sizeOptions.forEach(opt => opt.classList.remove('selected'));
+            //         option.classList.add('selected');
+            //         console.log(`Ukuran ${option.dataset.size} dipilih untuk ${product.name}`);
+            //     });
+            // });
+
+            // Add event listener for carousel dots on product cards
+            const dots = carouselContainer.querySelectorAll('.carousel-dot');
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const index = parseInt(dot.dataset.dotIndex);
+                    showCarouselImage(carouselContainer, product.imageUrls, index, productCarouselId);
+                    clearInterval(carouselIntervals[productCarouselId]);
+                    carouselIntervals[productCarouselId] = setInterval(() => nextCarouselImage(carouselContainer, product.imageUrls, productCarouselId), 3000);
+                });
+            });
+
+            // Add event listener for image click to open image preview modal
+            const carouselImages = carouselContainer.querySelectorAll('.carousel-image');
+            carouselImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    const productId = productCard.dataset.productId;
+                    const imageIndex = parseInt(img.dataset.imageIndex);
+                    openImagePreviewModal(productId, imageIndex);
+                });
+            });
+
+            // Add event listener for "Lihat Detail" button to open product detail modal
+            const detailButton = productCard.querySelector('.detail-button');
+            detailButton.addEventListener('click', () => {
+                const productId = detailButton.dataset.productId;
+                openProductDetailModal(productId);
+            });
+
+            // Attach swipe listeners for product card carousel
+            attachCarouselSwipeListeners(carouselContainer, product.imageUrls, productCarouselId);
+        });
+
+        // Image Preview Modal close functionality
+        modalCloseButton.addEventListener('click', () => {
+            imagePreviewModal.classList.remove('visible');
+            modalImage.classList.remove('zoomed');
+            currentImagePreviewModalProductId = null;
+            currentImagePreviewModalImageIndex = 0;
+        });
+
+        // Close Image Preview Modal when clicking outside the image
+        imagePreviewModal.addEventListener('click', (e) => {
+            // Check if the click target is NOT the image, nav buttons, or dots inside modal
+            if (e.target === modalImage || e.target === modalPrevButton || e.target === modalNextButton || e.target.classList.contains('modal-carousel-dot')) {
+                return;
+            }
+            if (e.target === imagePreviewModal) { // Only close if clicking on the overlay itself
+                imagePreviewModal.classList.remove('visible');
+                modalImage.classList.remove('zoomed');
+                currentImagePreviewModalProductId = null;
+                currentImagePreviewModalImageIndex = 0;
+            }
+        });
+
+        // Zoom functionality for image preview modal image
+        modalImage.addEventListener('click', () => {
+            modalImage.classList.toggle('zoomed');
+        });
+
+        // Image Preview Modal navigation buttons
+        modalPrevButton.addEventListener('click', () => navigateImagePreviewModal(-1));
+        modalNextButton.addEventListener('click', () => navigateImagePreviewModal(1));
+
+
+        // Product Detail Modal close functionality
+        productDetailModalCloseButton.addEventListener('click', () => {
+            closeProductDetailModal();
+        });
+
+        // Close Product Detail Modal when clicking on the overlay background
+        productDetailModal.addEventListener('click', (e) => {
+            if (e.target === productDetailModal) {
+                closeProductDetailModal();
+            }
+        });
+
+
+        // Smooth scroll for menubar links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Hamburger menu toggle functionality
+        hamburgerButton.addEventListener('click', () => {
+            hamburgerButton.classList.toggle('open');
+            mobileNavOverlay.classList.toggle('active');
+        });
+
+        // Close mobile nav when a link is clicked
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerButton.classList.remove('open');
+                mobileNavOverlay.classList.remove('active');
+            });
+        });
+
+        // Close mobile nav when clicking on the overlay background
+        mobileNavOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileNavOverlay) {
+                hamburgerButton.classList.remove('open');
+                mobileNavOverlay.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
