@@ -555,20 +555,35 @@
         // Data produk kaos (24 desain) dengan multiple images
         const products = [
             { id: 'design1', name: 'Runz Black', price: 185000, imageUrls: ['./images/RUNZ__1.jpg', 'https://placehold.co/400x500/d0d0d0/444444?text=01-2', 'https://placehold.co/400x500/c0c0c0/555555?text=01-3', 'https://placehold.co/400x500/b0b0b0/666666?text=01-4'] },
-            { id: 'design2', name: 'Hertz Black', price: 195000, imageUrls: ['./images/RUNZ__2.jpg', 'https://placehold.co/400x500/c0c0c0/555555?text=02-2', 'https://placehold.co/400x500/b0b0b0/666666?text=02-3'] },
+
+            { id: 'design2', name: 'Hertz Black', price: 195000, imageUrls: ['./images/RUNZ__2.jpg', './images/RUNZ__1.jpg', 'https://placehold.co/400x500/b0b0b0/666666?text=02-3'] },
+
             { id: 'design3', name: 'Motif Geometris', price: 175000, imageUrls: ['https://placehold.co/400x500/c0c0c0/555555?text=Design+03-1', 'https://placehold.co/400x500/b0b0b0/666666?text=03-2', 'https://placehold.co/400x500/a0a0a0/777777?text=03-3'] },
+
             { id: 'design4', name: 'Ilustrasi Kota', price: 200000, imageUrls: ['https://placehold.co/400x500/b0b0b0/666666?text=Design+04-1', 'https://placehold.co/400x500/a0a0a0/777777?text=04-2', 'https://placehold.co/400x500/909090/888888?text=04-3', 'https://placehold.co/400x500/808080/999999?text=04-4'] },
+
             { id: 'design5', name: 'Kaos Polos Premium', price: 160000, imageUrls: ['https://placehold.co/400x500/a0a0a0/777777?text=Design+05-1', 'https://placehold.co/400x500/909090/888888?text=05-2'] },
+
             { id: 'design6', name: 'Tipografi Unik', price: 180000, imageUrls: ['https://placehold.co/400x500/909090/888888?text=Design+06-1', 'https://placehold.co/400x500/808080/999999?text=06-2', 'https://placehold.co/400x500/707070/aaaaaa?text=06-3'] },
+
             { id: 'design7', name: 'Gambar Fauna', price: 190000, imageUrls: ['https://placehold.co/400x500/808080/999999?text=Design+07-1', 'https://placehold.co/400x500/707070/aaaaaa?text=07-2', 'https://placehold.co/400x500/606060/bbbbbb?text=07-3', 'https://placehold.co/400x500/505050/cccccc?text=07-4'] },
+
             { id: 'design8', name: 'Pola Batik Modern', price: 210000, imageUrls: ['https://placehold.co/400x500/707070/aaaaaa?text=Design+08-1', 'https://placehold.co/400x500/606060/bbbbbb?text=08-2'] },
+
             { id: 'design9', name: 'Slogan Inspiratif', price: 170000, imageUrls: ['https://placehold.co/400x500/606060/bbbbbb?text=Design+09-1', 'https://placehold.co/400x500/505050/cccccc?text=09-2', 'https://placehold.co/400x500/404040/dddddd?text=09-3'] },
+
             { id: 'design10', name: 'Kaos Vintage', price: 205000, imageUrls: ['https://placehold.co/400x500/505050/cccccc?text=Design+10-1', 'https://placehold.co/400x500/404040/dddddd?text=10-2', 'https://placehold.co/400x500/303030/eeeeee?text=10-3', 'https://placehold.co/400x500/e0e0e0/333333?text=10-4'] },
+
             { id: 'design11', name: 'Desain Garis', price: 165000, imageUrls: ['https://placehold.co/400x500/404040/dddddd?text=Design+11-1', 'https://placehold.co/400x500/303030/eeeeee?text=11-2'] },
+
             { id: 'design12', name: 'Ilustrasi Alam', price: 195000, imageUrls: ['https://placehold.co/400x500/303030/eeeeee?text=Design+12-1', 'https://placehold.co/400x500/e0e0e0/333333?text=12-2', 'https://placehold.co/400x500/d0d0d0/444444?text=12-3'] },
+
             { id: 'design13', name: 'Kaos Minimalis', price: 185000, imageUrls: ['https://placehold.co/400x500/e0e0e0/333333?text=Design+13-1', 'https://placehold.co/400x500/d0d0d0/444444?text=13-2', 'https://placehold.co/400x500/c0c0c0/555555?text=13-3', 'https://placehold.co/400x500/b0b0b0/666666?text=13-4'] },
+
             { id: 'design14', name: 'Logo Brand Baru', price: 195000, imageUrls: ['https://placehold.co/400x500/d0d0d0/444444?text=Design+14-1', 'https://placehold.co/400x500/c0c0c0/555555?text=14-2', 'https://placehold.co/400x500/b0b0b0/666666?text=14-3'] },
+
             { id: 'design15', name: 'Motif Abstrak', price: 175000, imageUrls: ['https://placehold.co/400x500/c0c0c0/555555?text=Design+15-1', 'https://placehold.co/400x500/b0b0b0/666666?text=15-2', 'https://placehold.co/400x500/a0a0a0/777777?text=15-3'] },
+
             { id: 'design16', name: 'Gambar Pemandangan', price: 200000, imageUrls: ['https://placehold.co/400x500/b0b0b0/666666?text=Design+16-1', 'https://placehold.co/400x500/a0a0a0/777777?text=16-2', 'https://placehold.co/400x500/909090/888888?text=16-3', 'https://placehold.co/400x500/808080/999999?text=16-4'] },
             { id: 'design17', name: 'Kaos Basic', price: 160000, imageUrls: ['https://placehold.co/400x500/a0a0a0/777777?text=Design+17-1', 'https://placehold.co/400x500/909090/888888?text=17-2'] },
             { id: 'design18', name: 'Tipografi Modern', price: 180000, imageUrls: ['https://placehold.co/400x500/909090/888888?text=Design+18-1', 'https://placehold.co/400x500/808080/999999?text=18-2', 'https://placehold.co/400x500/707070/aaaaaa?text=18-3'] },
