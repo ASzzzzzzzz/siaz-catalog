@@ -144,54 +144,25 @@
             color: #555;
         }
 
-        /./images/'hero_background.jpg'/
-
-        /* Main hero container */
+        /* NEW Hero Section styles - Apple-like with fluid background */
         .hero-new-section {
             position: relative;
             width: 100%;
             height: 100vh; /* Full viewport height */
+            background-image: url('./image/hero_backgrond.jpg'); /* hero_backgrond.jpg */
+            background-size: 110% 110%; /* Slightly larger for animation */
+            background-position: center center;
+            background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: center; /* Center content vertically */
             align-items: center;
             text-align: center;
             padding: 2rem;
             box-sizing: border-box;
-            color: #1a1a1a;
-            overflow: hidden;
-        }
-
-        /* Container for the background slides */
-        .hero-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; /* Places the slider behind the content */
-        }
-
-        /* Individual slide style */
-        .hero-slider .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            opacity: 0; /* Hidden by default */
-            transition: opacity 1.5s ease-in-out; /* Smooth fade effect */
-            z-index: 1;
-        }
-
-        /* Style for the currently visible slide */
-        .hero-slider .slide.active {
-            opacity: 1; /* Makes the slide visible */
-            /* We re-apply your original animation to the active slide */
-            animation: subtle-fluid-zoom 20s infinite alternate ease-in-out;
+            color: #1a1a1a; /* Dark text for contrast */
+            overflow: hidden; /* Ensure content doesn't overflow */
+            animation: subtle-fluid-zoom 20s infinite alternate ease-in-out; /* Fluid effect animation */
         }
 
         /* Gradient overlay for the bottom of the hero section */
@@ -202,12 +173,12 @@
             left: 0;
             width: 100%;
             height: 30%; /* Height of the gradient blur area */
-            background: linear-gradient(to top, #f7f7f7 0%, rgba(247, 247, 247, 0) 100%); /* Matches body background */
-            z-index: 5; /* Ensures gradient is above the slider but below text */
+            background: linear-gradient(to top, #f0f0f0 0%, rgba(240,240,240,0) 100%); /* Matches body background */
+            z-index: 1; /* Ensure gradient is above the background image but below text content */
             pointer-events: none; /* Allow clicks to pass through */
         }
 
-        /* Keyframes for subtle fluid zoom animation (your original animation) */
+        /* Keyframes for subtle fluid zoom animation */
         @keyframes subtle-fluid-zoom {
             0% {
                 background-size: 110% 110%;
@@ -219,14 +190,15 @@
             }
         }
 
-        /* Your original content styles - now with z-index */
         .hero-new-content {
-            z-index: 10; /* Ensure content is above slider and gradient */
+            z-index: 10; /* Ensure content is above background and gradient */
             position: relative;
             width: 100%;
             max-width: 600px;
             transform: translateY(0);
         }
+
+        /* Removed hero-profile-logo styles as the element is removed */
 
         .hero-new-tagline {
             font-size: 2.2rem;
@@ -259,16 +231,22 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
         .hero-new-button svg {
-            margin-left: 0.5rem;
-            width: 1.2em;
+            margin-left: 0.5rem; /* Space between text and icon */
+            width: 1.2em; /* Size of the SVG icon */
             height: 1.2em;
             fill: currentColor; /* Inherit color from button text */
             display: inline-block; /* Ensure SVG is visible */
         }
 
         .hero-new-small-note {
-            display: none; 
+            /* Removed styles as the element is removed */
+            display: none; /* Ensure it's hidden if somehow still present */
         }
+        /* Ensure no hover effect for the note as it's not a link */
+        .hero-new-small-note:hover {
+            /* Removed styles as the element is removed */
+        }
+
 
         /* Product Card styles (existing) */
         .product-card {
@@ -840,21 +818,21 @@
         </ul>
     </div>
 
-    <!-- NEW Hero Section - with Automatic Background Slider -->
+    <!-- NEW Hero Section - Apple-like with fluid background -->
     <section class="hero-new-section" id="hero-new-section">
-        <!-- This div will contain the sliding background images -->
-        <div class="hero-slider"></div>
-
         <div class="hero-new-content">
+            <!-- Removed img tag with class hero-profile-logo -->
             <p class="hero-new-tagline">
-                We Believe in - <br>Dream So Hard
-            </p>
+We Believe in - 
+
+Dream So Hard</p>
             <a href="#katalog-section" class="hero-new-button" id="start-exploring-button">
                 Futured Collection
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                     <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
                 </svg>
             </a>
+            <!-- Removed p tag with class hero-new-small-note -->
         </div>
     </section>
 
@@ -1112,6 +1090,7 @@
                     thumbnail.className = `modal-thumbnail ${index === imageIndex ? 'active' : ''}`;
                     thumbnail.src = url;
                     thumbnail.alt = `${product.name} thumbnail ${index + 1}`;
+                    thumbnail.dataset.imageIndex = index;
                     thumbnail.onerror = () => { // Fallback for thumbnail images
                         thumbnail.src = 'https://placehold.co/70x70/cccccc/333333?text=X';
                     };
@@ -1527,50 +1506,5 @@
             }
         });
     </script>
-
-    <!-- SCRIPT FOR AUTOMATIC HERO BACKGROUND SLIDER -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- Configuration ---
-            // Add the paths to your background images here
-            const heroImages = [
-                './image/hero_backgrond.jpg', // Your original image
-                './images/RUNZ__1.jpg',       // Example from your products
-                './images/RUNZ__2b.jpg'       // Another example
-                // Add more image URLs as needed
-            ];
-            const slideDuration = 5000; // Time per slide in milliseconds (5 seconds)
-
-            // --- Logic ---
-            const sliderContainer = document.querySelector('.hero-slider');
-            if (sliderContainer && heroImages.length > 0) {
-                // Create slide elements from the image array
-                heroImages.forEach((imageUrl, index) => {
-                    const slide = document.createElement('div');
-                    slide.className = 'slide';
-                    slide.style.backgroundImage = `url('${imageUrl}')`;
-                    // Add an onerror fallback directly to the element style
-                    slide.style.backgroundImage = `url('${imageUrl}'), url('https://placehold.co/1920x1080/f7f7f7/333?text=Image+Missing')`;
-                    sliderContainer.appendChild(slide);
-                });
-
-                const slides = sliderContainer.querySelectorAll('.slide');
-                let currentSlide = 0;
-
-                // Show the first slide immediately
-                slides[0].classList.add('active');
-
-                // If there's more than one slide, start the interval
-                if (slides.length > 1) {
-                    setInterval(() => {
-                        slides[currentSlide].classList.remove('active');
-                        currentSlide = (currentSlide + 1) % slides.length;
-                        slides[currentSlide].classList.add('active');
-                    }, slideDuration);
-                }
-            }
-        });
-    </script>
 </body>
 </html>
-
