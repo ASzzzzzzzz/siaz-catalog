@@ -20,10 +20,12 @@
 <body class="antialiased">
     <!-- Header -->
     <header class="glass-header"><div class="container mx-auto px-4 md:px-8 py-3 flex justify-between items-center max-w-7xl"><a href="./index.html" class="text-4xl brand-font">SIAZ*</a><a href="./index.html#katalog" class="bg-blue-600 text-white font-semibold text-sm px-4 py-2 rounded-full hover:bg-blue-700 interactive-button">Katalog Utama</a></div></header>
+    
     <!-- Main Product Section -->
     <main class="container mx-auto px-4 md:px-8 py-12 md:py-16 max-w-7xl">
         <div id="product-content" class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
-            <div class="sticky top-28">
+            <!-- PERBAIKAN: Properti 'sticky' sekarang hanya aktif di layar besar (lg) -->
+            <div class="lg:sticky top-28">
                 <img id="main-image" src="https://placehold.co/800x1000/e8e8e8/333333?text=Loading..." alt="Main product image" class="w-full h-auto object-cover rounded-2xl shadow-sm mb-4 transition-opacity duration-300">
                 <div id="thumbnail-gallery" class="grid grid-cols-4 sm:grid-cols-5 gap-3"></div>
             </div>
@@ -40,8 +42,10 @@
         </div>
         <div id="product-not-found" class="hidden text-center py-20"><h2 class="text-2xl font-bold">Oops! Produk tidak ditemukan.</h2><a href="./index.html" class="text-blue-600 mt-2 inline-block">Kembali ke beranda</a></div>
     </main>
+    
     <!-- Footer -->
     <footer class="py-12 mt-16 text-center text-zinc-500 text-sm border-t border-zinc-200"><p class="font-bold brand-font text-2xl text-black mb-4">SIAZ*</p><p>SIAZ* &copy; 2025. All Rights Reserved.</p><p class="mt-2"><a href="./privacy.html" class="hover:text-black">Kebijakan Privasi</a> &middot; <a href="./contact.html" class="hover:text-black">Kontak</a> &middot; <a href="https://www.instagram.com/siaz" target="_blank" rel="noopener noreferrer" class="hover:text-black">Instagram</a></p></footer>
+
     <script src="./database.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
