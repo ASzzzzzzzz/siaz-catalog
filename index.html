@@ -10,23 +10,63 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f5f5f7; color: #1d1d1f; overflow-x: hidden; }
+        body { 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            background-color: #f5f5f7; 
+            color: #1d1d1f; 
+            overflow-x: hidden;
+        }
         body.menu-open { overflow: hidden; }
-        .brand-font { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+        .brand-font { 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            font-weight: 700;
+        }
         .glass-header { position: sticky; top: 0; z-index: 50; background: rgba(245, 245, 247, 0.8); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
         .interactive-button:active { transform: scale(0.96); transition: transform 0.1s ease; }
         .carousel__cell, .product-card { background-color: #fff; border: 1px solid #e5e5e5; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 18px; overflow: hidden; }
-        .scene { width: 210px; height: 320px; position: relative; perspective: 1000px; margin: 0 auto; cursor: grab; }
+        
+        /* --- Carousel 3D Optimizations --- */
+        .scene {
+            width: 210px;
+            height: 320px;
+            position: relative;
+            perspective: 1000px;
+            margin: 0 auto;
+            cursor: grab;
+        }
         .scene.is-dragging { cursor: grabbing; }
-        .carousel { width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); }
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
         .carousel.is-dragging { transition: none; }
-        .carousel__cell { position: absolute; width: 190px; height: 300px; left: 10px; top: 10px; display: flex; justify-content: center; align-items: center; -webkit-user-select: none; user-select: none; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s, filter 0.8s; }
+        .carousel__cell {
+            position: absolute;
+            width: 190px;
+            height: 300px;
+            left: 10px;
+            top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -webkit-user-select: none;
+            user-select: none;
+            transform-origin: center center;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s, filter 0.6s;
+        }
         .carousel__cell img, .product-card img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
         .nav-button { width: 40px; height: 40px; border-radius: 9999px; background-color: #e8e8ed; color: #333; transition: all 0.3s ease; flex-shrink: 0; }
         .nav-button:hover { background-color: #dcdce1; }
         .background-shadow { position: absolute; top: 50%; left: 50%; width: 350px; height: 350px; background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0) 70%); border-radius: 50%; transform: translate(-50%, -50%) scale(0.9); opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; pointer-events: none; z-index: -1; }
         .background-shadow.is-visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         @media (max-width: 768px) { .nav-container { margin-top: -1rem; } }
+        
+        /* --- Hamburger Menu CSS --- */
         #menu-toggle .close-icon { display: none; }
         #menu-toggle.is-active .open-icon { display: none; }
         #menu-toggle.is-active .close-icon { display: block; }
@@ -41,6 +81,7 @@
     <header class="glass-header"><div class="container mx-auto px-4 md:px-8 py-3 flex justify-between items-center max-w-7xl"><a href="./index.html" class="text-4xl brand-font">SIAZ*</a><button id="menu-toggle" class="relative z-50 h-10 w-10" aria-label="Open menu"><svg class="open-icon h-6 w-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg><svg class="close-icon h-6 w-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div></header>
     <!-- Menu Overlay -->
     <div id="mobile-menu" class="mobile-menu"><a href="./lookbook.html" class="menu-link">Lookbook</a><a href="#katalog" class="menu-link">Future Products</a><a href="#arsip-pilihan" class="menu-link">Arsip Pilihan</a><a href="https://instagram.com/siaz" target="_blank" rel="noopener noreferrer" class="menu-link">Instagram</a></div>
+    
     <!-- Main Content -->
     <div class="container mx-auto px-4 md:px-8 max-w-7xl">
         <main>
@@ -57,7 +98,15 @@
                 </div>
             </section>
             <!-- Future Products Section -->
-            <section class="my-16" id="katalog" data-aos="fade-up"><div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8 gap-2"><h2 class="text-3xl brand-font">Future Products</h2></div><div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"><a href="./product.html?item=monogram-tee" class="product-card block interactive-button" data-aos="fade-up"><img src="https://placehold.co/400x400/e8e8e8/333333?text=SIAZ*+Tee" alt="SIAZ* T-shirt" loading="lazy"></a><a href="./product.html?item=utility-hoodie" class="product-card block interactive-button" data-aos="fade-up" data-aos-delay="100"><img src="https://placehold.co/400x400/e8e8e8/333333?text=SIAZ*+Hoodie" alt="SIAZ* Hoodie" loading="lazy"></a><a href="./product.html?item=tech-cargo" class="product-card block interactive-button" data-aos="fade-up" data-aos-delay="200"><img src="https://placehold.co/400x400/e8e8e8/333333?text=SIAZ*+Cargo" alt="SIAZ* Cargo Pants" loading="lazy"></a><a href="./product.html?item=nylon-cap" class="product-card block interactive-button" data-aos="fade-up" data-aos-delay="300"><img src="https://placehold.co/400x400/e8e8e8/333333?text=SIAZ*+Cap" alt="SIAZ* Cap" loading="lazy"></a><a href="#" class="product-card extended-product hidden block interactive-button"><img src="https://placehold.co/400x400/cccccc/333333?text=Product+5" alt="Product 5" loading="lazy"></a><a href="#" class="product-card extended-product hidden block interactive-button"><img src="https://placehold.co/400x400/cccccc/333333?text=Product+6" alt="Product 6" loading="lazy"></a><a href="#" class="product-card extended-product hidden block interactive-button"><img src="https://placehold.co/400x400/cccccc/333333?text=Product+7" alt="Product 7" loading="lazy"></a><a href="#" class="product-card extended-product hidden block interactive-button"><img src="https://placehold.co/400x400/cccccc/333333?text=Product+8" alt="Product 8" loading="lazy"></a></div><div class="flex justify-center mt-10" data-aos="fade-up"><button id="show-more-btn" class="nav-button flex items-center justify-center interactive-button" aria-label="Tampilkan lebih banyak"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg></button></div></section>
+            <section class="my-16" id="katalog" data-aos="fade-up"><div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8 gap-2"><h2 class="text-3xl brand-font">Future Products</h2></div><div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"><a href="./product.html?item=monogram-tee" class="product-card block interactive-button" data-aos="fade-up"><img src="https://placehold.co/400x400/e8e8e8/333333?text=SIAZ*+Tee" alt="SIAZ* T-shirt" loading="lazy"></a><a href="./product.html?item=utility-hoodie" class="product-card block interactive-button" data-aos="fade-up" data-aos-delay="100"><img src="https://placehold.co/400x400/e8e8e8/333333?text=SIAZ*+Hoodie" alt="SIAZ* Hoodie" loading="lazy"></a><a href="./product.html?item=tech-cargo" class="product-card block interactive-button" data-aos="fade-up" data-aos-delay="200"><img src="https://placehold.co/400x400/e8e8e8/333333?text=SIAZ*+Cargo" alt="SIAZ* Cargo Pants" loading="lazy"></a><a href="./product.html?item=nylon-cap" class="product-card block interactive-button" data-aos="fade-up" data-aos-delay="300"><img src="https://placehold.co/400x400/e8e8e8/333333?text=SIAZ*+Cap" alt="SIAZ* Cap" loading="lazy"></a>
+            
+            <!-- PERBAIKAN PADA PRODUK EXTENDED -->
+            <a href="#!" class="product-card extended-product hidden block interactive-button" data-aos="fade-up"><img src="https://placehold.co/400x400/cccccc/333333?text=Product+5" alt="Product 5" loading="lazy"></a>
+            <a href="#!" class="product-card extended-product hidden block interactive-button" data-aos="fade-up"><img src="https://placehold.co/400x400/cccccc/333333?text=Product+6" alt="Product 6" loading="lazy"></a>
+            <a href="#!" class="product-card extended-product hidden block interactive-button" data-aos="fade-up"><img src="https://placehold.co/400x400/cccccc/333333?text=Product+7" alt="Product 7" loading="lazy"></a>
+            <a href="#!" class="product-card extended-product hidden block interactive-button" data-aos="fade-up"><img src="https://placehold.co/400x400/cccccc/333333?text=Product+8" alt="Product 8" loading="lazy"></a>
+            
+            </div><div class="flex justify-center mt-10" data-aos="fade-up"><button id="show-more-btn" class="nav-button flex items-center justify-center interactive-button" aria-label="Tampilkan lebih banyak"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg></button></div></section>
             <!-- Lifestyle Section -->
             <section class="my-20" data-aos="fade-up"><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><img src="https://placehold.co/600x800/111111/ffffff?text=URBAN+CULTURE" alt="Model wearing SIAZ* in an urban setting" loading="lazy" class="w-full h-full object-cover rounded-2xl"><img src="https://placehold.co/600x800/111111/ffffff?text=STREET+ESSENTIALS" alt="SIAZ* clothing essentials" loading="lazy" class="w-full h-full object-cover rounded-2xl" data-aos="fade-up" data-aos-delay="100"><img src="https://placehold.co/600x800/111111/ffffff?text=DEFINE+YOUR+STYLE" alt="A person defining their style with SIAZ*" loading="lazy" class="w-full h-full object-cover rounded-2xl" data-aos="fade-up" data-aos-delay="200"></div></section>
             <!-- Arsip Pilihan Section -->
@@ -73,8 +122,92 @@
     <script>
         AOS.init({duration:800,once:!0});
         const menuToggle=document.getElementById("menu-toggle"),mobileMenu=document.getElementById("mobile-menu"),menuLinks=document.querySelectorAll(".menu-link");menuToggle.addEventListener("click",()=>{menuToggle.classList.toggle("is-active"),mobileMenu.classList.toggle("is-open"),document.body.classList.toggle("menu-open")}),menuLinks.forEach(e=>{e.addEventListener("click",()=>{menuToggle.classList.remove("is-active"),mobileMenu.classList.remove("is-open"),document.body.classList.remove("menu-open")})});
-        document.addEventListener("DOMContentLoaded",function(){const e=document.querySelector(".carousel");if(!e)return;const t=Array.from(document.querySelectorAll(".carousel__cell")),o=document.getElementById("prev-button"),n=document.getElementById("next-button"),d=document.getElementById("background-shadow"),s=t.length;if(0===s)return;const l=360/s,a=Math.round(e.offsetWidth/2/Math.tan(Math.PI/s));let r=0;function c(){const n=(r%s+s)%s;t.forEach((e,t)=>{const o=t===n,d=o?1.25:1,s=o?1:.6,i=o?"brightness(1)":"brightness(0.9)";e.style.opacity=s,e.style.filter=i,e.style.transform=`rotateY(${l*t}deg) translateZ(${a}px) scale(${d})`})}function i(){const t=l*r*-1;e.style.transform=`translateZ(-${a}px) rotateY(${t}deg)`,c()}o.addEventListener("click",()=>{r--,i()}),n.addEventListener("click",()=>{r++,i()});let u=!1,m=0,p=0;const g=e.parentElement;function w(e){u=!0,d.classList.add("is-visible"),g.classList.add("is-dragging"),m=e.pageX||e.touches&&e.touches[0].pageX,p=parseFloat(g.style.transform.split("rotateY(")[1])||0,e.preventDefault()}function f(e){if(!u)return;const t=e.pageX||e.touches&&e.touches[0].pageX,o=(t-m)*.8,n=p+o;g.style.transform=`translateZ(-${a}px) rotateY(${n}deg)`}function h(){if(!u)return;u=!1,d.classList.remove("is-visible"),g.classList.remove("is-dragging");const e=g.style.transform.match(/rotateY\(([^deg]+)deg\)/);e&&e[1]&&(r=Math.round(parseFloat(e[1])/-l),i())}g.addEventListener("mousedown",w),window.addEventListener("mousemove",f),window.addEventListener("mouseup",h),g.addEventListener("touchstart",w,{passive:!0}),window.addEventListener("touchmove",f),window.addEventListener("touchend",h),i()});
-        const showMoreBtn=document.getElementById("show-more-btn");showMoreBtn&&showMoreBtn.addEventListener("click",()=>{document.querySelectorAll(".extended-product").forEach(e=>{e.classList.remove("hidden"),e.setAttribute("data-aos","fade-up")}),showMoreBtn.style.display="none",setTimeout(()=>{AOS.refresh()},100)});
+        
+        // --- Carousel Logic (Optimized) ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const scene = document.querySelector('.scene');
+            if (!scene) return;
+            const carousel = scene.querySelector('.carousel');
+            const cells = Array.from(carousel.querySelectorAll('.carousel__cell'));
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            const backgroundShadow = document.getElementById('background-shadow');
+
+            const cellCount = cells.length;
+            if (cellCount === 0) return;
+
+            const theta = 360 / cellCount;
+            let radius = Math.round((scene.offsetWidth / 2) / Math.tan(Math.PI / cellCount));
+            
+            let selectedIndex = 0;
+            
+            function rotateCarousel() {
+                const angle = theta * selectedIndex * -1;
+                carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`;
+                
+                const positiveIndex = (selectedIndex % cellCount + cellCount) % cellCount;
+                cells.forEach((cell, i) => {
+                    const isSelected = i === positiveIndex;
+                    const scale = isSelected ? 1.15 : 1; 
+                    const opacity = isSelected ? 1 : 0.5; 
+                    const filter = isSelected ? 'brightness(1)' : 'brightness(0.8)';
+                    cell.style.opacity = opacity;
+                    cell.style.filter = filter;
+                    cell.style.transform = `rotateY(${theta * i}deg) translateZ(${radius}px) scale(${scale})`;
+                });
+            }
+
+            prevButton.addEventListener('click', () => { selectedIndex--; rotateCarousel(); });
+            nextButton.addEventListener('click', () => { selectedIndex++; rotateCarousel(); });
+            
+            let isDragging = false, startX, startRotation;
+
+            function onPointerDown(event) {
+                isDragging = true;
+                carousel.classList.add('is-dragging');
+                backgroundShadow.classList.add('is-visible');
+                startX = event.pageX || (event.touches && event.touches[0].pageX);
+                startRotation = selectedIndex * -theta;
+                event.preventDefault();
+            }
+
+            function onPointerMove(event) {
+                if (!isDragging) return;
+                const x = event.pageX || (event.touches && event.touches[0].pageX);
+                const deltaX = x - startX;
+                const sensitivity = 0.5;
+                const angleChange = deltaX * sensitivity;
+                const newAngle = startRotation + angleChange;
+                carousel.style.transform = `translateZ(-${radius}px) rotateY(${newAngle}deg)`;
+            }
+
+            function onPointerUp() {
+                if (!isDragging) return;
+                isDragging = false;
+                carousel.classList.remove('is-dragging');
+                backgroundShadow.classList.remove('is-visible');
+                
+                const transformStyle = carousel.style.transform;
+                const rotationMatch = transformStyle.match(/rotateY\(([^deg]+)deg\)/);
+                if (rotationMatch && rotationMatch[1]) {
+                    const finalAngle = parseFloat(rotationMatch[1]);
+                    selectedIndex = Math.round(finalAngle / -theta);
+                    rotateCarousel(); 
+                }
+            }
+            
+            scene.addEventListener('mousedown', onPointerDown);
+            window.addEventListener('mousemove', onPointerMove);
+            window.addEventListener('mouseup', onPointerUp);
+            scene.addEventListener('touchstart', onPointerDown, { passive: true });
+            window.addEventListener('touchmove', onPointerMove);
+            window.addEventListener('touchend', onPointerUp);
+
+            rotateCarousel();
+        });
+
+        // "Show More" Products Logic
+        const showMoreBtn=document.getElementById("show-more-btn");showMoreBtn&&showMoreBtn.addEventListener("click",()=>{document.querySelectorAll(".extended-product").forEach(e=>{e.classList.remove("hidden");e.setAttribute("data-aos","fade-up")}),showMoreBtn.style.display="none",setTimeout(()=>{AOS.refresh()},100)});
     </script>
 </body>
 </html>
