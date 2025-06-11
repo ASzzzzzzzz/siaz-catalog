@@ -13,7 +13,7 @@ const productDatabase = {
             'https://placehold.co/800x1000/dcdcdc/333333?text=Detail+Kerah',
             'https://placehold.co/800x1000/d6d6d6/333333?text=Detail+Bahan',
         ],
-        buyLink: 'https://instagram.com/siaz_official',
+        buyLink: 'https://instagram.com/siaz',
         relatedItems: ['tech-cargo', 'nylon-cap']
     },
     'utility-hoodie': {
@@ -25,7 +25,7 @@ const productDatabase = {
             'https://placehold.co/800x1000/e0e0e0/333333?text=SIAZ*+Hoodie+Samping',
             'https://placehold.co/800x1000/dcdcdc/333333?text=Detail+Hoodie',
         ],
-        buyLink: 'https://instagram.com/siaz_official',
+        buyLink: 'https://instagram.com/siaz',
         relatedItems: ['tech-cargo']
     },
     'tech-cargo': {
@@ -36,7 +36,7 @@ const productDatabase = {
             'https://placehold.co/800x1000/e8e8e8/333333?text=SIAZ*+Cargo+Depan',
             'https://placehold.co/800x1000/e0e0e0/333333?text=SIAZ*+Cargo+Samping',
         ],
-        buyLink: 'https://instagram.com/siaz_official',
+        buyLink: 'https://instagram.com/siaz',
         relatedItems: ['monogram-tee', 'utility-hoodie']
     },
     'nylon-cap': {
@@ -47,7 +47,7 @@ const productDatabase = {
             'https://placehold.co/800x1000/e8e8e8/333333?text=SIAZ*+Cap+Depan',
             'https://placehold.co/800x1000/e0e0e0/333333?text=SIAZ*+Cap+Samping',
         ],
-        buyLink: 'https://instagram.com/siaz_official',
+        buyLink: 'https://instagram.com/siaz',
         relatedItems: ['monogram-tee']
     }
 };

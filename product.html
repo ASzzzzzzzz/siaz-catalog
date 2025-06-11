@@ -6,7 +6,6 @@
     <title>SIAZ* Product</title>
     <link rel="icon" type="image/png" href="./favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@600;700&display=swap" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f5f5f7; color: #1d1d1f; }
@@ -20,94 +19,35 @@
 </head>
 <body class="antialiased">
     <!-- Header -->
-    <header class="glass-header"><div class="container mx-auto px-4 md:px-8 py-3 flex justify-between items-center"><a href="./index.html" class="text-4xl brand-font">SIAZ*</a><a href="./index.html#katalog" class="bg-blue-600 text-white font-semibold text-sm px-4 py-2 rounded-full hover:bg-blue-700 interactive-button">Katalog Utama</a></div></header>
-    
+    <header class="glass-header"><div class="container mx-auto px-4 md:px-8 py-3 flex justify-between items-center max-w-7xl"><a href="./index.html" class="text-4xl brand-font">SIAZ*</a><a href="./index.html#katalog" class="bg-blue-600 text-white font-semibold text-sm px-4 py-2 rounded-full hover:bg-blue-700 interactive-button">Katalog Utama</a></div></header>
     <!-- Main Product Section -->
-    <main class="container mx-auto px-4 md:px-8 py-16">
-        <div id="product-content" class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            <div class="sticky top-28"><img id="main-image" src="https://placehold.co/800x1000/e8e8e8/333333?text=Loading..." alt="Main product image" class="w-full h-auto object-cover rounded-2xl shadow-sm mb-4 transition-opacity duration-300"><div id="thumbnail-gallery" class="grid grid-cols-5 gap-3"></div></div>
+    <main class="container mx-auto px-4 md:px-8 py-12 md:py-16 max-w-7xl">
+        <div id="product-content" class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
+            <div class="sticky top-28">
+                <img id="main-image" src="https://placehold.co/800x1000/e8e8e8/333333?text=Loading..." alt="Main product image" class="w-full h-auto object-cover rounded-2xl shadow-sm mb-4 transition-opacity duration-300">
+                <div id="thumbnail-gallery" class="grid grid-cols-4 sm:grid-cols-5 gap-3"></div>
+            </div>
             <div>
-                <h1 id="product-name" class="text-4xl md:text-5xl font-bold"></h1><p id="product-price" class="text-2xl text-zinc-500 mt-2 mb-6"></p>
+                <h1 id="product-name" class="text-3xl md:text-5xl font-bold"></h1><p id="product-price" class="text-xl md:text-2xl text-zinc-500 mt-2 mb-6"></p>
                 <div class="prose max-w-none text-zinc-600"><p id="product-description"></p></div>
                 <div class="mt-8 border-t pt-6"><h3 class="font-semibold mb-2">Panduan Ukuran</h3><p class="text-sm text-zinc-500">Semua ukuran dalam CM. Toleransi 1-2cm.</p><table class="w-full text-left mt-2 text-sm"><thead><tr><th class="p-2 border-b">Ukuran</th><th class="p-2 border-b">Lebar</th><th class="p-2 border-b">Panjang</th></tr></thead><tbody><tr><td class="p-2 border-b">M</td><td class="p-2 border-b">55</td><td class="p-2 border-b">72</td></tr><tr><td class="p-2 border-b">L</td><td class="p-2 border-b">58</td><td class="p-2 border-b">75</td></tr><tr><td class="p-2 border-b">XL</td><td class="p-2 border-b">61</td><td class="p-2 border-b">78</td></tr></tbody></table></div>
                 <a id="buy-button" href="#" target="_blank" rel="noopener noreferrer" class="mt-8 w-full block text-center bg-blue-600 text-white font-bold py-4 px-8 rounded-full hover:bg-blue-700 text-base tracking-wider interactive-button">BELI SEKARANG</a>
-                
-                <!-- BAGIAN BARU: PADUKAN DENGAN -->
                 <div id="related-products-section" class="mt-12 border-t pt-6">
                     <h3 class="font-semibold mb-4">Padukan Dengan</h3>
-                    <div id="related-products-grid" class="grid grid-cols-2 gap-4">
-                        <!-- Produk terkait akan diisi oleh JS -->
-                    </div>
+                    <div id="related-products-grid" class="grid grid-cols-2 gap-4"></div>
                 </div>
             </div>
         </div>
         <div id="product-not-found" class="hidden text-center py-20"><h2 class="text-2xl font-bold">Oops! Produk tidak ditemukan.</h2><a href="./index.html" class="text-blue-600 mt-2 inline-block">Kembali ke beranda</a></div>
     </main>
-    
     <!-- Footer -->
     <footer class="py-12 mt-16 text-center text-zinc-500 text-sm border-t border-zinc-200"><p class="font-bold brand-font text-2xl text-black mb-4">SIAZ*</p><p>SIAZ* &copy; 2025. All Rights Reserved.</p><p class="mt-2"><a href="./privacy.html" class="hover:text-black">Kebijakan Privasi</a> &middot; <a href="./contact.html" class="hover:text-black">Kontak</a> &middot; <a href="https://www.instagram.com/siaz" target="_blank" rel="noopener noreferrer" class="hover:text-black">Instagram</a></p></footer>
-
+    <script src="./database.js"></script>
     <script>
-        // -- PERBAIKAN DIMULAI DI SINI --
-        // Database produk ("Buku Resep") sekarang ditempatkan di sini secara langsung
-        // untuk memastikan ia sudah tersedia sebelum kode lain dijalankan.
-        const productDatabase = {
-            'monogram-tee': {
-                name: 'Monogram Tee',
-                price: 'Rp 450.000',
-                description: 'Kaos katun premium dengan cetakan monogram SIAZ* yang subtle di bagian dada. Potongan regular fit yang nyaman untuk dipakai sehari-hari, memberikan kesan minimalis namun tetap berkarakter.',
-                images: [
-                    'https://placehold.co/800x1000/e8e8e8/333333?text=SIAZ*+Tee+Depan',
-                    'https://placehold.co/800x1000/e0e0e0/333333?text=SIAZ*+Tee+Belakang',
-                    'https://placehold.co/800x1000/dcdcdc/333333?text=Detail+Kerah',
-                    'https://placehold.co/800x1000/d6d6d6/333333?text=Detail+Bahan',
-                ],
-                buyLink: 'https://instagram.com/siaz',
-                relatedItems: ['tech-cargo', 'nylon-cap']
-            },
-            'utility-hoodie': {
-                name: 'Utility Hoodie',
-                price: 'Rp 899.000',
-                description: 'Hoodie fungsional dengan bahan fleece tebal yang hangat. Dilengkapi dengan beberapa kantong dan detail strap yang terinspirasi dari gaya techwear. Statement piece yang sempurna untuk cuaca dingin.',
-                images: [
-                    'https://placehold.co/800x1000/e8e8e8/333333?text=SIAZ*+Hoodie+Depan',
-                    'https://placehold.co/800x1000/e0e0e0/333333?text=SIAZ*+Hoodie+Samping',
-                    'https://placehold.co/800x1000/dcdcdc/333333?text=Detail+Hoodie',
-                ],
-                buyLink: 'https://instagram.com/siaz',
-                relatedItems: ['tech-cargo']
-            },
-            'tech-cargo': {
-                name: 'Tech Cargo Pants',
-                price: 'Rp 750.000',
-                description: 'Celana kargo yang didesain ulang dengan sentuhan modern. Bahan ripstop yang ringan dan tahan lama, dengan potongan relaxed fit.',
-                images: [
-                    'https://placehold.co/800x1000/e8e8e8/333333?text=SIAZ*+Cargo+Depan',
-                    'https://placehold.co/800x1000/e0e0e0/333333?text=SIAZ*+Cargo+Samping',
-                ],
-                buyLink: 'https://instagram.com/siaz',
-                relatedItems: ['monogram-tee', 'utility-hoodie']
-            },
-            'nylon-cap': {
-                name: 'Nylon Cap',
-                price: 'Rp 350.000',
-                description: 'Topi 6-panel klasik yang dibuat dari bahan nilon ringan dan tahan air. Sempurna untuk melengkapi gaya streetwear Anda.',
-                images: [
-                    'https://placehold.co/800x1000/e8e8e8/333333?text=SIAZ*+Cap+Depan',
-                    'https://placehold.co/800x1000/e0e0e0/333333?text=SIAZ*+Cap+Samping',
-                ],
-                buyLink: 'https://instagram.com/siaz',
-                relatedItems: ['monogram-tee']
-            }
-        };
-
-
-        // Logika utama untuk mengisi halaman, dijalankan setelah database didefinisikan.
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const itemKey = params.get('item');
-            const product = productDatabase[itemKey]; // Sekarang ini akan bekerja dengan aman
-
+            const product = productDatabase[itemKey];
             if (product) {
                 document.title = `${product.name} - SIAZ*`;
                 const mainImage = document.getElementById('main-image');
@@ -117,7 +57,6 @@
                 mainImage.src = product.images[0];
                 mainImage.alt = product.name;
                 document.getElementById('buy-button').href = product.buyLink;
-                
                 const gallery = document.getElementById('thumbnail-gallery');
                 gallery.innerHTML = '';
                 product.images.forEach((imgSrc, index) => {
@@ -134,8 +73,6 @@
                     };
                     gallery.appendChild(thumb);
                 });
-
-                // Logika untuk menampilkan Produk Terkait
                 const relatedGrid = document.getElementById('related-products-grid');
                 if (product.relatedItems && product.relatedItems.length > 0) {
                     document.getElementById('related-products-section').style.display = 'block';
@@ -153,9 +90,7 @@
                 } else {
                     document.getElementById('related-products-section').style.display = 'none';
                 }
-
             } else {
-                // Tampilkan pesan "Tidak Ditemukan"
                 document.getElementById('product-content').style.display = 'none';
                 document.getElementById('product-not-found').style.display = 'block';
             }
