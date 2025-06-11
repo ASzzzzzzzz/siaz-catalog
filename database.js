@@ -4,16 +4,16 @@
 
 const productDatabase = {
     'monogram-tee': {
-        name: 'Monogram Tee',
-        price: 'Rp 450.000',
+        name: 'Runz Black',
+        price: 'Rp 230.000',
         description: 'Kaos katun premium dengan cetakan monogram SIAZ* yang subtle di bagian dada. Potongan regular fit yang nyaman untuk dipakai sehari-hari, memberikan kesan minimalis namun tetap berkarakter.',
         images: [
-            'https://placehold.co/800x1000/e8e8e8/333333?text=SIAZ*+Tee+Depan',
+            './images/RUNZ__2b.jpg/text=SIAZ*+Runz+Model',
             'https://placehold.co/800x1000/e0e0e0/333333?text=SIAZ*+Tee+Belakang',
             'https://placehold.co/800x1000/dcdcdc/333333?text=Detail+Kerah',
             'https://placehold.co/800x1000/d6d6d6/333333?text=Detail+Bahan',
         ],
-        buyLink: 'https://instagram.com/siaz',
+        buyLink: 'https://instagram.com/siaz_official',
         relatedItems: ['tech-cargo', 'nylon-cap']
     },
     'utility-hoodie': {
