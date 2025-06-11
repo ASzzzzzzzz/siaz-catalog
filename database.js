@@ -8,8 +8,8 @@ const productDatabase = {
         price: 'Rp 450.000',
         description: 'Kaos katun premium dengan cetakan monogram SIAZ* yang subtle di bagian dada. Potongan regular fit yang nyaman untuk dipakai sehari-hari, memberikan kesan minimalis namun tetap berkarakter.',
         images: [
-            '.images/RUNZ__2b.jpg',
-            'https://placehold.co/800x1000/e0e0e0/333333?text=SIAZ*+Tee+Belakang',
+            './images/RUNZ__2b.jpg',
+            './images/RUNZ__1.jpg',
             'https://placehold.co/800x1000/dcdcdc/333333?text=Detail+Kerah',
             'https://placehold.co/800x1000/d6d6d6/333333?text=Detail+Bahan',
         ],
