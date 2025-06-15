@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siaz* Collective Design</title>
+    <title>entire studios</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -75,7 +75,7 @@
             width: 100%;
             /* Padding-bottom = (height / width) * 100% = (2 / 3) * 100% */
             padding-bottom: calc(100% * (2 / 3));
-            overflow: show;
+            overflow: hidden;
             background-color: #e0e0e0; /* Default background for placeholders */
             display: flex;
             justify-content: center;
@@ -93,7 +93,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover; /* Ensures the image covers the entire area */
-            backface-visibility: show; /* Tampilkan sisi belakang saat flip (ini yang menyebabkan efek 'mirror') */
+            backface-visibility: hidden; /* Sembunyikan sisi belakang saat flip (ini yang menyebabkan efek 'mirror') */
             transform-style: preserve-3d; /* Penting untuk elemen itu sendiri memiliki ruang 3D */
         }
 
@@ -116,38 +116,60 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Stronger shadow for floating effect */
         }
 
-        /* Keyframes for continuous 3D flip down animation (X-axis) */
-        @keyframes flipDown {
+        /* Keyframes for a subtle 3D cube-like rotation/tumble */
+        @keyframes cubeishRotate {
             from {
-                transform: rotateX(-90deg);
+                transform: rotateX(0deg) rotateY(0deg) scale(1);
             }
             to {
-                transform: rotateX(90deg);
+                transform: rotateX(15deg) rotateY(15deg) scale(1.05); /* Slight tilt and subtle scale for depth */
             }
         }
 
-        /* Keyframes for continuous 3D flip sideways animation (Y-axis) */
-        @keyframes flipSideways {
-            from {
-                transform: rotateY(-90deg);
-            }
-            to {
-                transform: rotateY(90deg);
-            }
+        /* Keyframes for Pulse animation */
+        @keyframes pulseEffect {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); } /* Slightly enlarge */
+            100% { transform: scale(1); }
         }
 
-        /* Apply continuous 3D flip down animation directly to the img */
-        .animated-flip-down {
-            animation: flipDown 3s linear infinite; /* Durasi dipercepat menjadi 3 detik */
-            transform-origin: center center; /* Flip from the center */
-            will-change: transform; /* Hint for browser optimization */
+        /* Keyframes for Floating animation */
+        @keyframes floatEffect {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); } /* Move up */
+            100% { transform: translateY(0); }
         }
 
-        /* Apply continuous 3D flip sideways animation directly to the img */
-        .animated-flip-sideways {
-            animation: flipSideways 3s linear infinite; /* Durasi dipercepat menjadi 3 detik */
-            transform-origin: center center; /* Flip from the center */
-            will-change: transform; /* Hint for browser optimization */
+        /* Keyframes for Subtle Tilt animation */
+        @keyframes tiltEffect {
+            0% { transform: rotateZ(0deg); }
+            50% { transform: rotateZ(1deg); } /* Slightly tilt */
+            100% { transform: rotateZ(0deg); }
+        }
+
+        /* Apply the 3D cube-like rotation animation (kept as an option) */
+        .animated-product-3d {
+            animation: cubeishRotate 3s ease-in-out infinite alternate;
+            transform-origin: center center;
+            will-change: transform;
+        }
+
+        /* Apply Pulse animation */
+        .animated-pulse {
+            animation: pulseEffect 2s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+
+        /* Apply Floating animation */
+        .animated-float {
+            animation: floatEffect 2.5s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+
+        /* Apply Subtle Tilt animation */
+        .animated-tilt {
+            animation: tiltEffect 3s ease-in-out infinite alternate;
+            will-change: transform;
         }
     </style>
 </head>
@@ -199,15 +221,15 @@
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
-                            <a href="https://www.instagram.com/p/C_o_xqqBmEL/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">
-                                <img src="./images/s1p3.png" alt="Product 3" class="animated-flip-sideways">
+                            <a href="#shopee-link-s1p3" target="_blank">
+                                <img src="./images/s1p3.png" alt="Product 3" class="animated-pulse">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p4" target="_blank">
-                                <img src="images/s1p4.png" alt="Product 4">
+                                <img src="./images/s1p4.png" alt="Product 4">
                             </a>
                         </div>
                     </div>
@@ -215,29 +237,29 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p5" target="_blank">
-                                <img src="images/s1p5.png" alt="Product 5" class="animated-flip-sideways">
+                                <img src="./images/s1p5.png" alt="Product 5" class="animated-float">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p6" target="_blank">
-                                <img src="images/s1p6.png" alt="Product 6">
+                                <img src="./images/s1p6.png" alt="Product 6">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p7" target="_blank">
-                                <img src="images/s1p7.png" alt="Product 7">
+                                <img src="./images/s1p7.png" alt="Product 7">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p8" target="_blank">
-                                <img src="images/s1p8.png"
-                                 alt="Product 8" class="animated-flip-sideways">
+                                <img src="./images/s1p8.png"
+                                 alt="Product 8" class="animated-tilt">
                             </a>
                         </div>
                     </div>
@@ -252,7 +274,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p10" target="_blank">
-                                <img src="./images/s1p10.png" alt="Product 10" class="animated-flip-sideways">
+                                <img src="./images/s1p10.png" alt="Product 10" class="animated-pulse">
                             </a>
                         </div>
                     </div>
@@ -277,19 +299,19 @@
                             </a>
                         </div>
                     </div>
-                    <!-- Product Item 2 with continuous 3D Flip Down Animation -->
+                    <!-- Product Item 2 with new animations -->
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s2p2" target="_blank">
-                                <img src="./images/s2p2.png" alt="Section 2 Product 2" class="animated-flip-down">
+                                <img src="./images/s2p2.png" alt="Section 2 Product 2" class="animated-float">
                             </a>
                         </div>
                     </div>
-                    <!-- Product Item 3 with continuous 3D Flip Sideways Animation -->
+                    <!-- Product Item 3 with new animations -->
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s2p3" target="_blank">
-                                <img src="./images/s2p3.png" alt="Section 2 Product 3" class="animated-flip-sideways">
+                                <img src="./images/s2p3.png" alt="Section 2 Product 3" class="animated-tilt">
                             </a>
                         </div>
                     </div>
@@ -325,7 +347,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s3p3" target="_blank">
-                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S3+P3" alt="Section 3 Product 3" class="animated-flip-down">
+                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S3+P3" alt="Section 3 Product 3" class="animated-pulse">
                             </a>
                         </div>
                     </div>
@@ -369,7 +391,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-1-1">
                             <a href="#shopee-link-s4p4" target="_blank">
-                                <img src="https://placehold.co/300x300/d0d0d0/333333?text=S4+P4" alt="Section 4 Product 4" class="animated-flip-down">
+                                <img src="https://placehold.co/300x300/d0d0d0/333333?text=S4+P4" alt="Section 4 Product 4" class="animated-float">
                             </a>
                         </div>
                     </div>
@@ -377,7 +399,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-1-1">
                             <a href="#shopee-link-s4p5" target="_blank">
-                                <img src="https://placehold.co/300x300/e0e0e0/333333?text=S4+P5" alt="Section 4 Product 5" class="animated-flip-sideways">
+                                <img src="https://placehold.co/300x300/e0e0e0/333333?text=S4+P5" alt="Section 4 Product 5" class="animated-tilt">
                             </a>
                         </div>
                     </div>
@@ -443,14 +465,14 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s5p3" target="_blank">
-                                <img src="https://placehold.co/300x375/e0e0e0/333333?text=S5+P3" alt="Section 5 Product 3" class="animated-flip-down">
+                                <img src="https://placehold.co/300x375/e0e0e0/333333?text=S5+P3" alt="Section 5 Product 3" class="animated-pulse">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s5p4" target="_blank">
-                                <img src="https://placehold.co/300x375/d0d0d0/333333?text=S5+P4" alt="Section 5 Product 4" class="animated-flip-down">
+                                <img src="https://placehold.co/300x375/d0d0d0/333333?text=S5+P4" alt="Section 5 Product 4" class="animated-float">
                             </a>
                         </div>
                     </div>
@@ -480,7 +502,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s6p1" target="_blank">
-                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S6+P1" alt="Section 6 Product 1" class="animated-flip-sideways">
+                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S6+P1" alt="Section 6 Product 1" class="animated-tilt">
                             </a>
                         </div>
                     </div>
@@ -530,7 +552,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s6p8" target="_blank">
-                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S6+P8" alt="Section 6 Product 8" class="animated-flip-sideways">
+                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S6+P8" alt="Section 6 Product 8" class="animated-pulse">
                             </a>
                         </div>
                     </div>
