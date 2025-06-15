@@ -122,13 +122,40 @@
 
         /* --- Carousel Styles --- */
         .scene {
-            width: 180px; /* Lebar disesuaikan untuk rasio 9:16 */
-            height: 320px; /* Tinggi disesuaikan untuk rasio 9:16 */
+            width: 180px; /* Mobile-first size */
+            height: 320px;
             position: relative;
-            perspective: 1200px; /* Perspektif sedikit ditambah untuk efek lebih baik */
+            perspective: 1200px;
             margin: 0 auto;
             cursor: grab;
         }
+        
+        .carousel__cell {
+            width: 100%; /* Lebar sel mengikuti scene container */
+            height: 100%; /* Tinggi sel mengikuti scene container */
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: transparent;
+            border: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s, filter 0.8s, background-color 0.8s;
+        }
+
+        /* Desktop Size Adjustment */
+        @media (min-width: 768px) {
+            .scene {
+                width: 270px; /* Ukuran lebih besar untuk desktop */
+                height: 480px;
+            }
+        }
+
         .scene.is-dragging {
             cursor: grabbing;
         }
@@ -142,23 +169,7 @@
         .carousel.is-dragging {
             transition: none;
         }
-        .carousel__cell {
-            position: absolute;
-            width: 180px;
-            height: 320px;
-            left: 0;
-            top: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 16px;
-            overflow: hidden;
-            background-color: transparent; /* Latar belakang transparan agar menyatu */
-            border: none; /* Border dihilangkan */
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1); /* Bayangan yang halus */
-            -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s, filter 0.8s, background-color 0.8s; /* Transisi untuk background-color ditambahkan */
-        }
+       
         .carousel__cell img {
             width: 100%;
             height: 100%;
@@ -169,11 +180,11 @@
             width: 44px;
             height: 44px;
             border-radius: 9999px;
-            background-color: rgba(255, 255, 255, 0.7); /* Latar belakang putih transparan */
-            color: #374151; /* Ikon abu-abu gelap */
+            background-color: rgba(255, 255, 255, 0.7);
+            color: #374151;
             transition: all 0.3s ease;
             flex-shrink: 0;
-            backdrop-filter: blur(5px); /* Efek glassmorphism */
+            backdrop-filter: blur(5px);
             border: 1px solid rgba(0,0,0,0.04);
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
@@ -364,7 +375,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const carousel = document.querySelector('.carousel');
-            if (!carousel) return; // Hentikan jika carousel tidak ditemukan
+            if (!carousel) return;
 
             const cells = Array.from(carousel.querySelectorAll('.carousel__cell'));
             const prevButton = document.getElementById('prev-button');
@@ -376,8 +387,13 @@
             if (cellCount === 0) return;
 
             const theta = 360 / cellCount;
-            // Radius dihitung berdasarkan lebar scene yang ditetapkan di CSS
-            const radius = Math.round((180 / 2) / Math.tan(Math.PI / cellCount));
+            let radius;
+
+            function setCarouselRadius() {
+                // Radius dihitung secara dinamis berdasarkan lebar .scene saat ini
+                radius = Math.round((scene.offsetWidth / 2) / Math.tan(Math.PI / cellCount));
+                rotateCarousel(); // Panggil rotasi ulang setelah radius diperbarui
+            }
             
             let selectedIndex = 0;
             
@@ -386,12 +402,11 @@
 
                 cells.forEach((cell, i) => {
                     const isSelected = i === positiveIndex;
-                    const scale = isSelected ? 1.35 : 1; // Skala diperbesar untuk item yang dipilih
+                    const scale = isSelected ? 1.35 : 1;
                     const opacity = isSelected ? 1 : 0.5;
                     const filter = isSelected ? 'brightness(1)' : 'brightness(0.8)';
-                    const backgroundColor = isSelected ? '#ffffff' : 'transparent'; // Latar belakang solid saat dipilih
+                    const backgroundColor = isSelected ? '#ffffff' : 'transparent';
 
-                    // Rotasi tetap sama
                     const rotation = theta * i;
                     cell.style.backgroundColor = backgroundColor;
                     cell.style.opacity = opacity;
@@ -460,7 +475,11 @@
             window.addEventListener('touchmove', onPointerMove);
             window.addEventListener('touchend', onPointerUp);
 
-            rotateCarousel(); // Inisialisasi posisi carousel
+            // Set radius saat pertama kali dimuat
+            setCarouselRadius();
+            // Set ulang radius jika ukuran window berubah (untuk responsivitas)
+            window.addEventListener('resize', setCarouselRadius);
+
         });
     </script>
 </body>
