@@ -75,7 +75,7 @@
             width: 100%;
             /* Padding-bottom = (height / width) * 100% = (2 / 3) * 100% */
             padding-bottom: calc(100% * (2 / 3));
-            overflow: hidden;
+            overflow: show;
             background-color: #e0e0e0; /* Default background for placeholders */
             display: flex;
             justify-content: center;
@@ -93,7 +93,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover; /* Ensures the image covers the entire area */
-            backface-visibility: hidden; /* Sembunyikan sisi belakang saat flip (ini yang menyebabkan efek 'mirror') */
+            backface-visibility: show; /* Tampilkan sisi belakang saat flip (ini yang menyebabkan efek 'mirror') */
             transform-style: preserve-3d; /* Penting untuk elemen itu sendiri memiliki ruang 3D */
         }
 
