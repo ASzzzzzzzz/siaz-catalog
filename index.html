@@ -171,34 +171,7 @@
             animation: tiltEffect 3s ease-in-out infinite alternate;
             will-change: transform;
         }
-
-        /* Universal Hover Effect for Product Images */
-        .aspect-ratio-9-16 a img,
-        .aspect-ratio-4-5 a img,
-        .aspect-ratio-1-1 a img,
-        .aspect-ratio-3-2 a img {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
-        }
-
-        .aspect-ratio-9-16 a:hover img,
-        .aspect-ratio-4-5 a:hover img,
-        .aspect-ratio-1-1 a:hover img,
-        .aspect-ratio-3-2 a:hover img {
-            transform: scale(1.03); /* Slightly zoom in on hover - adjusted to 1.03 for more noticeability */
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Add a subtle shadow on hover - adjusted for more depth */
-            z-index: 10; /* Bring hovered item slightly forward */
-            position: relative; /* Needed for z-index to work */
-        }
-
-        /* Active state for touch devices (when tapped) - more pronounced feedback */
-        .aspect-ratio-9-16 a:active img,
-        .aspect-ratio-4-5 a:active img,
-        .aspect-ratio-1-1 a:active img,
-        .aspect-ratio-3-2 a:active img {
-            transform: scale(0.98); /* Slightly shrink on tap for tactile feedback */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Reduce shadow quickly */
-            transition: transform 0.1s ease-out, box-shadow 0.1s ease-out; /* Quick transition for active state */
-        }
+      
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
