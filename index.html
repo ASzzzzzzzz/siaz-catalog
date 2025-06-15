@@ -261,13 +261,10 @@
             
             <!-- NEW: Section 2 Carousel -->
             <section id="carousel-section" class="py-16 md:py-24 overflow-hidden bg-gray-100">
-                <div class="max-w-7xl mx-auto px-4 text-center">
-                    <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight leading-tight text-gray-800">Koleksi Terbaru.</h2>
-                    <p class="text-base md:text-xl text-gray-600 mb-16 max-w-xs md:max-w-2xl mx-auto leading-relaxed">
-                        Sebuah cara baru untuk melihat produk favorit Anda. Geser untuk menjelajah.
-                    </p>
-
-                    <div class="relative w-full flex flex-col items-center">
+                <div class="max-w-7xl mx-auto px-4 text-center flex flex-col">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight leading-tight text-gray-800 md:order-1">Koleksi Terbaru.</h2>
+                    
+                    <div class="relative w-full flex flex-col items-center md:order-2">
                         <div id="background-shadow" class="background-shadow"></div>
                         <div class="scene">
                             <div class="carousel">
@@ -292,6 +289,10 @@
                             </button>
                         </div>
                     </div>
+
+                    <p class="text-base md:text-xl text-gray-600 my-8 md:my-0 md:mt-12 max-w-xs md:max-w-2xl mx-auto leading-relaxed md:order-3">
+                        Sebuah cara baru untuk melihat produk favorit Anda. Geser untuk menjelajah.
+                    </p>
                 </div>
             </section>
 
