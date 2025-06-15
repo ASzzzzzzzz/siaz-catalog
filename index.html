@@ -122,7 +122,7 @@
                 transform: rotateX(0deg);
             }
             to {
-                transform: rotateX(360deg);
+                transform: rotateX(180deg);
             }
         }
 
@@ -132,20 +132,20 @@
                 transform: rotateY(0deg);
             }
             to {
-                transform: rotateY(360deg);
+                transform: rotateY(180deg);
             }
         }
 
         /* Apply continuous 3D flip down animation directly to the img */
         .animated-flip-down {
-            animation: flipDown 3s linear infinite; /* Durasi dipercepat menjadi 3 detik */
+            animation: flipDown 5s linear infinite; /* Durasi dipercepat menjadi 5 detik */
             transform-origin: center center; /* Flip from the center */
             will-change: transform; /* Hint for browser optimization */
         }
 
         /* Apply continuous 3D flip sideways animation directly to the img */
         .animated-flip-sideways {
-            animation: flipSideways 3s linear infinite; /* Durasi dipercepat menjadi 3 detik */
+            animation: flipSideways 5s linear infinite; /* Durasi dipercepat menjadi 5 detik */
             transform-origin: center center; /* Flip from the center */
             will-change: transform; /* Hint for browser optimization */
         }
