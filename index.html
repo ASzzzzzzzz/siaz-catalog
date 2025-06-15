@@ -157,7 +157,7 @@
             border: none; /* Border dihilangkan */
             box-shadow: 0 10px 40px rgba(0,0,0,0.1); /* Bayangan yang halus */
             -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s, filter 0.8s;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s, filter 0.8s, background-color 0.8s; /* Transisi untuk background-color ditambahkan */
         }
         .carousel__cell img {
             width: 100%;
@@ -386,12 +386,14 @@
 
                 cells.forEach((cell, i) => {
                     const isSelected = i === positiveIndex;
-                    const scale = isSelected ? 1.2 : 1; // Skala yang dipilih sedikit lebih kecil
-                    const opacity = isSelected ? 1 : 0.5; // Opacity lebih rendah untuk yang tidak dipilih
-                    const filter = isSelected ? 'brightness(1)' : 'brightness(0.8)'; // Lebih gelap untuk yang tidak dipilih
+                    const scale = isSelected ? 1.35 : 1; // Skala diperbesar untuk item yang dipilih
+                    const opacity = isSelected ? 1 : 0.5;
+                    const filter = isSelected ? 'brightness(1)' : 'brightness(0.8)';
+                    const backgroundColor = isSelected ? '#ffffff' : 'transparent'; // Latar belakang solid saat dipilih
 
                     // Rotasi tetap sama
                     const rotation = theta * i;
+                    cell.style.backgroundColor = backgroundColor;
                     cell.style.opacity = opacity;
                     cell.style.filter = filter;
                     cell.style.transform = `rotateY(${rotation}deg) translateZ(${radius}px) scale(${scale})`;
