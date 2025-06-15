@@ -126,24 +126,24 @@
             }
         }
 
-        /* Keyframes for Pulse animation */
+        /* Keyframes for Pulse animation - Slightly more pronounced */
         @keyframes pulseEffect {
             0% { transform: scale(1); }
-            50% { transform: scale(1.03); } /* Slightly enlarge */
+            50% { transform: scale(1.04); } /* Increased scale slightly */
             100% { transform: scale(1); }
         }
 
-        /* Keyframes for Floating animation */
+        /* Keyframes for Floating animation - Slightly more pronounced */
         @keyframes floatEffect {
             0% { transform: translateY(0); }
-            50% { transform: translateY(-5px); } /* Move up */
+            50% { transform: translateY(-7px); } /* Increased vertical movement */
             100% { transform: translateY(0); }
         }
 
-        /* Keyframes for Subtle Tilt animation */
+        /* Keyframes for Subtle Tilt animation - Slightly more pronounced */
         @keyframes tiltEffect {
             0% { transform: rotateZ(0deg); }
-            50% { transform: rotateZ(1deg); } /* Slightly tilt */
+            50% { transform: rotateZ(2deg); } /* Increased tilt angle */
             100% { transform: rotateZ(0deg); }
         }
 
@@ -171,6 +171,34 @@
             animation: tiltEffect 3s ease-in-out infinite alternate;
             will-change: transform;
         }
+
+        /* Universal Hover Effect for Product Images */
+        .aspect-ratio-9-16 a img,
+        .aspect-ratio-4-5 a img,
+        .aspect-ratio-1-1 a img,
+        .aspect-ratio-3-2 a img {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+        }
+
+        .aspect-ratio-9-16 a:hover img,
+        .aspect-ratio-4-5 a:hover img,
+        .aspect-ratio-1-1 a:hover img,
+        .aspect-ratio-3-2 a:hover img {
+            transform: scale(1.03); /* Slightly zoom in on hover - adjusted to 1.03 for more noticeability */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Add a subtle shadow on hover - adjusted for more depth */
+            z-index: 10; /* Bring hovered item slightly forward */
+            position: relative; /* Needed for z-index to work */
+        }
+
+        /* Active state for touch devices (when tapped) - more pronounced feedback */
+        .aspect-ratio-9-16 a:active img,
+        .aspect-ratio-4-5 a:active img,
+        .aspect-ratio-1-1 a:active img,
+        .aspect-ratio-3-2 a:active img {
+            transform: scale(0.98); /* Slightly shrink on tap for tactile feedback */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Reduce shadow quickly */
+            transition: transform 0.1s ease-out, box-shadow 0.1s ease-out; /* Quick transition for active state */
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
@@ -196,7 +224,7 @@
             <section class="hero-bg py-0 md:py-0 px-0 md:px-0">
                 <div class="aspect-ratio-9-16">
                     <img src="./images/h1.png"
-                         alt="entire studios hero product">
+                         alt="siaz hero product">
                 </div>
             </section>
 
@@ -208,28 +236,28 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p1" target="_blank">
-                                <img src="./images/s1p1.png" alt="Product 1">
+                                <img src="./images/s1p1.png" alt="Product 1" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p2" target="_blank">
-                                <img src="./images/s1p2.png" alt="Product 2">
+                                <img src="./images/s1p2.png" alt="Product 2" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p3" target="_blank">
-                                <img src="./images/s1p3.png" alt="Product 3" class="animated-pulse">
+                                <img src="./images/s1p3.png" alt="Product 3" class="animated-pulse" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p4" target="_blank">
-                                <img src="./images/s1p4.png" alt="Product 4">
+                                <img src="./images/s1p4.png" alt="Product 4" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -237,21 +265,21 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p5" target="_blank">
-                                <img src="./images/s1p5.png" alt="Product 5" class="animated-float">
+                                <img src="./images/s1p5.png" alt="Product 5" class="animated-float" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p6" target="_blank">
-                                <img src="./images/s1p6.png" alt="Product 6">
+                                <img src="./images/s1p6.png" alt="Product 6" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p7" target="_blank">
-                                <img src="./images/s1p7.png" alt="Product 7">
+                                <img src="./images/s1p7.png" alt="Product 7" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -259,7 +287,7 @@
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p8" target="_blank">
                                 <img src="./images/s1p8.png"
-                                 alt="Product 8" class="animated-tilt">
+                                 alt="Product 8" class="animated-tilt" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -267,21 +295,21 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p9" target="_blank">
-                                <img src="./images/s1p9.png" alt="Product 9">
+                                <img src="./images/s1p9.png" alt="Product 9" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p10" target="_blank">
-                                <img src="./images/s1p10.png" alt="Product 10" class="animated-pulse">
+                                <img src="./images/s1p10.png" alt="Product 10" class="animated-pulse" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s1p11" target="_blank">
-                                <img src="./images/s1p11.png" alt="Product 11">
+                                <img src="./images/s1p11.png" alt="Product 11" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -295,7 +323,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s2p1" target="_blank">
-                                <img src="./images/s2p1.png" alt="Section 2 Product 1">
+                                <img src="./images/s2p1.png" alt="Section 2 Product 1" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -303,7 +331,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s2p2" target="_blank">
-                                <img src="./images/s2p2.png" alt="Section 2 Product 2" class="animated-float">
+                                <img src="./images/s2p2.png" alt="Section 2 Product 2" class="animated-float" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -311,7 +339,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s2p3" target="_blank">
-                                <img src="./images/s2p3.png" alt="Section 2 Product 3" class="animated-tilt">
+                                <img src="./images/s2p3.png" alt="Section 2 Product 3" class="animated-tilt" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -319,7 +347,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s2p4" target="_blank">
-                                <img src="./images/s2p4.png" alt="Section 2 Product 4">
+                                <img src="./images/s2p4.png" alt="Section 2 Product 4" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -333,28 +361,28 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s3p1" target="_blank">
-                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S3+P1" alt="Section 3 Product 1">
+                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S3+P1" alt="Section 3 Product 1" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s3p2" target="_blank">
-                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S3+P2" alt="Section 3 Product 2">
+                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S3+P2" alt="Section 3 Product 2" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s3p3" target="_blank">
-                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S3+P3" alt="Section 3 Product 3" class="animated-pulse">
+                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S3+P3" alt="Section 3 Product 3" class="animated-pulse" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s3p4" target="_blank">
-                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S3+P4" alt="Section 3 Product 4">
+                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S3+P4" alt="Section 3 Product 4" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -369,14 +397,14 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-1-1">
                             <a href="#shopee-link-s4p1" target="_blank">
-                                <img src="https://placehold.co/300x300/e0e0e0/333333?text=S4+P1" alt="Section 4 Product 1">
+                                <img src="https://placehold.co/300x300/e0e0e0/333333?text=S4+P1" alt="Section 4 Product 1" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-1-1">
                             <a href="#shopee-link-s4p2" target="_blank">
-                                <img src="https://placehold.co/300x300/d0d0d0/333333?text=S4+P2" alt="Section 4 Product 2">
+                                <img src="https://placehold.co/300x300/d0d0d0/333333?text=S4+P2" alt="Section 4 Product 2" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -384,14 +412,14 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-1-1">
                             <a href="#shopee-link-s4p3" target="_blank">
-                                <img src="https://placehold.co/300x300/e0e0e0/333333?text=S4+P3" alt="Section 4 Product 3">
+                                <img src="https://placehold.co/300x300/e0e0e0/333333?text=S4+P3" alt="Section 4 Product 3" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-1-1">
                             <a href="#shopee-link-s4p4" target="_blank">
-                                <img src="https://placehold.co/300x300/d0d0d0/333333?text=S4+P4" alt="Section 4 Product 4" class="animated-float">
+                                <img src="https://placehold.co/300x300/d0d0d0/333333?text=S4+P4" alt="Section 4 Product 4" class="animated-float" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -399,14 +427,14 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-1-1">
                             <a href="#shopee-link-s4p5" target="_blank">
-                                <img src="https://placehold.co/300x300/e0e0e0/333333?text=S4+P5" alt="Section 4 Product 5" class="animated-tilt">
+                                <img src="https://placehold.co/300x300/e0e0e0/333333?text=S4+P5" alt="Section 4 Product 5" class="animated-tilt" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-1-1">
                             <a href="#shopee-link-s4p6" target="_blank">
-                                <img src="https://placehold.co/300x300/d0d0d0/333333?text=S4+P6" alt="Section 4 Product 6">
+                                <img src="https://placehold.co/300x300/d0d0d0/333333?text=S4+P6" alt="Section 4 Product 6" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -414,13 +442,13 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-1-1">
                             <a href="#shopee-link-s4p7" target="_blank">
-                                <img src="https://placehold.co/300x300/e0e0e0/333333?text=S4+P7" alt="Section 4 Product 7">
+                                <img src="https://placehold.co/300x300/e0e0e0/333333?text=S4+P7" alt="Section 4 Product 7" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="aspect-ratio-1-1">
                             <a href="#shopee-link-s4p8" target="_blank">
-                                <img src="https://placehold.co/300x300/d0d0d0/333333?text=S4+P8" alt="Section 4 Product 8">
+                                <img src="https://placehold.co/300x300/d0d0d0/333333?text=S4+P8" alt="Section 4 Product 8" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -434,7 +462,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-3-2">
                             <a href="#shopee-link-s4ap1" target="_blank">
-                                <img src="https://placehold.co/900x600/f0f0f0/333333?text=S4a+Image" alt="Section 4a Image">
+                                <img src="https://placehold.co/900x600/f0f0f0/333333?text=S4a+Image" alt="Section 4a Image" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -450,14 +478,14 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s5p1" target="_blank">
-                                <img src="https://placehold.co/300x375/ccc/333?text=S5+P1" alt="Section 5 Product 1">
+                                <img src="https://placehold.co/300x375/ccc/333?text=S5+P1" alt="Section 5 Product 1" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s5p2" target="_blank">
-                                <img src="https://placehold.co/300x375/bbb/333?text=S5+P2" alt="Section 5 Product 2">
+                                <img src="https://placehold.co/300x375/bbb/333?text=S5+P2" alt="Section 5 Product 2" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -465,14 +493,14 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s5p3" target="_blank">
-                                <img src="https://placehold.co/300x375/e0e0e0/333333?text=S5+P3" alt="Section 5 Product 3" class="animated-pulse">
+                                <img src="https://placehold.co/300x375/e0e0e0/333333?text=S5+P3" alt="Section 5 Product 3" class="animated-pulse" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s5p4" target="_blank">
-                                <img src="https://placehold.co/300x375/d0d0d0/333333?text=S5+P4" alt="Section 5 Product 4" class="animated-float">
+                                <img src="https://placehold.co/300x375/d0d0d0/333333?text=S5+P4" alt="Section 5 Product 4" class="animated-float" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -480,14 +508,14 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s5p5" target="_blank">
-                                <img src="https://placehold.co/300x375/ccc/333?text=S5+P5" alt="Section 5 Product 5">
+                                <img src="https://placehold.co/300x375/ccc/333?text=S5+P5" alt="Section 5 Product 5" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-4-5">
                             <a href="#shopee-link-s5p6" target="_blank">
-                                <img src="https://placehold.co/300x375/bbb/333?text=S5+P6" alt="Section 5 Product 6">
+                                <img src="https://placehold.co/300x375/bbb/333?text=S5+P6" alt="Section 5 Product 6" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -502,28 +530,28 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s6p1" target="_blank">
-                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S6+P1" alt="Section 6 Product 1" class="animated-tilt">
+                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S6+P1" alt="Section 6 Product 1" class="animated-tilt" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s6p2" target="_blank">
-                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S6+P2" alt="Section 6 Product 2">
+                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S6+P2" alt="Section 6 Product 2" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s6p3" target="_blank">
-                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S6+P3" alt="Section 6 Product 3">
+                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S6+P3" alt="Section 6 Product 3" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s6p4" target="_blank">
-                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S6+P4" alt="Section 6 Product 4">
+                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S6+P4" alt="Section 6 Product 4" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -531,28 +559,28 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s6p5" target="_blank">
-                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S6+P5" alt="Section 6 Product 5">
+                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S6+P5" alt="Section 6 Product 5" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s6p6" target="_blank">
-                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S6+P6" alt="Section 6 Product 6">
+                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S6+P6" alt="Section 6 Product 6" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s6p7" target="_blank">
-                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S6+P7" alt="Section 6 Product 7">
+                                <img src="https://placehold.co/180x320/e0e0e0/333333?text=S6+P7" alt="Section 6 Product 7" loading="lazy">
                             </a>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-9-16">
                             <a href="#shopee-link-s6p8" target="_blank">
-                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S6+P8" alt="Section 6 Product 8" class="animated-pulse">
+                                <img src="https://placehold.co/180x320/d0d0d0/333333?text=S6+P8" alt="Section 6 Product 8" class="animated-pulse" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -566,7 +594,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-3-2">
                             <a href="#shopee-link-s7p1" target="_blank">
-                                <img src="https://placehold.co/900x600/f0f0f0/333333?text=S7+P1" alt="Section 7 Product 1">
+                                <img src="https://placehold.co/900x600/f0f0f0/333333?text=S7+P1" alt="Section 7 Product 1" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -574,7 +602,7 @@
                     <div class="bg-white overflow-hidden flex flex-col justify-between">
                         <div class="aspect-ratio-3-2">
                             <a href="#shopee-link-s7p2" target="_blank">
-                                <img src="https://placehold.co/900x600/e0e0e0/333333?text=S7+P2" alt="Section 7 Product 2">
+                                <img src="https://placehold.co/900x600/e0e0e0/333333?text=S7+P2" alt="Section 7 Product 2" loading="lazy">
                             </a>
                         </div>
                     </div>
