@@ -6,136 +6,95 @@
     <title>SIAZ* Collective Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for the dark hero section background and general font */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+        /* Custom styles */
+        body { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { display: none; }
+        html { -ms-overflow-style: none; scrollbar-width: none; scroll-behavior: smooth; }
+        .blend-mode-difference { mix-blend-mode: difference; }
+        .fab-shadow { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
         /* Aspect Ratio Containers */
         .aspect-ratio-9-16, .aspect-ratio-4-5, .aspect-ratio-1-1, .aspect-ratio-3-2 {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            background-color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative; width: 100%; overflow: hidden; background-color: #f3f4f6;
+            display: flex; justify-content: center; align-items: center;
         }
         .aspect-ratio-9-16 { padding-bottom: calc(100% * (16 / 9)); }
         .aspect-ratio-4-5 { padding-bottom: calc(100% * (5 / 4)); }
         .aspect-ratio-1-1 { padding-bottom: calc(100% * (1 / 1)); }
         .aspect-ratio-3-2 { padding-bottom: calc(100% * (2 / 3)); }
-
         .aspect-ratio-9-16 img, .aspect-ratio-4-5 img, .aspect-ratio-1-1 img, .aspect-ratio-3-2 img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
         }
-
-        /* General Styles */
-        ::-webkit-scrollbar { display: none; }
-        html {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            scroll-behavior: smooth; /* Ini mengaktifkan scroll mulus */
-        }
-        .blend-mode-difference { mix-blend-mode: difference; }
-        .fab-shadow { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
         /* WOW FACTOR 1: Hero Intro Animation */
         @keyframes heroZoomIn {
-            from {
-                transform: scale(1.1);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+            from { transform: scale(1.1); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
-        .hero-intro {
-            animation: heroZoomIn 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
+        .hero-intro { animation: heroZoomIn 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
         
         /* WOW FACTOR 3: Grid Item Hover Effect */
-        .product-grid-item {
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .product-grid-item:hover {
-            transform: scale(1.02);
-            z-index: 10;
-        }
+        .product-grid-item { transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .product-grid-item:hover { transform: scale(1.02); z-index: 10; }
 
         /* Carousel Styles */
-        .scene {
-            width: 180px; height: 320px;
-            position: relative; perspective: 1200px; margin: 0 auto; cursor: grab;
-        }
-        .carousel {
-            width: 100%; height: 100%; position: absolute;
-            transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        }
+        .scene { width: 180px; height: 320px; position: relative; perspective: 1200px; margin: 0 auto; cursor: grab; }
+        .carousel { width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); }
         .carousel.is-dragging { transition: none; }
         .carousel__cell {
-            width: 100%; height: 100%; position: absolute;
-            left: 0; top: 0; display: flex;
-            justify-content: center; align-items: center;
-            border-radius: 16px; overflow: hidden;
-            background-color: transparent; border: none;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            user-select: none;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s, filter 0.8s, background-color 0.8s;
+            width: 100%; height: 100%; position: absolute; left: 0; top: 0; display: flex; justify-content: center; align-items: center;
+            border-radius: 16px; overflow: hidden; background-color: transparent; border: none; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            user-select: none; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s, filter 0.8s, background-color 0.8s;
         }
         .carousel__cell img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-        
-        @media (min-width: 768px) {
-            .scene { width: 270px; height: 480px; }
-        }
+        @media (min-width: 768px) { .scene { width: 270px; height: 480px; } }
         .scene.is-dragging { cursor: grabbing; }
-
         .nav-button {
-            width: 44px; height: 44px; border-radius: 9999px;
-            background-color: rgba(255, 255, 255, 0.7); color: #374151;
-            transition: all 0.3s ease; flex-shrink: 0;
-            backdrop-filter: blur(5px); border: 1px solid rgba(0,0,0,0.04);
+            width: 44px; height: 44px; border-radius: 9999px; background-color: rgba(255, 255, 255, 0.7); color: #374151;
+            transition: all 0.3s ease; flex-shrink: 0; backdrop-filter: blur(5px); border: 1px solid rgba(0,0,0,0.04);
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
         .nav-button:hover { background-color: rgba(255, 255, 255, 0.95); color: #111827; }
-
         .background-shadow {
             position: absolute; top: 50%; left: 50%; width: 350px; height: 350px;
             background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
             border-radius: 50%; transform: translate(-50%, -50%) scale(0.9);
-            opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease;
-            pointer-events: none; z-index: -1;
+            opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; pointer-events: none; z-index: -1;
         }
         .background-shadow.is-visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+        /* CSS untuk Modal (Langkah 2) */
+        #info-modal.hidden {
+            display: none;
+        }
+        #info-modal {
+            display: flex; /* Menggunakan flex untuk centering */
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
     <div id="root" class="min-h-screen flex flex-col pt-[64px] md:pt-[80px]">
         <header class="fixed top-0 left-0 w-full z-50 bg-transparent py-4 px-6 md:px-10" id="main-header">
             <div class="max-w-7xl mx-auto flex items-center justify-between relative">
-                <a href="about-info.html" class="header-link text-xs font-light hover:opacity-80 transition-opacity duration-200 blend-mode-difference text-black">Info</a>
+                <!-- DIUBAH: Link header menjadi pemicu modal -->
+                <a href="#" data-modal-target="info" class="header-link modal-trigger text-xs font-light hover:opacity-80 transition-opacity duration-200 blend-mode-difference text-black">Info</a>
                 <h1 class="header-logo text-2xl md:text-3xl font-bold uppercase blend-mode-difference text-black flex-grow text-center">
                     <a href="index.html">SIAZ*</a>
                 </h1>
-                <a href="contact.html" class="header-link text-xs font-light hover:opacity-80 transition-opacity duration-200 blend-mode-difference text-black">Contact</a>
+                <!-- DIUBAH: Link header menjadi pemicu modal -->
+                <a href="#" data-modal-target="contact" class="header-link modal-trigger text-xs font-light hover:opacity-80 transition-opacity duration-200 blend-mode-difference text-black">Contact</a>
             </div>
         </header>
 
         <main class="flex-grow">
+            <!-- Hero Section -->
             <section>
                 <div class="aspect-ratio-9-16">
                     <img src="./images/h1.png" alt="entire studios hero product" class="hero-intro">
                 </div>
             </section>
 
-            <!-- DITAMBAHKAN: id="shop-section" untuk target tombol "Shop" -->
+            <!-- Section 1 -->
             <section class="py-0 md:py-0 px-0 md:px-0" id="shop-section">
                 <div class="grid grid-cols-4 gap-px md:gap-px">
                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p1.png" alt="Product 1" loading="lazy"></a></div></div>
@@ -152,6 +111,7 @@
                 </div>
             </section>
 
+            <!-- Section 2 -->
             <section class="py-0 md:py-0 px-0 md:px-0">
                 <div class="grid grid-cols-2 gap-px md:gap-px">
                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p1.png" alt="Section 2 Product 1" loading="lazy"></a></div></div>
@@ -161,7 +121,7 @@
                 </div>
             </section>
             
-            <!-- DITAMBAHKAN: id="collection-section" untuk target tombol "Collection" -->
+            <!-- Section Carousel -->
             <section id="collection-section" class="py-16 md:py-24 overflow-hidden bg-gray-100">
                 <div class="max-w-7xl mx-auto px-4 text-center flex flex-col">
                     <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight leading-tight text-gray-800 md:order-1">Engineered for The Elements</h2>
@@ -182,12 +142,8 @@
                             </div>
                         </div>
                         <div class="nav-container flex justify-center items-center space-x-5 mt-8 order-3 md:order-3">
-                            <button id="prev-button" class="nav-button flex items-center justify-center">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                            </button>
-                            <button id="next-button" class="nav-button flex items-center justify-center">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            </button>
+                            <button id="prev-button" class="nav-button flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+                            <button id="next-button" class="nav-button flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
                         </div>
                     </div>
                     <p class="text-base md:text-xl text-gray-600 my-8 md:my-0 md:mt-12 max-w-xs md:max-w-2xl mx-auto leading-relaxed md:order-3">
@@ -196,63 +152,16 @@
                 </div>
             </section>
 
-            <!-- Sisa grid produk -->
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-4 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P1" alt="Section 3 Product 1" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P2" alt="Section 3 Product 2" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P3" alt="Section 3 Product 3" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P4" alt="Section 3 Product 4" loading="lazy"></a></div></div>
-                </div>
-            </section>
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-2 gap-px md:gap-px">
-                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P1" alt="Section 4 Product 1" loading="lazy"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P2" alt="Section 4 Product 2" loading="lazy"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P3" alt="Section 4 Product 3" loading="lazy"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P4" alt="Section 4 Product 4" loading="lazy"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P5" alt="Section 5 Product 5" loading="lazy"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P6" alt="Section 4 Product 6" loading="lazy"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P7" alt="Section 4 Product 7" loading="lazy"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P8" alt="Section 4 Product 8" loading="lazy"></a></div></div>
-                </div>
-            </section>
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-1 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image" alt="Section 4a Image" loading="lazy"></a></div></div>
-                </div>
-            </section>
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-2 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P1" alt="Section 5 Product 1" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P2" alt="Section 5 Product 2" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P3" alt="Section 5 Product 3" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P4" alt="Section 5 Product 4" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P5" alt="Section 5 Product 5" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P6" alt="Section 5 Product 6" loading="lazy"></a></div></div>
-                </div>
-            </section>
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-4 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P1" alt="Section 6 Product 1" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P2" alt="Section 6 Product 2" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P3" alt="Section 6 Product 3" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P4" alt="Section 6 Product 4" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P5" alt="Section 6 Product 5" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P6" alt="Section 6 Product 6" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P7" alt="Section 7 Product 7" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P8" alt="Section 6 Product 8" loading="lazy"></a></div></div>
-                </div>
-            </section>
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-1 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P1" alt="Section 7 Product 1" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P2" alt="Section 7 Product 2" loading="lazy"></a></div></div>
-                </div>
-            </section>
+            <!-- Sisa Grid Produk -->
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-4 gap-px md:gap-px"> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P1" alt="Section 3 Product 1" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P2" alt="Section 3 Product 2" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P3" alt="Section 3 Product 3" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P4" alt="Section 3 Product 4" loading="lazy"></a></div></div> </div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-2 gap-px md:gap-px"> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P1" alt="Section 4 Product 1" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P2" alt="Section 4 Product 2" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P3" alt="Section 4 Product 3" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P4" alt="Section 4 Product 4" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P5" alt="Section 5 Product 5" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P6" alt="Section 4 Product 6" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P7" alt="Section 4 Product 7" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P8" alt="Section 4 Product 8" loading="lazy"></a></div></div> </div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-1 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image" alt="Section 4a Image" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-2 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P1" alt="Section 5 Product 1" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P2" alt="Section 5 Product 2" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P3" alt="Section 5 Product 3" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P4" alt="Section 5 Product 4" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P5" alt="Section 5 Product 5" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P6" alt="Section 5 Product 6" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-4 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P1" alt="Section 6 Product 1" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P2" alt="Section 6 Product 2" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P3" alt="Section 6 Product 3" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P4" alt="Section 6 Product 4" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P5" alt="Section 6 Product 5" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P6" alt="Section 6 Product 6" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P7" alt="Section 7 Product 7" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P8" alt="Section 6 Product 8" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-1 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P1" alt="Section 7 Product 1" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P2" alt="Section 7 Product 2" loading="lazy"></a></div></div></div></section>
         </main>
 
-        <!-- DIUBAH: href pada tombol FAB sekarang menunjuk ke ID -->
+        <!-- FAB (Floating Action Button) -->
         <div class="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-40">
             <div class="relative bg-white text-black py-3 px-6 rounded-full flex items-center justify-between fab-shadow hover:opacity-90 transition-opacity duration-200" style="min-width: 280px;">
                 <a href="#shop-section" class="text-xs font-light hover:opacity-80 transition-opacity duration-200">Shop</a>
@@ -261,7 +170,7 @@
             </div>
         </div>
         
-        <!-- DITAMBAHKAN: id="about-section" untuk target tombol "About" -->
+        <!-- Footer -->
         <footer id="about-section" class="bg-gray-100 text-gray-800 py-6 mt-10">
             <div class="max-w-7xl mx-auto px-6 md:px-10 text-center">
                 <p class="text-sm">© 2025 SIAZ*. All rights reserved.</p>
@@ -273,35 +182,91 @@
         </footer>
     </div>
 
+    <!-- DITAMBAHKAN: Struktur HTML untuk Modal (Langkah 2) -->
+    <div id="info-modal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-lg shadow-xl w-11/12 max-w-lg p-6 md:p-8 m-4 transform transition-transform duration-300 scale-95 opacity-0">
+            <div id="modal-content">
+                <!-- Konten akan diisi oleh JavaScript -->
+            </div>
+            <button id="close-modal-btn" class="absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+    
     <script>
-    // Kode JavaScript tidak perlu diubah untuk langkah ini.
     document.addEventListener('DOMContentLoaded', function() {
+
+        // --- Logika untuk Modal (Langkah 2) ---
+        const modal = document.getElementById('info-modal');
+        if (modal) {
+            const modalContent = document.getElementById('modal-content');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const modalTriggers = document.querySelectorAll('.modal-trigger');
+            const modalDialog = modal.querySelector('.bg-white');
+
+            const modalData = {
+                info: {
+                    title: 'About SIAZ*',
+                    content: `<p class="mb-4">SIAZ* adalah sebuah kolektif desain yang berfokus pada eksplorasi bentuk, fungsi, dan material dalam fashion kontemporer.</p><p>Setiap produk kami direkayasa dengan presisi, memadukan estetika minimalis dengan fungsionalitas untuk penggunaan sehari-hari di berbagai elemen.</p>`
+                },
+                contact: {
+                    title: 'Get in Touch',
+                    content: `<p class="mb-4">Untuk pertanyaan mengenai produk, kolaborasi, atau pers, silakan hubungi kami melalui email.</p><p class="font-semibold">hello@siazcollective.com</p>`
+                }
+            };
+
+            function openModal(target) {
+                const data = modalData[target];
+                if (!data) return;
+                modalContent.innerHTML = `<h2 class="text-2xl font-bold mb-4 text-gray-800">${data.title}</h2><div class="text-gray-600 leading-relaxed">${data.content}</div>`;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => {
+                    modal.classList.add('opacity-100');
+                    modalDialog.classList.remove('scale-95', 'opacity-0');
+                    modalDialog.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+
+            function closeModal() {
+                modal.classList.remove('opacity-100');
+                modalDialog.classList.remove('scale-100', 'opacity-100');
+                modalDialog.classList.add('scale-95', 'opacity-0');
+                document.body.style.overflow = '';
+                setTimeout(() => { modal.classList.add('hidden'); }, 300);
+            }
+
+            modalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = trigger.dataset.modalTarget;
+                    openModal(target);
+                });
+            });
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(); } });
+        }
+        
+        // --- Logika Carousel (Sudah Ada Sebelumnya) ---
         const carousel = document.querySelector('.carousel');
         if (!carousel) return;
-
+        // Sisa kode JavaScript carousel Anda...
         const cells = Array.from(carousel.querySelectorAll('.carousel__cell'));
         const prevButton = document.getElementById('prev-button');
         const nextButton = document.getElementById('next-button');
         const backgroundShadow = document.getElementById('background-shadow');
         const scene = carousel.parentElement;
         const titleElement = document.getElementById('carousel-product-title');
-
         const cellCount = cells.length;
         if (cellCount === 0) return;
-
         const theta = 360 / cellCount;
         let radius;
-
-        function setCarouselRadius() {
-            radius = Math.round((scene.offsetWidth / 2) / Math.tan(Math.PI / cellCount));
-            rotateCarousel();
-        }
-        
+        function setCarouselRadius() { radius = Math.round((scene.offsetWidth / 2) / Math.tan(Math.PI / cellCount)); rotateCarousel(); }
         let selectedIndex = 0;
-        
         function updateCells() {
             const positiveIndex = (selectedIndex % cellCount + cellCount) % cellCount;
-
             cells.forEach((cell, i) => {
                 const isSelected = i === positiveIndex;
                 const scale = isSelected ? 1.35 : 1;
@@ -319,27 +284,14 @@
                 }
             });
         }
-
         function rotateCarousel() {
             const angle = theta * selectedIndex * -1;
             carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`;
             setTimeout(updateCells, 0);
         }
-
-        prevButton.addEventListener('click', () => {
-            selectedIndex--;
-            if (titleElement) titleElement.style.opacity = '0';
-            rotateCarousel();
-        });
-
-        nextButton.addEventListener('click', () => {
-            selectedIndex++;
-            if (titleElement) titleElement.style.opacity = '0';
-            rotateCarousel();
-        });
-        
+        prevButton.addEventListener('click', () => { selectedIndex--; if (titleElement) titleElement.style.opacity = '0'; rotateCarousel(); });
+        nextButton.addEventListener('click', () => { selectedIndex++; if (titleElement) titleElement.style.opacity = '0'; rotateCarousel(); });
         let isDragging = false, startX, currentAngle = 0;
-
         function onPointerDown(event) {
             isDragging = true;
             if (backgroundShadow) backgroundShadow.classList.add('is-visible');
@@ -354,7 +306,7 @@
             if (!isDragging) return;
             const x = event.pageX || (event.touches && event.touches[0].pageX);
             const deltaX = x - startX;
-            const sensitivity = 0.8; 
+            const sensitivity = 0.8;
             const angleChange = deltaX * sensitivity;
             const newAngle = currentAngle + angleChange;
             carousel.style.transform = `translateZ(-${radius}px) rotateY(${newAngle}deg)`;
@@ -372,7 +324,6 @@
                 rotateCarousel();
             }
         }
-        
         scene.addEventListener('mousedown', onPointerDown);
         window.addEventListener('mousemove', onPointerMove);
         window.addEventListener('mouseup', onPointerUp);
