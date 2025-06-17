@@ -159,9 +159,7 @@
     
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Data Produk - Tempat Anda mengedit semua detail produk
         const productData = {
-            // Section 1
             s1p1: { name: 'Puffer Jacket v2', image: './images/s1p1.png', description: 'Jaket puffer dengan insulasi termal canggih, dirancang untuk menahan elemen cuaca ekstrem tanpa mengorbankan siluet modern.', price: 'Rp 2.499.000', link: '#' },
             s1p2: { name: 'Cargo Pants 3.0', image: './images/s1p2.png', description: 'Celana kargo serbaguna dengan material ripstop yang tahan lama, dilengkapi banyak kantong untuk fungsionalitas maksimal.', price: 'Rp 1.299.000', link: '#' },
             s1p3: { name: 'Product Name S1P3', image: './images/s1p3.png', description: 'Deskripsi untuk produk S1P3.', price: 'Rp 0', link: '#' },
@@ -173,17 +171,14 @@
             s1p9: { name: 'Product Name S1P9', image: './images/s1p9.png', description: 'Deskripsi untuk produk S1P9.', price: 'Rp 0', link: '#' },
             s1p10: { name: 'Product Name S1P10', image: './images/s1p10.png', description: 'Deskripsi untuk produk S1P10.', price: 'Rp 0', link: '#' },
             s1p11: { name: 'Product Name S1P11', image: './images/s1p11.png', description: 'Deskripsi untuk produk S1P11.', price: 'Rp 0', link: '#' },
-            // Section 2
             s2p1: { name: 'Minimalist Hoodie', image: './images/s2p1.png', description: 'Hoodie esensial dibuat dari bahan fleece katun tebal yang sangat lembut, potongan oversized untuk kenyamanan sepanjang hari.', price: 'Rp 899.000', link: '#' },
             s2p2: { name: 'Product Name S2P2', image: './images/s2p2.png', description: 'Deskripsi untuk produk S2P2.', price: 'Rp 0', link: '#' },
             s2p3: { name: 'Product Name S2P3', image: './images/s2p3.png', description: 'Deskripsi untuk produk S2P3.', price: 'Rp 0', link: '#' },
             s2p4: { name: 'Product Name S2P4', image: './images/s2p4.png', description: 'Deskripsi untuk produk S2P4.', price: 'Rp 0', link: '#' },
-            // Section 3
             s3p1: { name: 'Product Name S3P1', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P1', description: 'Deskripsi untuk produk S3P1.', price: 'Rp 0', link: '#' },
             s3p2: { name: 'Product Name S3P2', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P2', description: 'Deskripsi untuk produk S3P2.', price: 'Rp 0', link: '#' },
             s3p3: { name: 'Product Name S3P3', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P3', description: 'Deskripsi untuk produk S3P3.', price: 'Rp 0', link: '#' },
             s3p4: { name: 'Product Name S3P4', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P4', description: 'Deskripsi untuk produk S3P4.', price: 'Rp 0', link: '#' },
-            // Section 4
             s4p1: { name: 'Product Name S4P1', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P1', description: 'Deskripsi untuk produk S4P1.', price: 'Rp 0', link: '#' },
             s4p2: { name: 'Product Name S4P2', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P2', description: 'Deskripsi untuk produk S4P2.', price: 'Rp 0', link: '#' },
             s4p3: { name: 'Product Name S4P3', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P3', description: 'Deskripsi untuk produk S4P3.', price: 'Rp 0', link: '#' },
@@ -192,16 +187,13 @@
             s4p6: { name: 'Product Name S4P6', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P6', description: 'Deskripsi untuk produk S4P6.', price: 'Rp 0', link: '#' },
             s4p7: { name: 'Product Name S4P7', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P7', description: 'Deskripsi untuk produk S4P7.', price: 'Rp 0', link: '#' },
             s4p8: { name: 'Product Name S4P8', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P8', description: 'Deskripsi untuk produk S4P8.', price: 'Rp 0', link: '#' },
-            // Section 4a
             s4ap1: { name: 'Product Name S4aP1', image: 'https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image', description: 'Deskripsi untuk produk S4aP1.', price: 'Rp 0', link: '#' },
-            // Section 5
             s5p1: { name: 'Product Name S5P1', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P1', description: 'Deskripsi untuk produk S5P1.', price: 'Rp 0', link: '#' },
             s5p2: { name: 'Product Name S5P2', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P2', description: 'Deskripsi untuk produk S5P2.', price: 'Rp 0', link: '#' },
             s5p3: { name: 'Product Name S5P3', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P3', description: 'Deskripsi untuk produk S5P3.', price: 'Rp 0', link: '#' },
             s5p4: { name: 'Product Name S5P4', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P4', description: 'Deskripsi untuk produk S5P4.', price: 'Rp 0', link: '#' },
             s5p5: { name: 'Product Name S5P5', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P5', description: 'Deskripsi untuk produk S5P5.', price: 'Rp 0', link: '#' },
             s5p6: { name: 'Product Name S5P6', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P6', description: 'Deskripsi untuk produk S5P6.', price: 'Rp 0', link: '#' },
-            // Section 6
             s6p1: { name: 'Product Name S6P1', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P1', description: 'Deskripsi untuk produk S6P1.', price: 'Rp 0', link: '#' },
             s6p2: { name: 'Product Name S6P2', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P2', description: 'Deskripsi untuk produk S6P2.', price: 'Rp 0', link: '#' },
             s6p3: { name: 'Product Name S6P3', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P3', description: 'Deskripsi untuk produk S6P3.', price: 'Rp 0', link: '#' },
@@ -210,7 +202,6 @@
             s6p6: { name: 'Product Name S6P6', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P6', description: 'Deskripsi untuk produk S6P6.', price: 'Rp 0', link: '#' },
             s6p7: { name: 'Product Name S6P7', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P7', description: 'Deskripsi untuk produk S6P7.', price: 'Rp 0', link: '#' },
             s6p8: { name: 'Product Name S6P8', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P8', description: 'Deskripsi untuk produk S6P8.', price: 'Rp 0', link: '#' },
-            // Section 7
             s7p1: { name: 'Product Name S7P1', image: 'https://placehold.co/900x600/f3f4f6/333333?text=S7+P1', description: 'Deskripsi untuk produk S7P1.', price: 'Rp 0', link: '#' },
             s7p2: { name: 'Product Name S7P2', image: 'https://placehold.co/900x600/f3f4f6/333333?text=S7+P2', description: 'Deskripsi untuk produk S7P2.', price: 'Rp 0', link: '#' }
         };
@@ -234,24 +225,33 @@
             closeModalBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(); } });
 
-            // --- Logika Quick View Produk ---
+            // --- Logika Quick View Produk (Dengan Perbaikan Mobile) ---
             const quickViewTriggers = document.querySelectorAll('.quick-view-trigger');
             function openProductModal(productId) {
                 const product = productData[productId];
                 if (!product) { console.error('Data produk tidak ditemukan untuk ID:', productId); return; }
-                modalContent.innerHTML = `<div class="md:flex md:space-x-8"><div class="md:w-1/2 mb-4 md:mb-0"><img src="${product.image}" alt="${product.name}" class="rounded-lg w-full h-auto object-cover"></div><div class="md:w-1/2 flex flex-col"><h2 class="text-3xl font-bold text-gray-900">${product.name}</h2><p class="text-xl text-gray-700 mt-2 mb-4">${product.price}</p><p class="text-gray-600 leading-relaxed mb-6 flex-grow">${product.description}</p><a href="${product.link}" target="_blank" class="w-full inline-block text-center bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors">Lihat di Toko</a></div></div>`;
+                
+                modalContent.innerHTML = `
+                    <div class="flex flex-col md:flex-row md:space-x-8">
+                        <div class="w-full md:w-1/2 mb-4 md:mb-0">
+                            <img src="${product.image}" alt="${product.name}" class="rounded-lg w-full h-auto object-cover max-h-[50vh] md:max-h-full">
+                        </div>
+                        <div class="w-full md:w-1/2 flex flex-col">
+                            <h2 class="text-3xl font-bold text-gray-900">${product.name}</h2>
+                            <p class="text-xl text-gray-700 mt-2 mb-4">${product.price}</p>
+                            <div class="text-gray-600 leading-relaxed mb-6 flex-grow overflow-y-auto max-h-[20vh] md:max-h-none">${product.description}</div>
+                            <a href="${product.link}" target="_blank" class="w-full mt-auto inline-block text-center bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors">Lihat di Toko</a>
+                        </div>
+                    </div>
+                `;
+
                 modal.classList.remove('hidden'); document.body.style.overflow = 'hidden';
                 setTimeout(() => { modal.classList.add('opacity-100'); modalDialog.classList.remove('scale-95', 'opacity-0'); modalDialog.classList.add('scale-100', 'opacity-100'); }, 10);
             }
             quickViewTriggers.forEach(trigger => { trigger.addEventListener('click', (e) => { e.preventDefault(); const productId = trigger.dataset.productId; openProductModal(productId); }); });
         }
         
-        // Sisa kode JavaScript (Carousel) ...
-    });
-    </script>
-    <script>
-    // Pisahkan script carousel untuk kerapian
-    document.addEventListener('DOMContentLoaded', function() {
+        // --- Sisa Logika Carousel ---
         const carousel = document.querySelector('.carousel');
         if (!carousel) return;
         const cells = Array.from(carousel.querySelectorAll('.carousel__cell'));
