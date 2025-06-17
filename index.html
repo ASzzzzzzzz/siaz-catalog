@@ -11,10 +11,6 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .hero-bg {
-            background-color: #f3f4f6; /* Matching page background */
-        }
-
         /* Aspect Ratio Containers */
         .aspect-ratio-9-16, .aspect-ratio-4-5, .aspect-ratio-1-1, .aspect-ratio-3-2 {
             position: relative;
@@ -69,7 +65,7 @@
             z-index: 10;
         }
 
-        /* Carousel Styles (No major changes here) */
+        /* Carousel Styles */
         .scene {
             width: 180px; height: 320px;
             position: relative; perspective: 1200px; margin: 0 auto; cursor: grab;
@@ -117,12 +113,10 @@
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
-    <!-- REKOMENDASI: Tambahkan div pembungkus untuk mengatasi overlap header -->
     <div id="root" class="min-h-screen flex flex-col pt-[64px] md:pt-[80px]">
         <header class="fixed top-0 left-0 w-full z-50 bg-transparent py-4 px-6 md:px-10" id="main-header">
             <div class="max-w-7xl mx-auto flex items-center justify-between relative">
                 <a href="about-info.html" class="header-link text-xs font-light hover:opacity-80 transition-opacity duration-200 blend-mode-difference text-black">Info</a>
-                <!-- REKOMENDASI: Ubah ke h1 untuk SEO -->
                 <h1 class="header-logo text-2xl md:text-3xl font-bold uppercase blend-mode-difference text-black flex-grow text-center">
                     <a href="index.html">SIAZ*</a>
                 </h1>
@@ -134,15 +128,13 @@
             <!-- Hero Section -->
             <section>
                 <div class="aspect-ratio-9-16">
-                    <!-- WOW FACTOR 1: Menambahkan kelas animasi intro -->
                     <img src="./images/h1.png" alt="entire studios hero product" class="hero-intro">
                 </div>
             </section>
 
-            <!-- Section 1 (Original) - Full Width -->
+            <!-- Section 1 - Dikembalikan dan Ditingkatkan -->
             <section class="py-0 md:py-0 px-0 md:px-0" id="product-section-1">
                 <div class="grid grid-cols-4 gap-px md:gap-px">
-                    <!-- WOW FACTOR 3: Menambahkan kelas .product-grid-item pada setiap item -->
                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p1.png" alt="Product 1" loading="lazy"></a></div></div>
                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p2.png" alt="Product 2" loading="lazy"></a></div></div>
                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p3.png" alt="Product 3" loading="lazy"></a></div></div>
@@ -156,20 +148,26 @@
                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p11.png" alt="Product 11" loading="lazy"></a></div></div>
                 </div>
             </section>
+
+            <!-- Section 2 - Dikembalikan dan Ditingkatkan -->
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-2 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p1.png" alt="Section 2 Product 1" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p2.png" alt="Section 2 Product 2" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p3.png" alt="Section 2 Product 3" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p4.png" alt="Section 2 Product 4" loading="lazy"></a></div></div>
+                </div>
+            </section>
             
-            <!-- NEW: Section 2 Carousel -->
+            <!-- NEW: Section Carousel -->
             <section id="carousel-section" class="py-16 md:py-24 overflow-hidden bg-gray-100">
                 <div class="max-w-7xl mx-auto px-4 text-center flex flex-col">
-                    <!-- WOW FACTOR 4: Judul seksi yang lebih menggugah -->
                     <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight leading-tight text-gray-800 md:order-1">Engineered for The Elements</h2>
-                    
                     <div class="relative w-full flex flex-col items-center md:order-2">
                         <div id="background-shadow" class="background-shadow"></div>
-                        <!-- WOW FACTOR 2: Menambahkan elemen untuk judul produk -->
                         <h3 id="carousel-product-title" class="text-xl md:text-2xl font-medium mt-6 h-8 transition-opacity duration-500 opacity-0 order-2 md:order-1"></h3>
                         <div class="scene order-1 md:order-2">
                             <div class="carousel">
-                                <!-- WOW FACTOR 2: Menambahkan data-title pada setiap cell -->
                                 <div class="carousel__cell" data-title="Puffer Jacket v2"><img src="./images/s1p1.png" alt="Product 1"></div>
                                 <div class="carousel__cell" data-title="Cargo Pants 3.0"><img src="./images/s1p2.png" alt="Product 2"></div>
                                 <div class="carousel__cell" data-title="Heavy Hoodie"><img src="./images/s1p3.png" alt="Product 3"></div>
@@ -181,7 +179,6 @@
                                 <div class="carousel__cell" data-title="Zip-up Sweater"><img src="./images/s1p9.png" alt="Product 9"></div>
                             </div>
                         </div>
-                        
                         <div class="nav-container flex justify-center items-center space-x-5 mt-8 order-3 md:order-3">
                             <button id="prev-button" class="nav-button flex items-center justify-center">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -191,29 +188,70 @@
                             </button>
                         </div>
                     </div>
-
-                    <!-- WOW FACTOR 4: Deskripsi yang lebih imersif -->
                     <p class="text-base md:text-xl text-gray-600 my-8 md:my-0 md:mt-12 max-w-xs md:max-w-2xl mx-auto leading-relaxed md:order-3">
                         Sentuh. Putar. Rasakan setiap detail. Koleksi terbaru kami kini ada di ujung jari Anda.
                     </p>
                 </div>
             </section>
 
-            <!-- Sisa grid produk Anda. Saya akan tambahkan .product-grid-item ke beberapa sebagai contoh -->
+            <!-- Section 3 - Dikembalikan dan Ditingkatkan -->
             <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-2 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p1.png" alt="Section 2 Product 1" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p2.png" alt="Section 2 Product 2" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p3.png" alt="Section 2 Product 3" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p4.png" alt="Section 2 Product 4" loading="lazy"></a></div></div>
+                <div class="grid grid-cols-4 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P1" alt="Section 3 Product 1" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P2" alt="Section 3 Product 2" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P3" alt="Section 3 Product 3" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P4" alt="Section 3 Product 4" loading="lazy"></a></div></div>
                 </div>
             </section>
-            
-            <!-- Lanjutkan menambahkan kelas .product-grid-item ke semua div pembungkus gambar di grid lainnya -->
-            
+
+            <!-- Remaining Sections - Dikembalikan dan Ditingkatkan -->
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-2 gap-px md:gap-px">
+                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P1" alt="Section 4 Product 1" loading="lazy"></a></div></div>
+                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P2" alt="Section 4 Product 2" loading="lazy"></a></div></div>
+                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P3" alt="Section 4 Product 3" loading="lazy"></a></div></div>
+                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P4" alt="Section 4 Product 4" loading="lazy"></a></div></div>
+                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P5" alt="Section 5 Product 5" loading="lazy"></a></div></div>
+                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P6" alt="Section 4 Product 6" loading="lazy"></a></div></div>
+                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P7" alt="Section 4 Product 7" loading="lazy"></a></div></div>
+                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P8" alt="Section 4 Product 8" loading="lazy"></a></div></div>
+                </div>
+            </section>
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-1 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image" alt="Section 4a Image" loading="lazy"></a></div></div>
+                </div>
+            </section>
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-2 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P1" alt="Section 5 Product 1" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P2" alt="Section 5 Product 2" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P3" alt="Section 5 Product 3" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P4" alt="Section 5 Product 4" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P5" alt="Section 5 Product 5" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P6" alt="Section 5 Product 6" loading="lazy"></a></div></div>
+                </div>
+            </section>
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-4 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P1" alt="Section 6 Product 1" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P2" alt="Section 6 Product 2" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P3" alt="Section 6 Product 3" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P4" alt="Section 6 Product 4" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P5" alt="Section 6 Product 5" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P6" alt="Section 6 Product 6" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P7" alt="Section 7 Product 7" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P8" alt="Section 6 Product 8" loading="lazy"></a></div></div>
+                </div>
+            </section>
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-1 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P1" alt="Section 7 Product 1" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P2" alt="Section 7 Product 2" loading="lazy"></a></div></div>
+                </div>
+            </section>
         </main>
-        
-        <!-- Sisa kode footer dan FAB tidak diubah -->
+
         <div class="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-40">
             <div class="relative bg-white text-black py-3 px-6 rounded-full flex items-center justify-between fab-shadow hover:opacity-90 transition-opacity duration-200" style="min-width: 280px;">
                 <a href="shop.html" class="text-xs font-light hover:opacity-80 transition-opacity duration-200">Shop</a>
@@ -234,122 +272,114 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.querySelector('.carousel');
-            if (!carousel) return;
+    // Kode JavaScript tidak berubah dari versi sebelumnya, sudah benar.
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.querySelector('.carousel');
+        if (!carousel) return;
 
-            const cells = Array.from(carousel.querySelectorAll('.carousel__cell'));
-            const prevButton = document.getElementById('prev-button');
-            const nextButton = document.getElementById('next-button');
-            const backgroundShadow = document.getElementById('background-shadow');
-            const scene = carousel.parentElement;
-            // WOW FACTOR 2: Ambil elemen judul
-            const titleElement = document.getElementById('carousel-product-title');
+        const cells = Array.from(carousel.querySelectorAll('.carousel__cell'));
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const backgroundShadow = document.getElementById('background-shadow');
+        const scene = carousel.parentElement;
+        const titleElement = document.getElementById('carousel-product-title');
 
-            const cellCount = cells.length;
-            if (cellCount === 0) return;
+        const cellCount = cells.length;
+        if (cellCount === 0) return;
 
-            const theta = 360 / cellCount;
-            let radius;
+        const theta = 360 / cellCount;
+        let radius;
 
-            function setCarouselRadius() {
-                radius = Math.round((scene.offsetWidth / 2) / Math.tan(Math.PI / cellCount));
-                rotateCarousel();
-            }
-            
-            let selectedIndex = 0;
-            
-            function updateCells() {
-                const positiveIndex = (selectedIndex % cellCount + cellCount) % cellCount;
+        function setCarouselRadius() {
+            radius = Math.round((scene.offsetWidth / 2) / Math.tan(Math.PI / cellCount));
+            rotateCarousel();
+        }
+        
+        let selectedIndex = 0;
+        
+        function updateCells() {
+            const positiveIndex = (selectedIndex % cellCount + cellCount) % cellCount;
 
-                cells.forEach((cell, i) => {
-                    const isSelected = i === positiveIndex;
-                    const scale = isSelected ? 1.35 : 1;
-                    const opacity = isSelected ? 1 : 0.5;
-                    const filter = isSelected ? 'brightness(1)' : 'brightness(0.8)';
-                    const backgroundColor = isSelected ? '#ffffff' : 'transparent';
-
-                    const rotation = theta * i;
-                    cell.style.backgroundColor = backgroundColor;
-                    cell.style.opacity = opacity;
-                    cell.style.filter = filter;
-                    cell.style.transform = `rotateY(${rotation}deg) translateZ(${radius}px) scale(${scale})`;
-
-                    // WOW FACTOR 2: Update judul jika cell terpilih
-                    if (isSelected && titleElement) {
-                        titleElement.textContent = cell.dataset.title || '';
-                        titleElement.style.opacity = '1';
-                    }
-                });
-            }
-
-            function rotateCarousel() {
-                const angle = theta * selectedIndex * -1;
-                carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`;
-                // Panggil updateCells setelah rotasi selesai
-                setTimeout(updateCells, 0);
-            }
-
-            prevButton.addEventListener('click', () => {
-                selectedIndex--;
-                if (titleElement) titleElement.style.opacity = '0'; // Sembunyikan judul saat transisi
-                rotateCarousel();
-            });
-
-            nextButton.addEventListener('click', () => {
-                selectedIndex++;
-                if (titleElement) titleElement.style.opacity = '0'; // Sembunyikan judul saat transisi
-                rotateCarousel();
-            });
-            
-            let isDragging = false;
-            let startX, currentAngle = 0;
-
-            function onPointerDown(event) {
-                isDragging = true;
-                if (backgroundShadow) backgroundShadow.classList.add('is-visible');
-                if (titleElement) titleElement.style.opacity = '0'; // Sembunyikan judul saat drag
-                carousel.classList.add('is-dragging');
-                startX = event.pageX || (event.touches && event.touches[0].pageX);
-                const transform = carousel.style.transform;
-                currentAngle = parseFloat(transform.split('rotateY(')[1]) || 0;
-                event.preventDefault();
-            }
-
-            function onPointerMove(event) {
-                if (!isDragging) return;
-                const x = event.pageX || (event.touches && event.touches[0].pageX);
-                const deltaX = x - startX;
-                const sensitivity = 0.8; 
-                const angleChange = deltaX * sensitivity;
-                const newAngle = currentAngle + angleChange;
-                carousel.style.transform = `translateZ(-${radius}px) rotateY(${newAngle}deg)`;
-            }
-
-            function onPointerUp() {
-                if (!isDragging) return;
-                isDragging = false;
-                if (backgroundShadow) backgroundShadow.classList.remove('is-visible');
-                carousel.classList.remove('is-dragging');
-                const transformStyle = carousel.style.transform;
-                const rotationMatch = transformStyle.match(/rotateY\(([^deg]+)deg\)/);
-                if (rotationMatch && rotationMatch[1]) {
-                    const finalAngle = parseFloat(rotationMatch[1]);
-                    selectedIndex = Math.round(finalAngle / -theta);
-                    rotateCarousel(); // Panggil fungsi rotasi utama untuk "snap" ke posisi
+            cells.forEach((cell, i) => {
+                const isSelected = i === positiveIndex;
+                const scale = isSelected ? 1.35 : 1;
+                const opacity = isSelected ? 1 : 0.5;
+                const filter = isSelected ? 'brightness(1)' : 'brightness(0.8)';
+                const backgroundColor = isSelected ? '#ffffff' : 'transparent';
+                const rotation = theta * i;
+                cell.style.backgroundColor = backgroundColor;
+                cell.style.opacity = opacity;
+                cell.style.filter = filter;
+                cell.style.transform = `rotateY(${rotation}deg) translateZ(${radius}px) scale(${scale})`;
+                if (isSelected && titleElement) {
+                    titleElement.textContent = cell.dataset.title || '';
+                    titleElement.style.opacity = '1';
                 }
-            }
-            
-            scene.addEventListener('mousedown', onPointerDown);
-            window.addEventListener('mousemove', onPointerMove);
-            window.addEventListener('mouseup', onPointerUp);
-            scene.addEventListener('touchstart', onPointerDown, { passive: true });
-            window.addEventListener('touchmove', onPointerMove);
-            window.addEventListener('touchend', onPointerUp);
+            });
+        }
 
-            setCarouselRadius();
-            window.addEventListener('resize', setCarouselRadius);
+        function rotateCarousel() {
+            const angle = theta * selectedIndex * -1;
+            carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`;
+            setTimeout(updateCells, 0);
+        }
+
+        prevButton.addEventListener('click', () => {
+            selectedIndex--;
+            if (titleElement) titleElement.style.opacity = '0';
+            rotateCarousel();
         });
+
+        nextButton.addEventListener('click', () => {
+            selectedIndex++;
+            if (titleElement) titleElement.style.opacity = '0';
+            rotateCarousel();
+        });
+        
+        let isDragging = false, startX, currentAngle = 0;
+
+        function onPointerDown(event) {
+            isDragging = true;
+            if (backgroundShadow) backgroundShadow.classList.add('is-visible');
+            if (titleElement) titleElement.style.opacity = '0';
+            carousel.classList.add('is-dragging');
+            startX = event.pageX || (event.touches && event.touches[0].pageX);
+            const transform = carousel.style.transform;
+            currentAngle = parseFloat(transform.split('rotateY(')[1]) || 0;
+            event.preventDefault();
+        }
+        function onPointerMove(event) {
+            if (!isDragging) return;
+            const x = event.pageX || (event.touches && event.touches[0].pageX);
+            const deltaX = x - startX;
+            const sensitivity = 0.8; 
+            const angleChange = deltaX * sensitivity;
+            const newAngle = currentAngle + angleChange;
+            carousel.style.transform = `translateZ(-${radius}px) rotateY(${newAngle}deg)`;
+        }
+        function onPointerUp() {
+            if (!isDragging) return;
+            isDragging = false;
+            if (backgroundShadow) backgroundShadow.classList.remove('is-visible');
+            carousel.classList.remove('is-dragging');
+            const transformStyle = carousel.style.transform;
+            const rotationMatch = transformStyle.match(/rotateY\(([^deg]+)deg\)/);
+            if (rotationMatch && rotationMatch[1]) {
+                const finalAngle = parseFloat(rotationMatch[1]);
+                selectedIndex = Math.round(finalAngle / -theta);
+                rotateCarousel();
+            }
+        }
+        
+        scene.addEventListener('mousedown', onPointerDown);
+        window.addEventListener('mousemove', onPointerMove);
+        window.addEventListener('mouseup', onPointerUp);
+        scene.addEventListener('touchstart', onPointerDown, { passive: true });
+        window.addEventListener('touchmove', onPointerMove);
+        window.addEventListener('touchend', onPointerUp);
+        setCarouselRadius();
+        window.addEventListener('resize', setCarouselRadius);
+    });
     </script>
 </body>
 </html>
