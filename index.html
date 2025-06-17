@@ -34,6 +34,7 @@
         .background-shadow.is-visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         #info-modal.hidden { display: none; }
         #info-modal { display: flex; }
+        #info-modal .modal-container { width: 100%; max-height: 85vh; overflow-y: auto; }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
@@ -48,7 +49,6 @@
 
         <main class="flex-grow">
             <section><div class="aspect-ratio-9-16"><img src="./images/h1.png" alt="entire studios hero product" class="hero-intro"></div></section>
-            
             <section class="py-0 md:py-0 px-0 md:px-0" id="shop-section">
                 <div class="grid grid-cols-4 gap-px md:gap-px">
                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p1"><img src="./images/s1p1.png" alt="Product" loading="lazy"></a></div></div>
@@ -64,7 +64,6 @@
                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p11"><img src="./images/s1p11.png" alt="Product" loading="lazy"></a></div></div>
                 </div>
             </section>
-
             <section class="py-0 md:py-0 px-0 md:px-0">
                 <div class="grid grid-cols-2 gap-px md:gap-px">
                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s2p1"><img src="./images/s2p1.png" alt="Product" loading="lazy"></a></div></div>
@@ -73,7 +72,6 @@
                     <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s2p4"><img src="./images/s2p4.png" alt="Product" loading="lazy"></a></div></div>
                 </div>
             </section>
-            
             <section id="collection-section" class="py-16 md:py-24 overflow-hidden bg-gray-100">
                 <div class="max-w-7xl mx-auto px-4 text-center flex flex-col">
                     <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight leading-tight text-gray-800 md:order-1">Engineered for The Elements</h2>
@@ -81,132 +79,76 @@
                         <div id="background-shadow" class="background-shadow"></div>
                         <h3 id="carousel-product-title" class="text-xl md:text-2xl font-medium mt-6 h-8 transition-opacity duration-500 opacity-0 order-2 md:order-1"></h3>
                         <div class="scene order-1 md:order-2"><div class="carousel"><div class="carousel__cell" data-title="Puffer Jacket v2"><img src="./images/s1p1.png" alt="Product"></div><div class="carousel__cell" data-title="Cargo Pants 3.0"><img src="./images/s1p2.png" alt="Product"></div><div class="carousel__cell" data-title="Heavy Hoodie"><img src="./images/s1p3.png" alt="Product"></div><div class="carousel__cell" data-title="Utility Vest"><img src="./images/s1p4.png" alt="Product"></div><div class="carousel__cell" data-title="Essential Tee"><img src="./images/s1p5.png" alt="Product"></div><div class="carousel__cell" data-title="Nylon Shorts"><img src="./images/s1p6.png" alt="Product"></div><div class="carousel__cell" data-title="Workwear Shirt"><img src="./images/s1p7.png" alt="Product"></div><div class="carousel__cell" data-title="Tech Fleece"><img src="./images/s1p8.png" alt="Product"></div><div class="carousel__cell" data-title="Zip-up Sweater"><img src="./images/s1p9.png" alt="Product"></div></div></div>
-                        <div class="nav-container flex justify-center items-center space-x-5 mt-8 order-3 md:order-3">
-                            <button id="prev-button" class="nav-button flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
-                            <button id="next-button" class="nav-button flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
-                        </div>
+                        <div class="nav-container flex justify-center items-center space-x-5 mt-8 order-3 md:order-3"><button id="prev-button" class="nav-button flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button><button id="next-button" class="nav-button flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></div>
                     </div>
                     <p class="text-base md:text-xl text-gray-600 my-8 md:my-0 md:mt-12 max-w-xs md:max-w-2xl mx-auto leading-relaxed md:order-3">Sentuh. Putar. Rasakan setiap detail. Koleksi terbaru kami kini ada di ujung jari Anda.</p>
                 </div>
             </section>
-
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-4 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p1"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P1" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p2"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P2" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p3"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P3" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p4"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P4" alt="Product" loading="lazy"></a></div></div>
-                </div>
-            </section>
-            
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-2 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p1"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P1" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p2"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P2" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p3"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P3" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p4"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P4" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p5"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P5" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p6"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P6" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p7"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P7" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p8"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P8" alt="Product" loading="lazy"></a></div></div>
-                </div>
-            </section>
-            
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-1 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s4ap1"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image" alt="Product" loading="lazy"></a></div></div>
-                </div>
-            </section>
-            
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-2 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p1"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P1" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p2"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P2" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p3"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P3" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p4"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P4" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p5"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P5" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p6"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P6" alt="Product" loading="lazy"></a></div></div>
-                </div>
-            </section>
-            
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-4 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p1"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P1" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p2"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P2" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p3"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P3" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p4"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P4" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p5"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P5" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p6"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P6" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p7"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P7" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p8"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P8" alt="Product" loading="lazy"></a></div></div>
-                </div>
-            </section>
-            
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-1 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s7p1"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P1" alt="Product" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s7p2"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P2" alt="Product" loading="lazy"></a></div></div>
-                </div>
-            </section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-4 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p1"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P1" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p2"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P2" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p3"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P3" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p4"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P4" alt="Product" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-2 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p1"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P1" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p2"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P2" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p3"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P3" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p4"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P4" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p5"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P5" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p6"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P6" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p7"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P7" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p8"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P8" alt="Product" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-1 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s4ap1"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image" alt="Product" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-2 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p1"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P1" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p2"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P2" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p3"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P3" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p4"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P4" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p5"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P5" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p6"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P6" alt="Product" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-4 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p1"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P1" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p2"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P2" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p3"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P3" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p4"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P4" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p5"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P5" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p6"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P6" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p7"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P7" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p8"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P8" alt="Product" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-1 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s7p1"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P1" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s7p2"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P2" alt="Product" loading="lazy"></a></div></div></div></section>
         </main>
-
         <div class="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-40"><div class="relative bg-white text-black py-3 px-6 rounded-full flex items-center justify-between fab-shadow hover:opacity-90 transition-opacity duration-200" style="min-width: 280px;"><a href="#shop-section" class="text-xs font-light hover:opacity-80 transition-opacity duration-200">Shop</a><a href="#collection-section" class="text-xs font-light hover:opacity-80 transition-opacity duration-200 absolute left-1/2 transform -translate-x-1/2">Collection</a><a href="#about-section" class="text-xs font-light hover:opacity-80 transition-opacity duration-200">About</a></div></div>
-        
         <footer id="about-section" class="bg-gray-100 text-gray-800 py-6 mt-10"><div class="max-w-7xl mx-auto px-6 md:px-10 text-center"><p class="text-sm">© 2025 SIAZ*. All rights reserved.</p><div class="flex justify-center space-x-4 mt-2"><a href="#" class="text-gray-600 hover:text-black transition duration-200">Privacy Policy</a><a href="#" class="text-gray-600 hover:text-black transition duration-200">Terms of Service</a></div></div></footer>
     </div>
-
-    <div id="info-modal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 opacity-0"><div class="bg-white rounded-lg shadow-xl w-11/12 max-w-2xl p-6 md:p-8 m-4 transform transition-transform duration-300 scale-95 opacity-0"><div id="modal-content"></div><button id="close-modal-btn" class="absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div></div>
+    <div id="info-modal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 opacity-0"><div class="bg-white rounded-lg shadow-xl w-11/12 p-1 m-4 transform transition-transform duration-300 scale-95 opacity-0"><div id="modal-content"></div><button id="close-modal-btn" class="absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors z-10"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div></div>
     
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // --- PUSAT KENDALI PRODUK ANDA ---
+        // Di sini Anda bisa mengedit semua detail produk. Cukup ganti nilai-nilai placeholder.
         const productData = {
-            s1p1: { name: 'Puffer Jacket v2', image: './images/s1p1.png', description: 'Jaket puffer dengan insulasi termal canggih, dirancang untuk menahan elemen cuaca ekstrem tanpa mengorbankan siluet modern.', price: 'Rp 2.499.000', link: '#' },
-            s1p2: { name: 'Cargo Pants 3.0', image: './images/s1p2.png', description: 'Celana kargo serbaguna dengan material ripstop yang tahan lama, dilengkapi banyak kantong untuk fungsionalitas maksimal.', price: 'Rp 1.299.000', link: '#' },
-            s1p3: { name: 'Product Name S1P3', image: './images/s1p3.png', description: 'Deskripsi untuk produk S1P3.', price: 'Rp 0', link: '#' },
-            s1p4: { name: 'Product Name S1P4', image: './images/s1p4.png', description: 'Deskripsi untuk produk S1P4.', price: 'Rp 0', link: '#' },
-            s1p5: { name: 'Product Name S1P5', image: './images/s1p5.png', description: 'Deskripsi untuk produk S1P5.', price: 'Rp 0', link: '#' },
-            s1p6: { name: 'Product Name S1P6', image: './images/s1p6.png', description: 'Deskripsi untuk produk S1P6.', price: 'Rp 0', link: '#' },
-            s1p7: { name: 'Product Name S1P7', image: './images/s1p7.png', description: 'Deskripsi untuk produk S1P7.', price: 'Rp 0', link: '#' },
-            s1p8: { name: 'Product Name S1P8', image: './images/s1p8.png', description: 'Deskripsi untuk produk S1P8.', price: 'Rp 0', link: '#' },
-            s1p9: { name: 'Product Name S1P9', image: './images/s1p9.png', description: 'Deskripsi untuk produk S1P9.', price: 'Rp 0', link: '#' },
-            s1p10: { name: 'Product Name S1P10', image: './images/s1p10.png', description: 'Deskripsi untuk produk S1P10.', price: 'Rp 0', link: '#' },
-            s1p11: { name: 'Product Name S1P11', image: './images/s1p11.png', description: 'Deskripsi untuk produk S1P11.', price: 'Rp 0', link: '#' },
-            s2p1: { name: 'Minimalist Hoodie', image: './images/s2p1.png', description: 'Hoodie esensial dibuat dari bahan fleece katun tebal yang sangat lembut, potongan oversized untuk kenyamanan sepanjang hari.', price: 'Rp 899.000', link: '#' },
-            s2p2: { name: 'Product Name S2P2', image: './images/s2p2.png', description: 'Deskripsi untuk produk S2P2.', price: 'Rp 0', link: '#' },
-            s2p3: { name: 'Product Name S2P3', image: './images/s2p3.png', description: 'Deskripsi untuk produk S2P3.', price: 'Rp 0', link: '#' },
-            s2p4: { name: 'Product Name S2P4', image: './images/s2p4.png', description: 'Deskripsi untuk produk S2P4.', price: 'Rp 0', link: '#' },
-            s3p1: { name: 'Product Name S3P1', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P1', description: 'Deskripsi untuk produk S3P1.', price: 'Rp 0', link: '#' },
-            s3p2: { name: 'Product Name S3P2', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P2', description: 'Deskripsi untuk produk S3P2.', price: 'Rp 0', link: '#' },
-            s3p3: { name: 'Product Name S3P3', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P3', description: 'Deskripsi untuk produk S3P3.', price: 'Rp 0', link: '#' },
-            s3p4: { name: 'Product Name S3P4', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P4', description: 'Deskripsi untuk produk S3P4.', price: 'Rp 0', link: '#' },
-            s4p1: { name: 'Product Name S4P1', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P1', description: 'Deskripsi untuk produk S4P1.', price: 'Rp 0', link: '#' },
-            s4p2: { name: 'Product Name S4P2', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P2', description: 'Deskripsi untuk produk S4P2.', price: 'Rp 0', link: '#' },
-            s4p3: { name: 'Product Name S4P3', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P3', description: 'Deskripsi untuk produk S4P3.', price: 'Rp 0', link: '#' },
-            s4p4: { name: 'Product Name S4P4', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P4', description: 'Deskripsi untuk produk S4P4.', price: 'Rp 0', link: '#' },
-            s4p5: { name: 'Product Name S4P5', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P5', description: 'Deskripsi untuk produk S4P5.', price: 'Rp 0', link: '#' },
-            s4p6: { name: 'Product Name S4P6', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P6', description: 'Deskripsi untuk produk S4P6.', price: 'Rp 0', link: '#' },
-            s4p7: { name: 'Product Name S4P7', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P7', description: 'Deskripsi untuk produk S4P7.', price: 'Rp 0', link: '#' },
-            s4p8: { name: 'Product Name S4P8', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P8', description: 'Deskripsi untuk produk S4P8.', price: 'Rp 0', link: '#' },
-            s4ap1: { name: 'Product Name S4aP1', image: 'https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image', description: 'Deskripsi untuk produk S4aP1.', price: 'Rp 0', link: '#' },
-            s5p1: { name: 'Product Name S5P1', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P1', description: 'Deskripsi untuk produk S5P1.', price: 'Rp 0', link: '#' },
-            s5p2: { name: 'Product Name S5P2', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P2', description: 'Deskripsi untuk produk S5P2.', price: 'Rp 0', link: '#' },
-            s5p3: { name: 'Product Name S5P3', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P3', description: 'Deskripsi untuk produk S5P3.', price: 'Rp 0', link: '#' },
-            s5p4: { name: 'Product Name S5P4', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P4', description: 'Deskripsi untuk produk S5P4.', price: 'Rp 0', link: '#' },
-            s5p5: { name: 'Product Name S5P5', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P5', description: 'Deskripsi untuk produk S5P5.', price: 'Rp 0', link: '#' },
-            s5p6: { name: 'Product Name S5P6', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P6', description: 'Deskripsi untuk produk S5P6.', price: 'Rp 0', link: '#' },
-            s6p1: { name: 'Product Name S6P1', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P1', description: 'Deskripsi untuk produk S6P1.', price: 'Rp 0', link: '#' },
-            s6p2: { name: 'Product Name S6P2', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P2', description: 'Deskripsi untuk produk S6P2.', price: 'Rp 0', link: '#' },
-            s6p3: { name: 'Product Name S6P3', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P3', description: 'Deskripsi untuk produk S6P3.', price: 'Rp 0', link: '#' },
-            s6p4: { name: 'Product Name S6P4', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P4', description: 'Deskripsi untuk produk S6P4.', price: 'Rp 0', link: '#' },
-            s6p5: { name: 'Product Name S6P5', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P5', description: 'Deskripsi untuk produk S6P5.', price: 'Rp 0', link: '#' },
-            s6p6: { name: 'Product Name S6P6', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P6', description: 'Deskripsi untuk produk S6P6.', price: 'Rp 0', link: '#' },
-            s6p7: { name: 'Product Name S6P7', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P7', description: 'Deskripsi untuk produk S6P7.', price: 'Rp 0', link: '#' },
-            s6p8: { name: 'Product Name S6P8', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P8', description: 'Deskripsi untuk produk S6P8.', price: 'Rp 0', link: '#' },
-            s7p1: { name: 'Product Name S7P1', image: 'https://placehold.co/900x600/f3f4f6/333333?text=S7+P1', description: 'Deskripsi untuk produk S7P1.', price: 'Rp 0', link: '#' },
-            s7p2: { name: 'Product Name S7P2', image: 'https://placehold.co/900x600/f3f4f6/333333?text=S7+P2', description: 'Deskripsi untuk produk S7P2.', price: 'Rp 0', link: '#' }
+            // Section 1
+            s1p1: { name: 'Puffer Jacket v2', images: ['./images/s1p1.png', 'https://placehold.co/800x1200/cccccc/333333?text=Detail+1', 'https://placehold.co/800x1200/dddddd/333333?text=Detail+2', 'https://placehold.co/800x1200/eeeeee/333333?text=Detail+3'], description: 'Jaket puffer dengan insulasi termal canggih, dirancang untuk menahan elemen cuaca ekstrem tanpa mengorbankan siluet modern.', price: 'Rp 2.499.000', link: '#' },
+            s1p2: { name: 'Cargo Pants 3.0', images: ['./images/s1p2.png', 'https://placehold.co/800x1200/cccccc/333333?text=Detail+1', 'https://placehold.co/800x1200/dddddd/333333?text=Detail+2', 'https://placehold.co/800x1200/eeeeee/333333?text=Detail+3', 'https://placehold.co/800x1200/f0f0f0/333333?text=Detail+4'], description: 'Celana kargo serbaguna dengan material ripstop yang tahan lama, dilengkapi banyak kantong untuk fungsionalitas maksimal.', price: 'Rp 1.299.000', link: '#' },
+            s1p3: { name: 'Heavy Hoodie', images: ['./images/s1p3.png', 'https://placehold.co/800x1200/cccccc/333333?text=View+2', 'https://placehold.co/800x1200/dddddd/333333?text=View+3', 'https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S1P3.', price: 'Rp 0', link: '#' },
+            s1p4: { name: 'Product S1P4', images: ['./images/s1p4.png','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S1P4.', price: 'Rp 0', link: '#' },
+            s1p5: { name: 'Product S1P5', images: ['./images/s1p5.png','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S1P5.', price: 'Rp 0', link: '#' },
+            s1p6: { name: 'Product S1P6', images: ['./images/s1p6.png','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S1P6.', price: 'Rp 0', link: '#' },
+            s1p7: { name: 'Product S1P7', images: ['./images/s1p7.png','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S1P7.', price: 'Rp 0', link: '#' },
+            s1p8: { name: 'Product S1P8', images: ['./images/s1p8.png','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S1P8.', price: 'Rp 0', link: '#' },
+            s1p9: { name: 'Product S1P9', images: ['./images/s1p9.png','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S1P9.', price: 'Rp 0', link: '#' },
+            s1p10: { name: 'Product S1P10', images: ['./images/s1p10.png','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S1P10.', price: 'Rp 0', link: '#' },
+            s1p11: { name: 'Product S1P11', images: ['./images/s1p11.png','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S1P11.', price: 'Rp 0', link: '#' },
+            s2p1: { name: 'Minimalist Hoodie', images: ['./images/s2p1.png','https://placehold.co/800x1000/cccccc/333333?text=View+2','https://placehold.co/800x1000/dddddd/333333?text=View+3','https://placehold.co/800x1000/eeeeee/333333?text=View+4'], description: 'Hoodie esensial dibuat dari bahan fleece katun tebal yang sangat lembut, potongan oversized untuk kenyamanan sepanjang hari.', price: 'Rp 899.000', link: '#' },
+            s2p2: { name: 'Product S2P2', images: ['./images/s2p2.png','https://placehold.co/800x1000/cccccc/333333?text=View+2','https://placehold.co/800x1000/dddddd/333333?text=View+3','https://placehold.co/800x1000/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S2P2.', price: 'Rp 0', link: '#' },
+            s2p3: { name: 'Product S2P3', images: ['./images/s2p3.png','https://placehold.co/800x1000/cccccc/333333?text=View+2','https://placehold.co/800x1000/dddddd/333333?text=View+3','https://placehold.co/800x1000/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S2P3.', price: 'Rp 0', link: '#' },
+            s2p4: { name: 'Product S2P4', images: ['./images/s2p4.png','https://placehold.co/800x1000/cccccc/333333?text=View+2','https://placehold.co/800x1000/dddddd/333333?text=View+3','https://placehold.co/800x1000/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S2P4.', price: 'Rp 0', link: '#' },
+            s3p1: { name: 'Product S3P1', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S3+P1','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S3P1.', price: 'Rp 0', link: '#' },
+            s3p2: { name: 'Product S3P2', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S3+P2','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S3P2.', price: 'Rp 0', link: '#' },
+            s3p3: { name: 'Product S3P3', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S3+P3','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S3P3.', price: 'Rp 0', link: '#' },
+            s3p4: { name: 'Product S3P4', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S3+P4','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S3P4.', price: 'Rp 0', link: '#' },
+            s4p1: { name: 'Product S4P1', images: ['https://placehold.co/300x300/f3f4f6/333333?text=S4+P1','https://placehold.co/800x800/cccccc/333333?text=View+2','https://placehold.co/800x800/dddddd/333333?text=View+3','https://placehold.co/800x800/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S4P1.', price: 'Rp 0', link: '#' },
+            s4p2: { name: 'Product S4P2', images: ['https://placehold.co/300x300/f3f4f6/333333?text=S4+P2','https://placehold.co/800x800/cccccc/333333?text=View+2','https://placehold.co/800x800/dddddd/333333?text=View+3','https://placehold.co/800x800/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S4P2.', price: 'Rp 0', link: '#' },
+            s4p3: { name: 'Product S4P3', images: ['https://placehold.co/300x300/f3f4f6/333333?text=S4+P3','https://placehold.co/800x800/cccccc/333333?text=View+2','https://placehold.co/800x800/dddddd/333333?text=View+3','https://placehold.co/800x800/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S4P3.', price: 'Rp 0', link: '#' },
+            s4p4: { name: 'Product S4P4', images: ['https://placehold.co/300x300/f3f4f6/333333?text=S4+P4','https://placehold.co/800x800/cccccc/333333?text=View+2','https://placehold.co/800x800/dddddd/333333?text=View+3','https://placehold.co/800x800/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S4P4.', price: 'Rp 0', link: '#' },
+            s4p5: { name: 'Product S4P5', images: ['https://placehold.co/300x300/f3f4f6/333333?text=S4+P5','https://placehold.co/800x800/cccccc/333333?text=View+2','https://placehold.co/800x800/dddddd/333333?text=View+3','https://placehold.co/800x800/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S4P5.', price: 'Rp 0', link: '#' },
+            s4p6: { name: 'Product S4P6', images: ['https://placehold.co/300x300/f3f4f6/333333?text=S4+P6','https://placehold.co/800x800/cccccc/333333?text=View+2','https://placehold.co/800x800/dddddd/333333?text=View+3','https://placehold.co/800x800/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S4P6.', price: 'Rp 0', link: '#' },
+            s4p7: { name: 'Product S4P7', images: ['https://placehold.co/300x300/f3f4f6/333333?text=S4+P7','https://placehold.co/800x800/cccccc/333333?text=View+2','https://placehold.co/800x800/dddddd/333333?text=View+3','https://placehold.co/800x800/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S4P7.', price: 'Rp 0', link: '#' },
+            s4p8: { name: 'Product S4P8', images: ['https://placehold.co/300x300/f3f4f6/333333?text=S4+P8','https://placehold.co/800x800/cccccc/333333?text=View+2','https://placehold.co/800x800/dddddd/333333?text=View+3','https://placehold.co/800x800/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S4P8.', price: 'Rp 0', link: '#' },
+            s4ap1: { name: 'Product S4aP1', images: ['https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image','https://placehold.co/900x600/cccccc/333333?text=View+2','https://placehold.co/900x600/dddddd/333333?text=View+3','https://placehold.co/900x600/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S4aP1.', price: 'Rp 0', link: '#' },
+            s5p1: { name: 'Product S5P1', images: ['https://placehold.co/300x375/f3f4f6/333333?text=S5+P1','https://placehold.co/800x1000/cccccc/333333?text=View+2','https://placehold.co/800x1000/dddddd/333333?text=View+3','https://placehold.co/800x1000/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S5P1.', price: 'Rp 0', link: '#' },
+            s5p2: { name: 'Product S5P2', images: ['https://placehold.co/300x375/f3f4f6/333333?text=S5+P2','https://placehold.co/800x1000/cccccc/333333?text=View+2','https://placehold.co/800x1000/dddddd/333333?text=View+3','https://placehold.co/800x1000/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S5P2.', price: 'Rp 0', link: '#' },
+            s5p3: { name: 'Product S5P3', images: ['https://placehold.co/300x375/f3f4f6/333333?text=S5+P3','https://placehold.co/800x1000/cccccc/333333?text=View+2','https://placehold.co/800x1000/dddddd/333333?text=View+3','https://placehold.co/800x1000/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S5P3.', price: 'Rp 0', link: '#' },
+            s5p4: { name: 'Product S5P4', images: ['https://placehold.co/300x375/f3f4f6/333333?text=S5+P4','https://placehold.co/800x1000/cccccc/333333?text=View+2','https://placehold.co/800x1000/dddddd/333333?text=View+3','https://placehold.co/800x1000/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S5P4.', price: 'Rp 0', link: '#' },
+            s5p5: { name: 'Product S5P5', images: ['https://placehold.co/300x375/f3f4f6/333333?text=S5+P5','https://placehold.co/800x1000/cccccc/333333?text=View+2','https://placehold.co/800x1000/dddddd/333333?text=View+3','https://placehold.co/800x1000/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S5P5.', price: 'Rp 0', link: '#' },
+            s5p6: { name: 'Product S5P6', images: ['https://placehold.co/300x375/f3f4f6/333333?text=S5+P6','https://placehold.co/800x1000/cccccc/333333?text=View+2','https://placehold.co/800x1000/dddddd/333333?text=View+3','https://placehold.co/800x1000/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S5P6.', price: 'Rp 0', link: '#' },
+            s6p1: { name: 'Product S6P1', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S6+P1','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S6P1.', price: 'Rp 0', link: '#' },
+            s6p2: { name: 'Product S6P2', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S6+P2','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S6P2.', price: 'Rp 0', link: '#' },
+            s6p3: { name: 'Product S6P3', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S6+P3','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S6P3.', price: 'Rp 0', link: '#' },
+            s6p4: { name: 'Product S6P4', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S6+P4','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S6P4.', price: 'Rp 0', link: '#' },
+            s6p5: { name: 'Product S6P5', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S6+P5','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S6P5.', price: 'Rp 0', link: '#' },
+            s6p6: { name: 'Product S6P6', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S6+P6','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S6P6.', price: 'Rp 0', link: '#' },
+            s6p7: { name: 'Product S6P7', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S6+P7','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S6P7.', price: 'Rp 0', link: '#' },
+            s6p8: { name: 'Product S6P8', images: ['https://placehold.co/180x320/f3f4f6/333333?text=S6+P8','https://placehold.co/800x1200/cccccc/333333?text=View+2','https://placehold.co/800x1200/dddddd/333333?text=View+3','https://placehold.co/800x1200/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S6P8.', price: 'Rp 0', link: '#' },
+            s7p1: { name: 'Product S7P1', images: ['https://placehold.co/900x600/f3f4f6/333333?text=S7+P1','https://placehold.co/900x600/cccccc/333333?text=View+2','https://placehold.co/900x600/dddddd/333333?text=View+3','https://placehold.co/900x600/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S7P1.', price: 'Rp 0', link: '#' },
+            s7p2: { name: 'Product S7P2', images: ['https://placehold.co/900x600/f3f4f6/333333?text=S7+P2','https://placehold.co/900x600/cccccc/333333?text=View+2','https://placehold.co/900x600/dddddd/333333?text=View+3','https://placehold.co/900x600/eeeeee/333333?text=View+4'], description: 'Deskripsi untuk produk S7P2.', price: 'Rp 0', link: '#' }
         };
 
-        // --- Logika Modal ---
+        // --- Logika Modal Universal ---
         const modal = document.getElementById('info-modal');
         if (modal) {
             const modalContent = document.getElementById('modal-content');
@@ -214,41 +156,62 @@
             const modalTriggers = document.querySelectorAll('.modal-trigger');
             const modalDialog = modal.querySelector('.bg-white');
             const modalData = {
-                info: { title: 'About SIAZ*', content: `<p class="mb-4">SIAZ* adalah sebuah kolektif desain yang berfokus pada eksplorasi bentuk, fungsi, dan material dalam fashion kontemporer.</p><p>Setiap produk kami direkayasa dengan presisi, memadukan estetika minimalis dengan fungsionalitas untuk penggunaan sehari-hari di berbagai elemen.</p>` },
-                contact: { title: 'Get in Touch', content: `<p class="mb-4">Untuk pertanyaan mengenai produk, kolaborasi, atau pers, silakan hubungi kami melalui email.</p><p class="font-semibold">hello@siazcollective.com</p>` }
+                info: { content: `<div class="p-4 md:p-6"><h2 class="text-2xl font-bold mb-4 text-gray-800">About SIAZ*</h2><div class="text-gray-600 leading-relaxed"><p class="mb-4">SIAZ* adalah sebuah kolektif desain yang berfokus pada eksplorasi bentuk, fungsi, dan material dalam fashion kontemporer.</p><p>Setiap produk kami direkayasa dengan presisi, memadukan estetika minimalis dengan fungsionalitas untuk penggunaan sehari-hari di berbagai elemen.</p></div></div>` },
+                contact: { content: `<div class="p-4 md:p-6"><h2 class="text-2xl font-bold mb-4 text-gray-800">Get in Touch</h2><div class="text-gray-600 leading-relaxed"><p class="mb-4">Untuk pertanyaan mengenai produk, kolaborasi, atau pers, silakan hubungi kami melalui email.</p><p class="font-semibold">hello@siazcollective.com</p></div></div>` }
             };
 
-            function openModal(target) { const data = modalData[target]; if (!data) return; modalContent.innerHTML = `<h2 class="text-2xl font-bold mb-4 text-gray-800">${data.title}</h2><div class="text-gray-600 leading-relaxed">${data.content}</div>`; modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; setTimeout(() => { modal.classList.add('opacity-100'); modalDialog.classList.remove('scale-95', 'opacity-0'); modalDialog.classList.add('scale-100', 'opacity-100'); }, 10); }
-            function closeModal() { modal.classList.remove('opacity-100'); modalDialog.classList.remove('scale-100', 'opacity-100'); modalDialog.classList.add('scale-95', 'opacity-0'); document.body.style.overflow = ''; setTimeout(() => { modal.classList.add('hidden'); }, 300); }
+            function openModal(target) { const data = modalData[target]; if (!data) return; modalDialog.classList.remove('max-w-4xl'); modalDialog.classList.add('max-w-2xl'); modalContent.innerHTML = data.content; modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; setTimeout(() => { modal.classList.add('opacity-100'); modalDialog.classList.remove('scale-95', 'opacity-0'); modalDialog.classList.add('scale-100', 'opacity-100'); }, 10); }
+            function closeModal() { modal.classList.remove('opacity-100'); modalDialog.classList.remove('scale-100', 'opacity-100'); modalDialog.classList.add('scale-95', 'opacity-0'); document.body.style.overflow = ''; setTimeout(() => { modal.classList.add('hidden'); modalContent.innerHTML = ''; }, 300); }
             
-            modalTriggers.forEach(trigger => { trigger.addEventListener('click', (e) => { e.preventDefault(); const target = trigger.dataset.modalTarget; openModal(target); }); });
+            modalTriggers.forEach(trigger => { trigger.addEventListener('click', (e) => { e.preventDefault(); openModal(trigger.dataset.modalTarget); }); });
             closeModalBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(); } });
 
-            // --- Logika Quick View Produk (Dengan Perbaikan Mobile) ---
+            // --- Logika Quick View Produk dengan Galeri ---
             const quickViewTriggers = document.querySelectorAll('.quick-view-trigger');
             function openProductModal(productId) {
                 const product = productData[productId];
                 if (!product) { console.error('Data produk tidak ditemukan untuk ID:', productId); return; }
                 
+                modalDialog.classList.remove('max-w-2xl'); modalDialog.classList.add('max-w-4xl');
+
+                let thumbnailsHTML = '';
+                if (product.images && product.images.length > 1) {
+                    thumbnailsHTML = `<div class="flex space-x-2 mt-4 overflow-x-auto p-1">${product.images.map((imgSrc, index) => `<img src="${imgSrc}" class="w-16 h-20 object-cover rounded-md cursor-pointer border-2 ${index === 0 ? 'border-gray-900' : 'border-transparent'} quick-view-thumbnail" data-index="${index}">`).join('')}</div>`;
+                }
+
                 modalContent.innerHTML = `
-                    <div class="flex flex-col md:flex-row md:space-x-8">
-                        <div class="w-full md:w-1/2 mb-4 md:mb-0">
-                            <img src="${product.image}" alt="${product.name}" class="rounded-lg w-full h-auto object-cover max-h-[50vh] md:max-h-full">
+                    <div class="modal-container">
+                        <div class="flex flex-col md:flex-row md:space-x-8 p-4 md:p-2">
+                            <div class="w-full md:w-1/2 mb-4 md:mb-0">
+                                <img id="main-product-image" src="${product.images ? product.images[0] : 'https://placehold.co/800x1200/f3f4f6/333333?text=No+Image'}" alt="${product.name}" class="rounded-lg w-full h-auto object-cover">
+                                ${thumbnailsHTML}
+                            </div>
+                            <div class="w-full md:w-1/2 flex flex-col">
+                                <h2 class="text-2xl md:text-3xl font-bold text-gray-900">${product.name}</h2>
+                                <p class="text-xl text-gray-700 mt-2 mb-4">${product.price}</p>
+                                <div class="text-gray-600 leading-relaxed mb-6 flex-grow">${product.description}</div>
+                                <a href="${product.link}" target="_blank" class="w-full mt-auto inline-block text-center bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors">Lihat di Toko</a>
+                            </div>
                         </div>
-                        <div class="w-full md:w-1/2 flex flex-col">
-                            <h2 class="text-3xl font-bold text-gray-900">${product.name}</h2>
-                            <p class="text-xl text-gray-700 mt-2 mb-4">${product.price}</p>
-                            <div class="text-gray-600 leading-relaxed mb-6 flex-grow overflow-y-auto max-h-[20vh] md:max-h-none">${product.description}</div>
-                            <a href="${product.link}" target="_blank" class="w-full mt-auto inline-block text-center bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors">Lihat di Toko</a>
-                        </div>
-                    </div>
-                `;
+                    </div>`;
 
                 modal.classList.remove('hidden'); document.body.style.overflow = 'hidden';
                 setTimeout(() => { modal.classList.add('opacity-100'); modalDialog.classList.remove('scale-95', 'opacity-0'); modalDialog.classList.add('scale-100', 'opacity-100'); }, 10);
+
+                if (product.images && product.images.length > 1) {
+                    const mainImage = document.getElementById('main-product-image');
+                    const thumbnails = document.querySelectorAll('.quick-view-thumbnail');
+                    thumbnails.forEach(thumb => {
+                        thumb.addEventListener('click', () => {
+                            mainImage.src = thumb.src;
+                            thumbnails.forEach(t => t.classList.remove('border-gray-900'));
+                            thumb.classList.add('border-gray-900');
+                        });
+                    });
+                }
             }
-            quickViewTriggers.forEach(trigger => { trigger.addEventListener('click', (e) => { e.preventDefault(); const productId = trigger.dataset.productId; openProductModal(productId); }); });
+            quickViewTriggers.forEach(trigger => { trigger.addEventListener('click', (e) => { e.preventDefault(); openProductModal(trigger.dataset.productId); }); });
         }
         
         // --- Sisa Logika Carousel ---
@@ -266,31 +229,14 @@
         let radius;
         function setCarouselRadius() { radius = Math.round((scene.offsetWidth / 2) / Math.tan(Math.PI / cellCount)); rotateCarousel(); }
         let selectedIndex = 0;
-        function updateCells() {
-            const positiveIndex = (selectedIndex % cellCount + cellCount) % cellCount;
-            cells.forEach((cell, i) => {
-                const isSelected = i === positiveIndex;
-                const scale = isSelected ? 1.35 : 1;
-                const opacity = isSelected ? 1 : 0.5;
-                const filter = isSelected ? 'brightness(1)' : 'brightness(0.8)';
-                const backgroundColor = isSelected ? '#ffffff' : 'transparent';
-                const rotation = theta * i;
-                cell.style.backgroundColor = backgroundColor; cell.style.opacity = opacity; cell.style.filter = filter;
-                cell.style.transform = `rotateY(${rotation}deg) translateZ(${radius}px) scale(${scale})`;
-                if (isSelected && titleElement) { titleElement.textContent = cell.dataset.title || ''; titleElement.style.opacity = '1'; }
-            });
-        }
+        function updateCells() { const positiveIndex = (selectedIndex % cellCount + cellCount) % cellCount; cells.forEach((cell, i) => { const isSelected = i === positiveIndex; const scale = isSelected ? 1.35 : 1; const opacity = isSelected ? 1 : 0.5; const filter = isSelected ? 'brightness(1)' : 'brightness(0.8)'; const backgroundColor = isSelected ? '#ffffff' : 'transparent'; const rotation = theta * i; cell.style.backgroundColor = backgroundColor; cell.style.opacity = opacity; cell.style.filter = filter; cell.style.transform = `rotateY(${rotation}deg) translateZ(${radius}px) scale(${scale})`; if (isSelected && titleElement) { titleElement.textContent = cell.dataset.title || ''; titleElement.style.opacity = '1'; } }); }
         function rotateCarousel() { const angle = theta * selectedIndex * -1; carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`; setTimeout(updateCells, 0); }
         prevButton.addEventListener('click', () => { selectedIndex--; if (titleElement) titleElement.style.opacity = '0'; rotateCarousel(); });
         nextButton.addEventListener('click', () => { selectedIndex++; if (titleElement) titleElement.style.opacity = '0'; rotateCarousel(); });
         let isDragging = false, startX, currentAngle = 0;
         function onPointerDown(event) { isDragging = true; if (backgroundShadow) backgroundShadow.classList.add('is-visible'); if (titleElement) titleElement.style.opacity = '0'; carousel.classList.add('is-dragging'); startX = event.pageX || (event.touches && event.touches[0].pageX); const transform = carousel.style.transform; currentAngle = parseFloat(transform.split('rotateY(')[1]) || 0; event.preventDefault(); }
         function onPointerMove(event) { if (!isDragging) return; const x = event.pageX || (event.touches && event.touches[0].pageX); const deltaX = x - startX; const sensitivity = 0.8; const angleChange = deltaX * sensitivity; const newAngle = currentAngle + angleChange; carousel.style.transform = `translateZ(-${radius}px) rotateY(${newAngle}deg)`; }
-        function onPointerUp() {
-            if (!isDragging) return; isDragging = false; if (backgroundShadow) backgroundShadow.classList.remove('is-visible'); carousel.classList.remove('is-dragging');
-            const transformStyle = carousel.style.transform; const rotationMatch = transformStyle.match(/rotateY\(([^deg]+)deg\)/);
-            if (rotationMatch && rotationMatch[1]) { const finalAngle = parseFloat(rotationMatch[1]); selectedIndex = Math.round(finalAngle / -theta); rotateCarousel(); }
-        }
+        function onPointerUp() { if (!isDragging) return; isDragging = false; if (backgroundShadow) backgroundShadow.classList.remove('is-visible'); carousel.classList.remove('is-dragging'); const transformStyle = carousel.style.transform; const rotationMatch = transformStyle.match(/rotateY\(([^deg]+)deg\)/); if (rotationMatch && rotationMatch[1]) { const finalAngle = parseFloat(rotationMatch[1]); selectedIndex = Math.round(finalAngle / -theta); rotateCarousel(); } }
         scene.addEventListener('mousedown', onPointerDown); window.addEventListener('mousemove', onPointerMove); window.addEventListener('mouseup', onPointerUp);
         scene.addEventListener('touchstart', onPointerDown, { passive: true }); window.addEventListener('touchmove', onPointerMove); window.addEventListener('touchend', onPointerUp);
         setCarouselRadius(); window.addEventListener('resize', setCarouselRadius);
