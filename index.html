@@ -5,483 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIAZ* Collective Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom styles for the dark hero section background and general font */
-        body {
-            font-family: 'Inter', sans-serif;
-            padding-top: 64px;
-            padding-bottom: 80px;
-        }
-        @media (min-width: 768px) {
-            body {
-                padding-top: 80px;
-                padding-bottom: 80px;
-            }
-        }
-
-        .hero-bg {
-            background-color: #f3f4f6; /* Matching page background */
-        }
-
-        /* Aspect Ratio Containers */
-        .aspect-ratio-9-16 {
-            position: relative;
-            width: 100%;
-            padding-bottom: calc(100% * (16 / 9));
-            overflow: hidden;
-            background-color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1000px;
-        }
-
-        .aspect-ratio-4-5 {
-            position: relative;
-            width: 100%;
-            padding-bottom: calc(100% * (5 / 4));
-            overflow: hidden;
-            background-color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1000px;
-        }
-
-        .aspect-ratio-1-1 {
-            position: relative;
-            width: 100%;
-            padding-bottom: calc(100% * (1 / 1));
-            overflow: hidden;
-            background-color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .aspect-ratio-3-2 {
-            position: relative;
-            width: 100%;
-            padding-bottom: calc(100% * (2 / 3));
-            overflow: hidden;
-            background-color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .aspect-ratio-9-16 img,
-        .aspect-ratio-4-5 img,
-        .aspect-ratio-1-1 img,
-        .aspect-ratio-3-2 img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            backface-visibility: hidden;
-            transform-style: preserve-3d;
-        }
-
-        /* General Styles */
-        ::-webkit-scrollbar {
-            display: none;
-        }
-        html {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            scroll-behavior: smooth;
-        }
-        .blend-mode-difference {
-            mix-blend-mode: difference;
-        }
-        .fab-shadow {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        /* Animations */
-        @keyframes pulseEffect {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-        .animated-pulse { animation: pulseEffect 2s ease-in-out infinite alternate; will-change: transform; }
-        @keyframes floatEffect {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0); }
-        }
-        .animated-float { animation: floatEffect 2.5s ease-in-out infinite alternate; will-change: transform; }
-        @keyframes tiltEffect {
-            0% { transform: rotateZ(0deg); }
-            50% { transform: rotateZ(1deg); }
-            100% { transform: rotateZ(0deg); }
-        }
-        .animated-tilt { animation: tiltEffect 3s ease-in-out infinite alternate; will-change: transform; }
-
-        /* --- Carousel Styles --- */
-        .scene {
-            width: 180px; /* Mobile-first size */
-            height: 320px;
-            position: relative;
-            perspective: 1200px;
-            margin: 0 auto;
-            cursor: grab;
-        }
-        
-        .carousel__cell {
-            width: 100%; /* Lebar sel mengikuti scene container */
-            height: 100%; /* Tinggi sel mengikuti scene container */
-            position: absolute;
-            left: 0;
-            top: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 16px;
-            overflow: hidden;
-            background-color: transparent;
-            border: none;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s, filter 0.8s, background-color 0.8s;
-        }
-
-        /* Desktop Size Adjustment */
-        @media (min-width: 768px) {
-            .scene {
-                width: 270px; /* Ukuran lebih besar untuk desktop */
-                height: 480px;
-            }
-        }
-
-        .scene.is-dragging {
-            cursor: grabbing;
-        }
-        .carousel {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-        .carousel.is-dragging {
-            transition: none;
-        }
-       
-        .carousel__cell img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            pointer-events: none;
-        }
-        .nav-button {
-            width: 44px;
-            height: 44px;
-            border-radius: 9999px;
-            background-color: rgba(255, 255, 255, 0.7);
-            color: #374151;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(0,0,0,0.04);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .nav-button:hover {
-            background-color: rgba(255, 255, 255, 0.95);
-            color: #111827;
-        }
-        .background-shadow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .background-shadow.is-visible {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-    </style>
+    <!-- Menghubungkan ke file CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
-    <div id="root" class="min-h-screen flex flex-col">
+    <div id="root" class="min-h-screen flex flex-col pt-[64px] md:pt-[80px]">
         <header class="fixed top-0 left-0 w-full z-50 bg-transparent py-4 px-6 md:px-10" id="main-header">
             <div class="max-w-7xl mx-auto flex items-center justify-between relative">
-                <a href="about-info.html" class="header-link text-xs font-light hover:opacity-80 transition-opacity duration-200 blend-mode-difference text-black">Info</a>
-                <div class="header-logo text-2xl md:text-3xl font-bold uppercase blend-mode-difference text-black flex-grow text-center">
-                    SIAZ*
-                </div>
-                <a href="contact.html" class="header-link text-xs font-light hover:opacity-80 transition-opacity duration-200 blend-mode-difference text-black">Contact</a>
+                <a href="#" data-modal-target="info" class="header-link modal-trigger text-xs font-light hover:opacity-80 transition-opacity duration-200 blend-mode-difference text-black">Info</a>
+                <h1 class="header-logo text-2xl md:text-3xl font-bold uppercase blend-mode-difference text-black flex-grow text-center"><a href="index.html">SIAZ*</a></h1>
+                <a href="#" data-modal-target="contact" class="header-link modal-trigger text-xs font-light hover:opacity-80 transition-opacity duration-200 blend-mode-difference text-black">Contact</a>
             </div>
         </header>
 
         <main class="flex-grow">
-            <!-- Hero Section -->
-            <section>
-                <div class="aspect-ratio-9-16">
-                    <img src="./images/h1.png" alt="entire studios hero product">
-                </div>
-            </section>
-
-            <!-- Section 1 (Original) - Full Width -->
-            <section class="py-0 md:py-0 px-0 md:px-0" id="product-section-1">
+            <section><div class="aspect-ratio-9-16"><img src="./images/h1.png" alt="entire studios hero product" class="hero-intro"></div></section>
+            
+            <section class="py-0 md:py-0 px-0 md:px-0" id="shop-section">
                 <div class="grid grid-cols-4 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s1p1" target="_blank"><img src="./images/s1p1.png" alt="Product 1" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s1p2" target="_blank"><img src="./images/s1p2.png" alt="Product 2" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s1p3" target="_blank"><img src="./images/s1p3.png" alt="Product 3"  class="animated-float" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s1p4" target="_blank"><img src="./images/s1p4.png" alt="Product 4" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s1p5" target="_blank"><img src="./images/s1p5.png" alt="Product 5" class="animated-float" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s1p6" target="_blank"><img src="./images/s1p6.png" alt="Product 6" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s1p7" target="_blank"><img src="./images/s1p7.png" alt="Product 7" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s1p8" target="_blank"><img src="./images/s1p8.png" alt="Product 8" class="animated-tilt" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s1p9" target="_blank"><img src="./images/s1p9.png" alt="Product 9" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s1p10" target="_blank"><img src="./images/s1p10.png" alt="Product 10" class="animated-pulse" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s1p11" target="_blank"><img src="./images/s1p11.png" alt="Product 11" loading="lazy" decoding="async"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p1"><img src="./images/s1p1.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p2"><img src="./images/s1p2.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p3"><img src="./images/s1p3.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p4"><img src="./images/s1p4.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p5"><img src="./images/s1p5.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p6"><img src="./images/s1p6.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p7"><img src="./images/s1p7.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p8"><img src="./images/s1p8.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p9"><img src="./images/s1p9.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p10"><img src="./images/s1p10.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p11"><img src="./images/s1p11.png" alt="Product" loading="lazy"></a></div></div>
                 </div>
             </section>
-
-            <!-- Section 2 (Original) - Full Width -->
             <section class="py-0 md:py-0 px-0 md:px-0">
                 <div class="grid grid-cols-2 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-4-5"><a href="#shopee-link-s2p1" target="_blank"><img src="./images/s2p1.png" alt="Section 2 Product 1" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-4-5"><a href="#shopee-link-s2p2" target="_blank"><img src="./images/s2p2.png" alt="Section 2 Product 2" class="animated-tilt" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-4-5"><a href="#shopee-link-s2p3" target="_blank"><img src="./images/s2p3.png" alt="Section 2 Product 3" class="animated-tilt" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-4-5"><a href="#shopee-link-s2p4" target="_blank"><img src="./images/s2p4.png" alt="Section 2 Product 4" loading="lazy" decoding="async"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s2p1"><img src="./images/s2p1.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s2p2"><img src="./images/s2p2.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s2p3"><img src="./images/s2p3.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s2p4"><img src="./images/s2p4.png" alt="Product" loading="lazy"></a></div></div>
                 </div>
             </section>
-            
-            <!-- NEW: Section 2 Carousel -->
-            <section id="carousel-section" class="py-16 md:py-24 overflow-hidden bg-gray-100">
+            <section id="collection-section" class="py-16 md:py-24 overflow-hidden bg-gray-100">
                 <div class="max-w-7xl mx-auto px-4 text-center flex flex-col">
-                    <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight leading-tight text-gray-800 md:order-1">Koleksi Terbaik</h2>
-                    
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight leading-tight text-gray-800 md:order-1">Engineered for The Elements</h2>
                     <div class="relative w-full flex flex-col items-center md:order-2">
                         <div id="background-shadow" class="background-shadow"></div>
-                        <div class="scene">
-                            <div class="carousel">
-                                <div class="carousel__cell"><img src="./images/s1p1.png" alt="Product 1"></div>
-                                <div class="carousel__cell"><img src="./images/s1p2.png" alt="Product 2"></div>
-                                <div class="carousel__cell"><img src="./images/s1p3.png" alt="Product 3"></div>
-                                <div class="carousel__cell"><img src="./images/s1p4.png" alt="Product 4"></div>
-                                <div class="carousel__cell"><img src="./images/s1p5.png" alt="Product 5"></div>
-                                <div class="carousel__cell"><img src="./images/s1p6.png" alt="Product 6"></div>
-                                <div class="carousel__cell"><img src="./images/s1p7.png" alt="Product 7"></div>
-                                <div class="carousel__cell"><img src="./images/s1p8.png" alt="Product 8"></div>
-                                <div class="carousel__cell"><img src="./images/s1p9.png" alt="Product 9"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="nav-container flex justify-center items-center space-x-5 mt-10">
-                            <button id="prev-button" class="nav-button flex items-center justify-center">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                            </button>
-                            <button id="next-button" class="nav-button flex items-center justify-center">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            </button>
-                        </div>
+                        <h3 id="carousel-product-title" class="text-xl md:text-2xl font-medium mt-6 h-8 transition-opacity duration-500 opacity-0 order-2 md:order-1"></h3>
+                        <div class="scene order-1 md:order-2"><div class="carousel"><div class="carousel__cell" data-title="Puffer Jacket v2"><img src="./images/s1p1.png" alt="Product"></div><div class="carousel__cell" data-title="Cargo Pants 3.0"><img src="./images/s1p2.png" alt="Product"></div><div class="carousel__cell" data-title="Heavy Hoodie"><img src="./images/s1p3.png" alt="Product"></div><div class="carousel__cell" data-title="Utility Vest"><img src="./images/s1p4.png" alt="Product"></div><div class="carousel__cell" data-title="Essential Tee"><img src="./images/s1p5.png" alt="Product"></div><div class="carousel__cell" data-title="Nylon Shorts"><img src="./images/s1p6.png" alt="Product"></div><div class="carousel__cell" data-title="Workwear Shirt"><img src="./images/s1p7.png" alt="Product"></div><div class="carousel__cell" data-title="Tech Fleece"><img src="./images/s1p8.png" alt="Product"></div><div class="carousel__cell" data-title="Zip-up Sweater"><img src="./images/s1p9.png" alt="Product"></div></div></div>
+                        <div class="nav-container flex justify-center items-center space-x-5 mt-8 order-3 md:order-3"><button id="prev-button" class="nav-button flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button><button id="next-button" class="nav-button flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></div>
                     </div>
-
-                    <p class="text-base md:text-xl text-gray-600 my-8 md:my-0 md:mt-12 max-w-xs md:max-w-2xl mx-auto leading-relaxed md:order-3">
-                        Sebuah cara baru untuk melihat produk favorit Anda. Geser gambar untuk menjelajah.
-                    </p>
+                    <p class="text-base md:text-xl text-gray-600 my-8 md:my-0 md:mt-12 max-w-xs md:max-w-2xl mx-auto leading-relaxed md:order-3">Sentuh. Putar. Rasakan setiap detail. Koleksi terbaru kami kini ada di ujung jari Anda.</p>
                 </div>
             </section>
-
-            <!-- Section 3 (Original) - Full Width -->
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-4 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s3p1" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P1" alt="Section 3 Product 1" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s3p2" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P2" alt="Section 3 Product 2" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s3p3" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P3" alt="Section 3 Product 3" class="animated-pulse" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s3p4" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P4" alt="Section 3 Product 4" loading="lazy" decoding="async"></a></div></div>
-                </div>
-            </section>
-
-            <!-- Remaining Sections - Full Width -->
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-2 gap-px md:gap-px">
-                     <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-1-1"><a href="#shopee-link-s4p1" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P1" alt="Section 4 Product 1" loading="lazy" decoding="async"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-1-1"><a href="#shopee-link-s4p2" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P2" alt="Section 4 Product 2" loading="lazy" decoding="async"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-1-1"><a href="#shopee-link-s4p3" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P3" alt="Section 4 Product 3" loading="lazy" decoding="async"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-1-1"><a href="#shopee-link-s4p4" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P4" alt="Section 4 Product 4" class="animated-float" loading="lazy" decoding="async"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-1-1"><a href="#shopee-link-s4p5" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P5" alt="Section 4 Product 5" class="animated-tilt" loading="lazy" decoding="async"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-1-1"><a href="#shopee-link-s4p6" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P6" alt="Section 4 Product 6" loading="lazy" decoding="async"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-1-1"><a href="#shopee-link-s4p7" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P7" alt="Section 4 Product 7" loading="lazy" decoding="async"></a></div></div>
-                     <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-1-1"><a href="#shopee-link-s4p8" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P8" alt="Section 4 Product 8" loading="lazy" decoding="async"></a></div></div>
-                </div>
-            </section>
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-1 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-3-2"><a href="#shopee-link-s4ap1" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image" alt="Section 4a Image" loading="lazy" decoding="async"></a></div></div>
-                </div>
-            </section>
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-2 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-4-5"><a href="#shopee-link-s5p1" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P1" alt="Section 5 Product 1" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-4-5"><a href="#shopee-link-s5p2" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P2" alt="Section 5 Product 2" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-4-5"><a href="#shopee-link-s5p3" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P3" alt="Section 5 Product 3" class="animated-pulse" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-4-5"><a href="#shopee-link-s5p4" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P4" alt="Section 5 Product 4" class="animated-float" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-4-5"><a href="#shopee-link-s5p5" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P5" alt="Section 5 Product 5" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-4-5"><a href="#shopee-link-s5p6" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P6" alt="Section 5 Product 6" loading="lazy" decoding="async"></a></div></div>
-                </div>
-            </section>
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-4 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s6p1" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P1" alt="Section 6 Product 1" class="animated-tilt" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s6p2" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P2" alt="Section 6 Product 2" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s6p3" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P3" alt="Section 6 Product 3" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s6p4" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P4" alt="Section 6 Product 4" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s6p5" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P5" alt="Section 6 Product 5" class="animated-tilt" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s6p6" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P6" alt="Section 6 Product 6" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s6p7" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P7" alt="Section 7 Product 7" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-9-16"><a href="#shopee-link-s6p8" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P8" alt="Section 6 Product 8" class="animated-pulse" loading="lazy" decoding="async"></a></div></div>
-                </div>
-            </section>
-            <section class="py-0 md:py-0 px-0 md:px-0">
-                <div class="grid grid-cols-1 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-3-2"><a href="#shopee-link-s7p1" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P1" alt="Section 7 Product 1" loading="lazy" decoding="async"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden"><div class="aspect-ratio-3-2"><a href="#shopee-link-s7p2" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P2" alt="Section 7 Product 2" loading="lazy" decoding="async"></a></div></div>
-                </div>
-            </section>
-        </main>
-
-        <div class="fixed bottom-12 left-1/2 transform -translate-x-1/2">
-            <div class="relative bg-transparent text-black py-3 px-6 rounded-full flex items-center justify-between fab-shadow hover:opacity-90 transition-opacity duration-200" style="min-width: 280px;">
-                <a href="shop.html" class="text-xs font-light hover:opacity-80 transition-opacity duration-200">Shop</a>
-                <a href="collection.html" class="text-xs font-light hover:opacity-80 transition-opacity duration-200 absolute left-1/2 transform -translate-x-1/2">Collection</a>
-                <a href="about-info.html" class="text-xs font-light hover:opacity-80 transition-opacity duration-200">About</a>
-            </div>
-        </div>
-
-        <footer class="bg-gray-100 text-gray-800 py-6 mt-10">
-            <div class="max-w-7xl mx-auto px-6 md:px-10 text-center">
-                <p class="text-sm">&copy; 2025 SIAZ*. All rights reserved.</p>
-                <div class="flex justify-center space-x-4 mt-2">
-                    <a href="about-info.html" class="text-gray-600 hover:text-black transition duration-200">Privacy Policy</a>
-                    <a href="terms.html" class="text-gray-600 hover:text-black transition duration-200">Terms of Service</a>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.querySelector('.carousel');
-            if (!carousel) return;
-
-            const cells = Array.from(carousel.querySelectorAll('.carousel__cell'));
-            const prevButton = document.getElementById('prev-button');
-            const nextButton = document.getElementById('next-button');
-            const backgroundShadow = document.getElementById('background-shadow');
-            const scene = carousel.parentElement;
-
-            const cellCount = cells.length;
-            if (cellCount === 0) return;
-
-            const theta = 360 / cellCount;
-            let radius;
-
-            function setCarouselRadius() {
-                // Radius dihitung secara dinamis berdasarkan lebar .scene saat ini
-                radius = Math.round((scene.offsetWidth / 2) / Math.tan(Math.PI / cellCount));
-                rotateCarousel(); // Panggil rotasi ulang setelah radius diperbarui
-            }
-            
-            let selectedIndex = 0;
-            
-            function updateCells() {
-                const positiveIndex = (selectedIndex % cellCount + cellCount) % cellCount;
-
-                cells.forEach((cell, i) => {
-                    const isSelected = i === positiveIndex;
-                    const scale = isSelected ? 1.35 : 1;
-                    const opacity = isSelected ? 1 : 0.5;
-                    const filter = isSelected ? 'brightness(1)' : 'brightness(0.8)';
-                    const backgroundColor = isSelected ? '#ffffff' : 'transparent';
-
-                    const rotation = theta * i;
-                    cell.style.backgroundColor = backgroundColor;
-                    cell.style.opacity = opacity;
-                    cell.style.filter = filter;
-                    cell.style.transform = `rotateY(${rotation}deg) translateZ(${radius}px) scale(${scale})`;
-                });
-            }
-
-            function rotateCarousel() {
-                const angle = theta * selectedIndex * -1;
-                carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`;
-                updateCells();
-            }
-
-            prevButton.addEventListener('click', () => {
-                selectedIndex--;
-                rotateCarousel();
-            });
-
-            nextButton.addEventListener('click', () => {
-                selectedIndex++;
-                rotateCarousel();
-            });
-            
-            let isDragging = false;
-            let startX, currentAngle = 0;
-
-            function onPointerDown(event) {
-                isDragging = true;
-                if (backgroundShadow) backgroundShadow.classList.add('is-visible');
-                carousel.classList.add('is-dragging');
-                startX = event.pageX || (event.touches && event.touches[0].pageX);
-                const transform = carousel.style.transform;
-                currentAngle = parseFloat(transform.split('rotateY(')[1]) || 0;
-                event.preventDefault();
-            }
-
-            function onPointerMove(event) {
-                if (!isDragging) return;
-                const x = event.pageX || (event.touches && event.touches[0].pageX);
-                const deltaX = x - startX;
-                const sensitivity = 0.8; 
-                const angleChange = deltaX * sensitivity;
-                const newAngle = currentAngle + angleChange;
-                carousel.style.transform = `translateZ(-${radius}px) rotateY(${newAngle}deg)`;
-            }
-
-            function onPointerUp() {
-                if (!isDragging) return;
-                isDragging = false;
-                if (backgroundShadow) backgroundShadow.classList.remove('is-visible');
-                carousel.classList.remove('is-dragging');
-                const transformStyle = carousel.style.transform;
-                const rotationMatch = transformStyle.match(/rotateY\(([^deg]+)deg\)/);
-                if (rotationMatch && rotationMatch[1]) {
-                    const finalAngle = parseFloat(rotationMatch[1]);
-                    selectedIndex = Math.round(finalAngle / -theta);
-                    rotateCarousel();
-                }
-            }
-            
-            scene.addEventListener('mousedown', onPointerDown);
-            window.addEventListener('mousemove', onPointerMove);
-            window.addEventListener('mouseup', onPointerUp);
-            scene.addEventListener('touchstart', onPointerDown, { passive: true });
-            window.addEventListener('touchmove', onPointerMove);
-            window.addEventListener('touchend', onPointerUp);
-
-            // Set radius saat pertama kali dimuat
-            setCarouselRadius();
-            // Set ulang radius jika ukuran window berubah (untuk responsivitas)
-            window.addEventListener('resize', setCarouselRadius);
-
-        });
-    </script>
-</body>
-</html>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-4 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p1"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P1" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p2"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P2" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p3"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P3" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p4"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P4" alt="Product" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-2 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p1"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P1" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p2"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P2" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p3"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P3" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p4"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P4" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p5"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P5" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p6"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P6" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p7"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P7" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p8"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P8" alt="Product" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-1 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s4ap1"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image" alt="Product" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-2 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p1"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P1" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p2"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P2" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick
