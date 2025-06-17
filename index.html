@@ -6,253 +6,254 @@
     <title>SIAZ* Collective Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles */
         body { font-family: 'Inter', sans-serif; }
         ::-webkit-scrollbar { display: none; }
         html { -ms-overflow-style: none; scrollbar-width: none; scroll-behavior: smooth; }
         .blend-mode-difference { mix-blend-mode: difference; }
         .fab-shadow { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-
-        /* Aspect Ratio Containers */
-        .aspect-ratio-9-16, .aspect-ratio-4-5, .aspect-ratio-1-1, .aspect-ratio-3-2 {
-            position: relative; width: 100%; overflow: hidden; background-color: #f3f4f6;
-            display: flex; justify-content: center; align-items: center;
-        }
+        .aspect-ratio-9-16, .aspect-ratio-4-5, .aspect-ratio-1-1, .aspect-ratio-3-2 { position: relative; width: 100%; overflow: hidden; background-color: #f3f4f6; display: flex; justify-content: center; align-items: center; }
         .aspect-ratio-9-16 { padding-bottom: calc(100% * (16 / 9)); }
         .aspect-ratio-4-5 { padding-bottom: calc(100% * (5 / 4)); }
         .aspect-ratio-1-1 { padding-bottom: calc(100% * (1 / 1)); }
         .aspect-ratio-3-2 { padding-bottom: calc(100% * (2 / 3)); }
-        .aspect-ratio-9-16 img, .aspect-ratio-4-5 img, .aspect-ratio-1-1 img, .aspect-ratio-3-2 img {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
-        }
-
-        /* WOW FACTOR 1: Hero Intro Animation */
-        @keyframes heroZoomIn {
-            from { transform: scale(1.1); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+        .aspect-ratio-9-16 img, .aspect-ratio-4-5 img, .aspect-ratio-1-1 img, .aspect-ratio-3-2 img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        @keyframes heroZoomIn { from { transform: scale(1.1); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .hero-intro { animation: heroZoomIn 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-        
-        /* WOW FACTOR 3: Grid Item Hover Effect */
         .product-grid-item { transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .product-grid-item:hover { transform: scale(1.02); z-index: 10; }
-
-        /* Carousel Styles */
         .scene { width: 180px; height: 320px; position: relative; perspective: 1200px; margin: 0 auto; cursor: grab; }
         .carousel { width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); }
         .carousel.is-dragging { transition: none; }
-        .carousel__cell {
-            width: 100%; height: 100%; position: absolute; left: 0; top: 0; display: flex; justify-content: center; align-items: center;
-            border-radius: 16px; overflow: hidden; background-color: transparent; border: none; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            user-select: none; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s, filter 0.8s, background-color 0.8s;
-        }
+        .carousel__cell { width: 100%; height: 100%; position: absolute; left: 0; top: 0; display: flex; justify-content: center; align-items: center; border-radius: 16px; overflow: hidden; background-color: transparent; border: none; box-shadow: 0 10px 40px rgba(0,0,0,0.1); user-select: none; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s, filter 0.8s, background-color 0.8s; }
         .carousel__cell img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
         @media (min-width: 768px) { .scene { width: 270px; height: 480px; } }
         .scene.is-dragging { cursor: grabbing; }
-        .nav-button {
-            width: 44px; height: 44px; border-radius: 9999px; background-color: rgba(255, 255, 255, 0.7); color: #374151;
-            transition: all 0.3s ease; flex-shrink: 0; backdrop-filter: blur(5px); border: 1px solid rgba(0,0,0,0.04);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
+        .nav-button { width: 44px; height: 44px; border-radius: 9999px; background-color: rgba(255, 255, 255, 0.7); color: #374151; transition: all 0.3s ease; flex-shrink: 0; backdrop-filter: blur(5px); border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .nav-button:hover { background-color: rgba(255, 255, 255, 0.95); color: #111827; }
-        .background-shadow {
-            position: absolute; top: 50%; left: 50%; width: 350px; height: 350px;
-            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
-            border-radius: 50%; transform: translate(-50%, -50%) scale(0.9);
-            opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; pointer-events: none; z-index: -1;
-        }
+        .background-shadow { position: absolute; top: 50%; left: 50%; width: 350px; height: 350px; background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0) 70%); border-radius: 50%; transform: translate(-50%, -50%) scale(0.9); opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; pointer-events: none; z-index: -1; }
         .background-shadow.is-visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-
-        /* CSS untuk Modal (Langkah 2) */
-        #info-modal.hidden {
-            display: none;
-        }
-        #info-modal {
-            display: flex; /* Menggunakan flex untuk centering */
-        }
+        #info-modal.hidden { display: none; }
+        #info-modal { display: flex; }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
     <div id="root" class="min-h-screen flex flex-col pt-[64px] md:pt-[80px]">
         <header class="fixed top-0 left-0 w-full z-50 bg-transparent py-4 px-6 md:px-10" id="main-header">
             <div class="max-w-7xl mx-auto flex items-center justify-between relative">
-                <!-- DIUBAH: Link header menjadi pemicu modal -->
                 <a href="#" data-modal-target="info" class="header-link modal-trigger text-xs font-light hover:opacity-80 transition-opacity duration-200 blend-mode-difference text-black">Info</a>
-                <h1 class="header-logo text-2xl md:text-3xl font-bold uppercase blend-mode-difference text-black flex-grow text-center">
-                    <a href="index.html">SIAZ*</a>
-                </h1>
-                <!-- DIUBAH: Link header menjadi pemicu modal -->
+                <h1 class="header-logo text-2xl md:text-3xl font-bold uppercase blend-mode-difference text-black flex-grow text-center"><a href="index.html">SIAZ*</a></h1>
                 <a href="#" data-modal-target="contact" class="header-link modal-trigger text-xs font-light hover:opacity-80 transition-opacity duration-200 blend-mode-difference text-black">Contact</a>
             </div>
         </header>
 
         <main class="flex-grow">
-            <!-- Hero Section -->
-            <section>
-                <div class="aspect-ratio-9-16">
-                    <img src="./images/h1.png" alt="entire studios hero product" class="hero-intro">
-                </div>
-            </section>
-
-            <!-- Section 1 -->
+            <section><div class="aspect-ratio-9-16"><img src="./images/h1.png" alt="entire studios hero product" class="hero-intro"></div></section>
+            
             <section class="py-0 md:py-0 px-0 md:px-0" id="shop-section">
                 <div class="grid grid-cols-4 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p1.png" alt="Product 1" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p2.png" alt="Product 2" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p3.png" alt="Product 3" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p4.png" alt="Product 4" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p5.png" alt="Product 5" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p6.png" alt="Product 6" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p7.png" alt="Product 7" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p8.png" alt="Product 8" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p9.png" alt="Product 9" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p10.png" alt="Product 10" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="./images/s1p11.png" alt="Product 11" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p1"><img src="./images/s1p1.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p2"><img src="./images/s1p2.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p3"><img src="./images/s1p3.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p4"><img src="./images/s1p4.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p5"><img src="./images/s1p5.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p6"><img src="./images/s1p6.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p7"><img src="./images/s1p7.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p8"><img src="./images/s1p8.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p9"><img src="./images/s1p9.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p10"><img src="./images/s1p10.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s1p11"><img src="./images/s1p11.png" alt="Product" loading="lazy"></a></div></div>
                 </div>
             </section>
 
-            <!-- Section 2 -->
             <section class="py-0 md:py-0 px-0 md:px-0">
                 <div class="grid grid-cols-2 gap-px md:gap-px">
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p1.png" alt="Section 2 Product 1" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p2.png" alt="Section 2 Product 2" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p3.png" alt="Section 2 Product 3" loading="lazy"></a></div></div>
-                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="./images/s2p4.png" alt="Section 2 Product 4" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s2p1"><img src="./images/s2p1.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s2p2"><img src="./images/s2p2.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s2p3"><img src="./images/s2p3.png" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s2p4"><img src="./images/s2p4.png" alt="Product" loading="lazy"></a></div></div>
                 </div>
             </section>
             
-            <!-- Section Carousel -->
             <section id="collection-section" class="py-16 md:py-24 overflow-hidden bg-gray-100">
                 <div class="max-w-7xl mx-auto px-4 text-center flex flex-col">
                     <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight leading-tight text-gray-800 md:order-1">Engineered for The Elements</h2>
                     <div class="relative w-full flex flex-col items-center md:order-2">
                         <div id="background-shadow" class="background-shadow"></div>
                         <h3 id="carousel-product-title" class="text-xl md:text-2xl font-medium mt-6 h-8 transition-opacity duration-500 opacity-0 order-2 md:order-1"></h3>
-                        <div class="scene order-1 md:order-2">
-                            <div class="carousel">
-                                <div class="carousel__cell" data-title="Puffer Jacket v2"><img src="./images/s1p1.png" alt="Product 1"></div>
-                                <div class="carousel__cell" data-title="Cargo Pants 3.0"><img src="./images/s1p2.png" alt="Product 2"></div>
-                                <div class="carousel__cell" data-title="Heavy Hoodie"><img src="./images/s1p3.png" alt="Product 3"></div>
-                                <div class="carousel__cell" data-title="Utility Vest"><img src="./images/s1p4.png" alt="Product 4"></div>
-                                <div class="carousel__cell" data-title="Essential Tee"><img src="./images/s1p5.png" alt="Product 5"></div>
-                                <div class="carousel__cell" data-title="Nylon Shorts"><img src="./images/s1p6.png" alt="Product 6"></div>
-                                <div class="carousel__cell" data-title="Workwear Shirt"><img src="./images/s1p7.png" alt="Product 7"></div>
-                                <div class="carousel__cell" data-title="Tech Fleece"><img src="./images/s1p8.png" alt="Product 8"></div>
-                                <div class="carousel__cell" data-title="Zip-up Sweater"><img src="./images/s1p9.png" alt="Product 9"></div>
-                            </div>
-                        </div>
+                        <div class="scene order-1 md:order-2"><div class="carousel"><div class="carousel__cell" data-title="Puffer Jacket v2"><img src="./images/s1p1.png" alt="Product"></div><div class="carousel__cell" data-title="Cargo Pants 3.0"><img src="./images/s1p2.png" alt="Product"></div><div class="carousel__cell" data-title="Heavy Hoodie"><img src="./images/s1p3.png" alt="Product"></div><div class="carousel__cell" data-title="Utility Vest"><img src="./images/s1p4.png" alt="Product"></div><div class="carousel__cell" data-title="Essential Tee"><img src="./images/s1p5.png" alt="Product"></div><div class="carousel__cell" data-title="Nylon Shorts"><img src="./images/s1p6.png" alt="Product"></div><div class="carousel__cell" data-title="Workwear Shirt"><img src="./images/s1p7.png" alt="Product"></div><div class="carousel__cell" data-title="Tech Fleece"><img src="./images/s1p8.png" alt="Product"></div><div class="carousel__cell" data-title="Zip-up Sweater"><img src="./images/s1p9.png" alt="Product"></div></div></div>
                         <div class="nav-container flex justify-center items-center space-x-5 mt-8 order-3 md:order-3">
                             <button id="prev-button" class="nav-button flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
                             <button id="next-button" class="nav-button flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
                         </div>
                     </div>
-                    <p class="text-base md:text-xl text-gray-600 my-8 md:my-0 md:mt-12 max-w-xs md:max-w-2xl mx-auto leading-relaxed md:order-3">
-                        Sentuh. Putar. Rasakan setiap detail. Koleksi terbaru kami kini ada di ujung jari Anda.
-                    </p>
+                    <p class="text-base md:text-xl text-gray-600 my-8 md:my-0 md:mt-12 max-w-xs md:max-w-2xl mx-auto leading-relaxed md:order-3">Sentuh. Putar. Rasakan setiap detail. Koleksi terbaru kami kini ada di ujung jari Anda.</p>
                 </div>
             </section>
 
-            <!-- Sisa Grid Produk -->
-            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-4 gap-px md:gap-px"> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P1" alt="Section 3 Product 1" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P2" alt="Section 3 Product 2" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P3" alt="Section 3 Product 3" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P4" alt="Section 3 Product 4" loading="lazy"></a></div></div> </div></section>
-            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-2 gap-px md:gap-px"> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P1" alt="Section 4 Product 1" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P2" alt="Section 4 Product 2" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P3" alt="Section 4 Product 3" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P4" alt="Section 4 Product 4" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P5" alt="Section 5 Product 5" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P6" alt="Section 4 Product 6" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P7" alt="Section 4 Product 7" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" target="_blank"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P8" alt="Section 4 Product 8" loading="lazy"></a></div></div> </div></section>
-            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-1 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image" alt="Section 4a Image" loading="lazy"></a></div></div></div></section>
-            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-2 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P1" alt="Section 5 Product 1" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P2" alt="Section 5 Product 2" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P3" alt="Section 5 Product 3" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P4" alt="Section 5 Product 4" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P5" alt="Section 5 Product 5" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" target="_blank"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P6" alt="Section 5 Product 6" loading="lazy"></a></div></div></div></section>
-            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-4 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P1" alt="Section 6 Product 1" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P2" alt="Section 6 Product 2" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P3" alt="Section 6 Product 3" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P4" alt="Section 6 Product 4" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P5" alt="Section 6 Product 5" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P6" alt="Section 6 Product 6" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P7" alt="Section 7 Product 7" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" target="_blank"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P8" alt="Section 6 Product 8" loading="lazy"></a></div></div></div></section>
-            <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-1 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P1" alt="Section 7 Product 1" loading="lazy"></a></div></div> <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" target="_blank"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P2" alt="Section 7 Product 2" loading="lazy"></a></div></div></div></section>
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-4 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p1"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P1" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p2"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P2" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p3"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P3" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s3p4"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S3+P4" alt="Product" loading="lazy"></a></div></div>
+                </div>
+            </section>
+            
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-2 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p1"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P1" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p2"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P2" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p3"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P3" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p4"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P4" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p5"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P5" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p6"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P6" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p7"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P7" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-1-1"><a href="#" class="quick-view-trigger" data-product-id="s4p8"><img src="https://placehold.co/300x300/f3f4f6/333333?text=S4+P8" alt="Product" loading="lazy"></a></div></div>
+                </div>
+            </section>
+            
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-1 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s4ap1"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image" alt="Product" loading="lazy"></a></div></div>
+                </div>
+            </section>
+            
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-2 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p1"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P1" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p2"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P2" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p3"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P3" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p4"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P4" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p5"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P5" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-4-5"><a href="#" class="quick-view-trigger" data-product-id="s5p6"><img src="https://placehold.co/300x375/f3f4f6/333333?text=S5+P6" alt="Product" loading="lazy"></a></div></div>
+                </div>
+            </section>
+            
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-4 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p1"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P1" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p2"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P2" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p3"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P3" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p4"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P4" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p5"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P5" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p6"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P6" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p7"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P7" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-9-16"><a href="#" class="quick-view-trigger" data-product-id="s6p8"><img src="https://placehold.co/180x320/f3f4f6/333333?text=S6+P8" alt="Product" loading="lazy"></a></div></div>
+                </div>
+            </section>
+            
+            <section class="py-0 md:py-0 px-0 md:px-0">
+                <div class="grid grid-cols-1 gap-px md:gap-px">
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s7p1"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P1" alt="Product" loading="lazy"></a></div></div>
+                    <div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s7p2"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P2" alt="Product" loading="lazy"></a></div></div>
+                </div>
+            </section>
         </main>
 
-        <!-- FAB (Floating Action Button) -->
-        <div class="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-40">
-            <div class="relative bg-white text-black py-3 px-6 rounded-full flex items-center justify-between fab-shadow hover:opacity-90 transition-opacity duration-200" style="min-width: 280px;">
-                <a href="#shop-section" class="text-xs font-light hover:opacity-80 transition-opacity duration-200">Shop</a>
-                <a href="#collection-section" class="text-xs font-light hover:opacity-80 transition-opacity duration-200 absolute left-1/2 transform -translate-x-1/2">Collection</a>
-                <a href="#about-section" class="text-xs font-light hover:opacity-80 transition-opacity duration-200">About</a>
-            </div>
-        </div>
+        <div class="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-40"><div class="relative bg-white text-black py-3 px-6 rounded-full flex items-center justify-between fab-shadow hover:opacity-90 transition-opacity duration-200" style="min-width: 280px;"><a href="#shop-section" class="text-xs font-light hover:opacity-80 transition-opacity duration-200">Shop</a><a href="#collection-section" class="text-xs font-light hover:opacity-80 transition-opacity duration-200 absolute left-1/2 transform -translate-x-1/2">Collection</a><a href="#about-section" class="text-xs font-light hover:opacity-80 transition-opacity duration-200">About</a></div></div>
         
-        <!-- Footer -->
-        <footer id="about-section" class="bg-gray-100 text-gray-800 py-6 mt-10">
-            <div class="max-w-7xl mx-auto px-6 md:px-10 text-center">
-                <p class="text-sm">© 2025 SIAZ*. All rights reserved.</p>
-                <div class="flex justify-center space-x-4 mt-2">
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-200">Privacy Policy</a>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-200">Terms of Service</a>
-                </div>
-            </div>
-        </footer>
+        <footer id="about-section" class="bg-gray-100 text-gray-800 py-6 mt-10"><div class="max-w-7xl mx-auto px-6 md:px-10 text-center"><p class="text-sm">© 2025 SIAZ*. All rights reserved.</p><div class="flex justify-center space-x-4 mt-2"><a href="#" class="text-gray-600 hover:text-black transition duration-200">Privacy Policy</a><a href="#" class="text-gray-600 hover:text-black transition duration-200">Terms of Service</a></div></div></footer>
     </div>
 
-    <!-- DITAMBAHKAN: Struktur HTML untuk Modal (Langkah 2) -->
-    <div id="info-modal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 opacity-0">
-        <div class="bg-white rounded-lg shadow-xl w-11/12 max-w-lg p-6 md:p-8 m-4 transform transition-transform duration-300 scale-95 opacity-0">
-            <div id="modal-content">
-                <!-- Konten akan diisi oleh JavaScript -->
-            </div>
-            <button id="close-modal-btn" class="absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-    </div>
+    <div id="info-modal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 opacity-0"><div class="bg-white rounded-lg shadow-xl w-11/12 max-w-2xl p-6 md:p-8 m-4 transform transition-transform duration-300 scale-95 opacity-0"><div id="modal-content"></div><button id="close-modal-btn" class="absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div></div>
     
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Data Produk - Tempat Anda mengedit semua detail produk
+        const productData = {
+            // Section 1
+            s1p1: { name: 'Puffer Jacket v2', image: './images/s1p1.png', description: 'Jaket puffer dengan insulasi termal canggih, dirancang untuk menahan elemen cuaca ekstrem tanpa mengorbankan siluet modern.', price: 'Rp 2.499.000', link: '#' },
+            s1p2: { name: 'Cargo Pants 3.0', image: './images/s1p2.png', description: 'Celana kargo serbaguna dengan material ripstop yang tahan lama, dilengkapi banyak kantong untuk fungsionalitas maksimal.', price: 'Rp 1.299.000', link: '#' },
+            s1p3: { name: 'Product Name S1P3', image: './images/s1p3.png', description: 'Deskripsi untuk produk S1P3.', price: 'Rp 0', link: '#' },
+            s1p4: { name: 'Product Name S1P4', image: './images/s1p4.png', description: 'Deskripsi untuk produk S1P4.', price: 'Rp 0', link: '#' },
+            s1p5: { name: 'Product Name S1P5', image: './images/s1p5.png', description: 'Deskripsi untuk produk S1P5.', price: 'Rp 0', link: '#' },
+            s1p6: { name: 'Product Name S1P6', image: './images/s1p6.png', description: 'Deskripsi untuk produk S1P6.', price: 'Rp 0', link: '#' },
+            s1p7: { name: 'Product Name S1P7', image: './images/s1p7.png', description: 'Deskripsi untuk produk S1P7.', price: 'Rp 0', link: '#' },
+            s1p8: { name: 'Product Name S1P8', image: './images/s1p8.png', description: 'Deskripsi untuk produk S1P8.', price: 'Rp 0', link: '#' },
+            s1p9: { name: 'Product Name S1P9', image: './images/s1p9.png', description: 'Deskripsi untuk produk S1P9.', price: 'Rp 0', link: '#' },
+            s1p10: { name: 'Product Name S1P10', image: './images/s1p10.png', description: 'Deskripsi untuk produk S1P10.', price: 'Rp 0', link: '#' },
+            s1p11: { name: 'Product Name S1P11', image: './images/s1p11.png', description: 'Deskripsi untuk produk S1P11.', price: 'Rp 0', link: '#' },
+            // Section 2
+            s2p1: { name: 'Minimalist Hoodie', image: './images/s2p1.png', description: 'Hoodie esensial dibuat dari bahan fleece katun tebal yang sangat lembut, potongan oversized untuk kenyamanan sepanjang hari.', price: 'Rp 899.000', link: '#' },
+            s2p2: { name: 'Product Name S2P2', image: './images/s2p2.png', description: 'Deskripsi untuk produk S2P2.', price: 'Rp 0', link: '#' },
+            s2p3: { name: 'Product Name S2P3', image: './images/s2p3.png', description: 'Deskripsi untuk produk S2P3.', price: 'Rp 0', link: '#' },
+            s2p4: { name: 'Product Name S2P4', image: './images/s2p4.png', description: 'Deskripsi untuk produk S2P4.', price: 'Rp 0', link: '#' },
+            // Section 3
+            s3p1: { name: 'Product Name S3P1', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P1', description: 'Deskripsi untuk produk S3P1.', price: 'Rp 0', link: '#' },
+            s3p2: { name: 'Product Name S3P2', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P2', description: 'Deskripsi untuk produk S3P2.', price: 'Rp 0', link: '#' },
+            s3p3: { name: 'Product Name S3P3', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P3', description: 'Deskripsi untuk produk S3P3.', price: 'Rp 0', link: '#' },
+            s3p4: { name: 'Product Name S3P4', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S3+P4', description: 'Deskripsi untuk produk S3P4.', price: 'Rp 0', link: '#' },
+            // Section 4
+            s4p1: { name: 'Product Name S4P1', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P1', description: 'Deskripsi untuk produk S4P1.', price: 'Rp 0', link: '#' },
+            s4p2: { name: 'Product Name S4P2', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P2', description: 'Deskripsi untuk produk S4P2.', price: 'Rp 0', link: '#' },
+            s4p3: { name: 'Product Name S4P3', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P3', description: 'Deskripsi untuk produk S4P3.', price: 'Rp 0', link: '#' },
+            s4p4: { name: 'Product Name S4P4', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P4', description: 'Deskripsi untuk produk S4P4.', price: 'Rp 0', link: '#' },
+            s4p5: { name: 'Product Name S4P5', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P5', description: 'Deskripsi untuk produk S4P5.', price: 'Rp 0', link: '#' },
+            s4p6: { name: 'Product Name S4P6', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P6', description: 'Deskripsi untuk produk S4P6.', price: 'Rp 0', link: '#' },
+            s4p7: { name: 'Product Name S4P7', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P7', description: 'Deskripsi untuk produk S4P7.', price: 'Rp 0', link: '#' },
+            s4p8: { name: 'Product Name S4P8', image: 'https://placehold.co/300x300/f3f4f6/333333?text=S4+P8', description: 'Deskripsi untuk produk S4P8.', price: 'Rp 0', link: '#' },
+            // Section 4a
+            s4ap1: { name: 'Product Name S4aP1', image: 'https://placehold.co/900x600/f3f4f6/333333?text=S4a+Image', description: 'Deskripsi untuk produk S4aP1.', price: 'Rp 0', link: '#' },
+            // Section 5
+            s5p1: { name: 'Product Name S5P1', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P1', description: 'Deskripsi untuk produk S5P1.', price: 'Rp 0', link: '#' },
+            s5p2: { name: 'Product Name S5P2', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P2', description: 'Deskripsi untuk produk S5P2.', price: 'Rp 0', link: '#' },
+            s5p3: { name: 'Product Name S5P3', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P3', description: 'Deskripsi untuk produk S5P3.', price: 'Rp 0', link: '#' },
+            s5p4: { name: 'Product Name S5P4', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P4', description: 'Deskripsi untuk produk S5P4.', price: 'Rp 0', link: '#' },
+            s5p5: { name: 'Product Name S5P5', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P5', description: 'Deskripsi untuk produk S5P5.', price: 'Rp 0', link: '#' },
+            s5p6: { name: 'Product Name S5P6', image: 'https://placehold.co/300x375/f3f4f6/333333?text=S5+P6', description: 'Deskripsi untuk produk S5P6.', price: 'Rp 0', link: '#' },
+            // Section 6
+            s6p1: { name: 'Product Name S6P1', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P1', description: 'Deskripsi untuk produk S6P1.', price: 'Rp 0', link: '#' },
+            s6p2: { name: 'Product Name S6P2', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P2', description: 'Deskripsi untuk produk S6P2.', price: 'Rp 0', link: '#' },
+            s6p3: { name: 'Product Name S6P3', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P3', description: 'Deskripsi untuk produk S6P3.', price: 'Rp 0', link: '#' },
+            s6p4: { name: 'Product Name S6P4', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P4', description: 'Deskripsi untuk produk S6P4.', price: 'Rp 0', link: '#' },
+            s6p5: { name: 'Product Name S6P5', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P5', description: 'Deskripsi untuk produk S6P5.', price: 'Rp 0', link: '#' },
+            s6p6: { name: 'Product Name S6P6', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P6', description: 'Deskripsi untuk produk S6P6.', price: 'Rp 0', link: '#' },
+            s6p7: { name: 'Product Name S6P7', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P7', description: 'Deskripsi untuk produk S6P7.', price: 'Rp 0', link: '#' },
+            s6p8: { name: 'Product Name S6P8', image: 'https://placehold.co/180x320/f3f4f6/333333?text=S6+P8', description: 'Deskripsi untuk produk S6P8.', price: 'Rp 0', link: '#' },
+            // Section 7
+            s7p1: { name: 'Product Name S7P1', image: 'https://placehold.co/900x600/f3f4f6/333333?text=S7+P1', description: 'Deskripsi untuk produk S7P1.', price: 'Rp 0', link: '#' },
+            s7p2: { name: 'Product Name S7P2', image: 'https://placehold.co/900x600/f3f4f6/333333?text=S7+P2', description: 'Deskripsi untuk produk S7P2.', price: 'Rp 0', link: '#' }
+        };
 
-        // --- Logika untuk Modal (Langkah 2) ---
+        // --- Logika Modal ---
         const modal = document.getElementById('info-modal');
         if (modal) {
             const modalContent = document.getElementById('modal-content');
             const closeModalBtn = document.getElementById('close-modal-btn');
             const modalTriggers = document.querySelectorAll('.modal-trigger');
             const modalDialog = modal.querySelector('.bg-white');
-
             const modalData = {
-                info: {
-                    title: 'About SIAZ*',
-                    content: `<p class="mb-4">SIAZ* adalah sebuah kolektif desain yang berfokus pada eksplorasi bentuk, fungsi, dan material dalam fashion kontemporer.</p><p>Setiap produk kami direkayasa dengan presisi, memadukan estetika minimalis dengan fungsionalitas untuk penggunaan sehari-hari di berbagai elemen.</p>`
-                },
-                contact: {
-                    title: 'Get in Touch',
-                    content: `<p class="mb-4">Untuk pertanyaan mengenai produk, kolaborasi, atau pers, silakan hubungi kami melalui email.</p><p class="font-semibold">hello@siazcollective.com</p>`
-                }
+                info: { title: 'About SIAZ*', content: `<p class="mb-4">SIAZ* adalah sebuah kolektif desain yang berfokus pada eksplorasi bentuk, fungsi, dan material dalam fashion kontemporer.</p><p>Setiap produk kami direkayasa dengan presisi, memadukan estetika minimalis dengan fungsionalitas untuk penggunaan sehari-hari di berbagai elemen.</p>` },
+                contact: { title: 'Get in Touch', content: `<p class="mb-4">Untuk pertanyaan mengenai produk, kolaborasi, atau pers, silakan hubungi kami melalui email.</p><p class="font-semibold">hello@siazcollective.com</p>` }
             };
 
-            function openModal(target) {
-                const data = modalData[target];
-                if (!data) return;
-                modalContent.innerHTML = `<h2 class="text-2xl font-bold mb-4 text-gray-800">${data.title}</h2><div class="text-gray-600 leading-relaxed">${data.content}</div>`;
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-                setTimeout(() => {
-                    modal.classList.add('opacity-100');
-                    modalDialog.classList.remove('scale-95', 'opacity-0');
-                    modalDialog.classList.add('scale-100', 'opacity-100');
-                }, 10);
-            }
-
-            function closeModal() {
-                modal.classList.remove('opacity-100');
-                modalDialog.classList.remove('scale-100', 'opacity-100');
-                modalDialog.classList.add('scale-95', 'opacity-0');
-                document.body.style.overflow = '';
-                setTimeout(() => { modal.classList.add('hidden'); }, 300);
-            }
-
-            modalTriggers.forEach(trigger => {
-                trigger.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const target = trigger.dataset.modalTarget;
-                    openModal(target);
-                });
-            });
-
+            function openModal(target) { const data = modalData[target]; if (!data) return; modalContent.innerHTML = `<h2 class="text-2xl font-bold mb-4 text-gray-800">${data.title}</h2><div class="text-gray-600 leading-relaxed">${data.content}</div>`; modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; setTimeout(() => { modal.classList.add('opacity-100'); modalDialog.classList.remove('scale-95', 'opacity-0'); modalDialog.classList.add('scale-100', 'opacity-100'); }, 10); }
+            function closeModal() { modal.classList.remove('opacity-100'); modalDialog.classList.remove('scale-100', 'opacity-100'); modalDialog.classList.add('scale-95', 'opacity-0'); document.body.style.overflow = ''; setTimeout(() => { modal.classList.add('hidden'); }, 300); }
+            
+            modalTriggers.forEach(trigger => { trigger.addEventListener('click', (e) => { e.preventDefault(); const target = trigger.dataset.modalTarget; openModal(target); }); });
             closeModalBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(); } });
+
+            // --- Logika Quick View Produk ---
+            const quickViewTriggers = document.querySelectorAll('.quick-view-trigger');
+            function openProductModal(productId) {
+                const product = productData[productId];
+                if (!product) { console.error('Data produk tidak ditemukan untuk ID:', productId); return; }
+                modalContent.innerHTML = `<div class="md:flex md:space-x-8"><div class="md:w-1/2 mb-4 md:mb-0"><img src="${product.image}" alt="${product.name}" class="rounded-lg w-full h-auto object-cover"></div><div class="md:w-1/2 flex flex-col"><h2 class="text-3xl font-bold text-gray-900">${product.name}</h2><p class="text-xl text-gray-700 mt-2 mb-4">${product.price}</p><p class="text-gray-600 leading-relaxed mb-6 flex-grow">${product.description}</p><a href="${product.link}" target="_blank" class="w-full inline-block text-center bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors">Lihat di Toko</a></div></div>`;
+                modal.classList.remove('hidden'); document.body.style.overflow = 'hidden';
+                setTimeout(() => { modal.classList.add('opacity-100'); modalDialog.classList.remove('scale-95', 'opacity-0'); modalDialog.classList.add('scale-100', 'opacity-100'); }, 10);
+            }
+            quickViewTriggers.forEach(trigger => { trigger.addEventListener('click', (e) => { e.preventDefault(); const productId = trigger.dataset.productId; openProductModal(productId); }); });
         }
         
-        // --- Logika Carousel (Sudah Ada Sebelumnya) ---
+        // Sisa kode JavaScript (Carousel) ...
+    });
+    </script>
+    <script>
+    // Pisahkan script carousel untuk kerapian
+    document.addEventListener('DOMContentLoaded', function() {
         const carousel = document.querySelector('.carousel');
         if (!carousel) return;
-        // Sisa kode JavaScript carousel Anda...
         const cells = Array.from(carousel.querySelectorAll('.carousel__cell'));
         const prevButton = document.getElementById('prev-button');
         const nextButton = document.getElementById('next-button');
@@ -274,64 +275,25 @@
                 const filter = isSelected ? 'brightness(1)' : 'brightness(0.8)';
                 const backgroundColor = isSelected ? '#ffffff' : 'transparent';
                 const rotation = theta * i;
-                cell.style.backgroundColor = backgroundColor;
-                cell.style.opacity = opacity;
-                cell.style.filter = filter;
+                cell.style.backgroundColor = backgroundColor; cell.style.opacity = opacity; cell.style.filter = filter;
                 cell.style.transform = `rotateY(${rotation}deg) translateZ(${radius}px) scale(${scale})`;
-                if (isSelected && titleElement) {
-                    titleElement.textContent = cell.dataset.title || '';
-                    titleElement.style.opacity = '1';
-                }
+                if (isSelected && titleElement) { titleElement.textContent = cell.dataset.title || ''; titleElement.style.opacity = '1'; }
             });
         }
-        function rotateCarousel() {
-            const angle = theta * selectedIndex * -1;
-            carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`;
-            setTimeout(updateCells, 0);
-        }
+        function rotateCarousel() { const angle = theta * selectedIndex * -1; carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`; setTimeout(updateCells, 0); }
         prevButton.addEventListener('click', () => { selectedIndex--; if (titleElement) titleElement.style.opacity = '0'; rotateCarousel(); });
         nextButton.addEventListener('click', () => { selectedIndex++; if (titleElement) titleElement.style.opacity = '0'; rotateCarousel(); });
         let isDragging = false, startX, currentAngle = 0;
-        function onPointerDown(event) {
-            isDragging = true;
-            if (backgroundShadow) backgroundShadow.classList.add('is-visible');
-            if (titleElement) titleElement.style.opacity = '0';
-            carousel.classList.add('is-dragging');
-            startX = event.pageX || (event.touches && event.touches[0].pageX);
-            const transform = carousel.style.transform;
-            currentAngle = parseFloat(transform.split('rotateY(')[1]) || 0;
-            event.preventDefault();
-        }
-        function onPointerMove(event) {
-            if (!isDragging) return;
-            const x = event.pageX || (event.touches && event.touches[0].pageX);
-            const deltaX = x - startX;
-            const sensitivity = 0.8;
-            const angleChange = deltaX * sensitivity;
-            const newAngle = currentAngle + angleChange;
-            carousel.style.transform = `translateZ(-${radius}px) rotateY(${newAngle}deg)`;
-        }
+        function onPointerDown(event) { isDragging = true; if (backgroundShadow) backgroundShadow.classList.add('is-visible'); if (titleElement) titleElement.style.opacity = '0'; carousel.classList.add('is-dragging'); startX = event.pageX || (event.touches && event.touches[0].pageX); const transform = carousel.style.transform; currentAngle = parseFloat(transform.split('rotateY(')[1]) || 0; event.preventDefault(); }
+        function onPointerMove(event) { if (!isDragging) return; const x = event.pageX || (event.touches && event.touches[0].pageX); const deltaX = x - startX; const sensitivity = 0.8; const angleChange = deltaX * sensitivity; const newAngle = currentAngle + angleChange; carousel.style.transform = `translateZ(-${radius}px) rotateY(${newAngle}deg)`; }
         function onPointerUp() {
-            if (!isDragging) return;
-            isDragging = false;
-            if (backgroundShadow) backgroundShadow.classList.remove('is-visible');
-            carousel.classList.remove('is-dragging');
-            const transformStyle = carousel.style.transform;
-            const rotationMatch = transformStyle.match(/rotateY\(([^deg]+)deg\)/);
-            if (rotationMatch && rotationMatch[1]) {
-                const finalAngle = parseFloat(rotationMatch[1]);
-                selectedIndex = Math.round(finalAngle / -theta);
-                rotateCarousel();
-            }
+            if (!isDragging) return; isDragging = false; if (backgroundShadow) backgroundShadow.classList.remove('is-visible'); carousel.classList.remove('is-dragging');
+            const transformStyle = carousel.style.transform; const rotationMatch = transformStyle.match(/rotateY\(([^deg]+)deg\)/);
+            if (rotationMatch && rotationMatch[1]) { const finalAngle = parseFloat(rotationMatch[1]); selectedIndex = Math.round(finalAngle / -theta); rotateCarousel(); }
         }
-        scene.addEventListener('mousedown', onPointerDown);
-        window.addEventListener('mousemove', onPointerMove);
-        window.addEventListener('mouseup', onPointerUp);
-        scene.addEventListener('touchstart', onPointerDown, { passive: true });
-        window.addEventListener('touchmove', onPointerMove);
-        window.addEventListener('touchend', onPointerUp);
-        setCarouselRadius();
-        window.addEventListener('resize', setCarouselRadius);
+        scene.addEventListener('mousedown', onPointerDown); window.addEventListener('mousemove', onPointerMove); window.addEventListener('mouseup', onPointerUp);
+        scene.addEventListener('touchstart', onPointerDown, { passive: true }); window.addEventListener('touchmove', onPointerMove); window.addEventListener('touchend', onPointerUp);
+        setCarouselRadius(); window.addEventListener('resize', setCarouselRadius);
     });
     </script>
 </body>
