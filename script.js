@@ -2,9 +2,9 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Logika untuk Header & FAB Cerdas
+    // Logika untuk Header Cerdas
     const header = document.getElementById('main-header');
-    const fabContainer = document.querySelector('.fab-container');
+    // const fabContainer = document.querySelector('.fab-container'); // DIHAPUS: Logika FAB lama tidak diperlukan lagi
     let lastScrollY = window.scrollY;
 
     window.addEventListener('scroll', () => {
@@ -12,17 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (window.scrollY > 50) { header.classList.add('scrolled'); }
             else { header.classList.remove('scrolled'); }
         }
-        if (fabContainer) {
-            if (window.scrollY > lastScrollY && window.scrollY > 200) {
-                fabContainer.style.transform = 'translateX(-50%) translateY(150%)';
-            } else {
-                fabContainer.style.transform = 'translateX(-50%) translateY(0)';
-            }
-        }
+        // BLOK IF UNTUK fabContainer DIHAPUS
         lastScrollY = window.scrollY <= 0 ? 0 : window.scrollY;
     }, { passive: true });
 
-    // Logika Animasi Masuk Bertahap
+    // Logika Animasi Masuk Bertahap (TIDAK DIUBAH)
     const animatedItems = document.querySelectorAll('.product-grid-item');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -34,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { threshold: 0.1 });
     animatedItems.forEach(item => { observer.observe(item); });
 
-    // Logika Modal Universal
+    // Logika Modal Universal (TIDAK DIUBAH)
     const modal = document.getElementById('info-modal');
     if (modal) {
         const modalContent = document.getElementById('modal-content');
@@ -53,40 +47,21 @@ document.addEventListener('DOMContentLoaded', function() {
         closeModalBtn.addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(); } });
 
-        // Logika Quick View Produk dengan Galeri & Swipe
+        // Logika Quick View Produk dengan Galeri & Swipe (TIDAK DIUBAH)
         const quickViewTriggers = document.querySelectorAll('.quick-view-trigger');
         function openProductModal(productId) {
             if (typeof productData === 'undefined' || !productData[productId]) { console.error('Data produk tidak ditemukan untuk ID:', productId); return; }
             const product = productData[productId];
             modalDialog.classList.remove('max-w-2xl'); modalDialog.classList.add('max-w-4xl');
 
-            let thumbnailsHTML = '', dotsHTML = '', imageCounterHTML = ''; // Tambahkan imageCounterHTML
+            let thumbnailsHTML = '', dotsHTML = '', imageCounterHTML = '';
             if (product.images && product.images.length > 1) {
                 thumbnailsHTML = `<div class="flex space-x-2 mt-4 overflow-x-auto p-1">${product.images.map((imgSrc, index) => `<img src="${imgSrc}" alt="${product.name} thumbnail ${index + 1}" class="w-16 h-20 object-cover rounded-md cursor-pointer border-2 ${index === 0 ? 'border-gray-900' : 'border-transparent'} quick-view-thumbnail">`).join('')}</div>`;
                 dotsHTML = `<div class="swipe-indicator-dots">${product.images.map((_, index) => `<div class="dot ${index === 0 ? 'active' : ''}"></div>`).join('')}</div>`;
-                // DITAMBAHKAN: Buat HTML untuk penomoran gambar
                 imageCounterHTML = `<div id="image-counter" class="absolute top-4 right-4 bg-black bg-opacity-50 text-white text-xs font-semibold px-2 py-1 rounded-full">1 / ${product.images.length}</div>`;
             }
 
-            modalContent.innerHTML = `
-                <div class="modal-container">
-                    <div class="flex flex-col md:flex-row md:space-x-8 p-4 md:p-2">
-                        <div class="w-full md:w-1/2 mb-4 md:mb-0">
-                            <div class="relative">
-                                <img id="main-product-image" src="${product.images ? product.images[0] : 'https://placehold.co/800x1200/f3f4f6/333333?text=No+Image'}" alt="${product.name}" class="rounded-lg w-full h-auto object-cover">
-                                ${dotsHTML}
-                                ${imageCounterHTML} <!-- Tambahkan penomoran di sini -->
-                            </div>
-                            ${thumbnailsHTML}
-                        </div>
-                        <div class="w-full md:w-1/2 flex flex-col">
-                            <h2 class="text-2xl md:text-3xl font-bold text-gray-900">${product.name}</h2>
-                            <p class="text-xl text-gray-700 mt-2 mb-4">${product.price}</p>
-                            <div class="text-gray-600 leading-relaxed mb-6 flex-grow">${product.description}</div>
-                            <a href="${product.link}" target="_blank" class="quick-view-button w-full mt-auto inline-block text-center bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors">Lihat di Toko</a>
-                        </div>
-                    </div>
-                </div>`;
+            modalContent.innerHTML = `<div class="modal-container"><div class="flex flex-col md:flex-row md:space-x-8 p-4 md:p-2"><div class="w-full md:w-1/2 mb-4 md:mb-0"><div class="relative"><img id="main-product-image" src="${product.images ? product.images[0] : 'https://placehold.co/800x1200/f3f4f6/333333?text=No+Image'}" alt="${product.name}" class="rounded-lg w-full h-auto object-cover">${dotsHTML}${imageCounterHTML}</div>${thumbnailsHTML}</div><div class="w-full md:w-1/2 flex flex-col"><h2 class="text-2xl md:text-3xl font-bold text-gray-900">${product.name}</h2><p class="text-xl text-gray-700 mt-2 mb-4">${product.price}</p><div class="text-gray-600 leading-relaxed mb-6 flex-grow">${product.description}</div><a href="${product.link}" target="_blank" class="quick-view-button w-full mt-auto inline-block text-center bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors">Lihat di Toko</a></div></div></div>`;
             
             modal.classList.remove('hidden'); document.body.style.overflow = 'hidden';
             setTimeout(() => { modal.classList.add('opacity-100'); modalDialog.classList.remove('scale-95', 'opacity-0'); modalDialog.classList.add('scale-100', 'opacity-100'); }, 10);
@@ -95,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const mainImage = document.getElementById('main-product-image');
                 const thumbnails = document.querySelectorAll('.quick-view-thumbnail');
                 const dots = document.querySelectorAll('.swipe-indicator-dots .dot');
-                const imageCounter = document.getElementById('image-counter'); // Ambil elemen penomoran
+                const imageCounter = document.getElementById('image-counter');
                 let currentImageIndex = 0;
 
                 const updateGallery = (newIndex) => {
@@ -105,11 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     mainImage.src = product.images[currentImageIndex];
                     thumbnails.forEach((t, i) => { t.classList.toggle('border-gray-900', i === currentImageIndex); t.classList.toggle('border-transparent', i !== currentImageIndex); });
                     dots.forEach((d, i) => d.classList.toggle('active', i === currentImageIndex));
-                    
-                    // DITAMBAHKAN: Update teks penomoran
-                    if (imageCounter) {
-                        imageCounter.textContent = `${currentImageIndex + 1} / ${product.images.length}`;
-                    }
+                    if (imageCounter) { imageCounter.textContent = `${currentImageIndex + 1} / ${product.images.length}`; }
                 };
 
                 thumbnails.forEach((thumb, index) => { thumb.addEventListener('click', () => updateGallery(index)); });
@@ -122,10 +93,9 @@ document.addEventListener('DOMContentLoaded', function() {
         quickViewTriggers.forEach(trigger => { trigger.addEventListener('click', (e) => { e.preventDefault(); openProductModal(trigger.dataset.productId); }); });
     }
     
-    // Logika Carousel
+    // Logika Carousel (TIDAK DIUBAH)
     const carousel = document.querySelector('.carousel');
     if (carousel) {
-        // ... sisa kode carousel tidak berubah
         const cells = Array.from(carousel.querySelectorAll('.carousel__cell'));
         const prevButton = document.getElementById('prev-button');
         const nextButton = document.getElementById('next-button');
@@ -150,4 +120,59 @@ document.addEventListener('DOMContentLoaded', function() {
         scene.addEventListener('touchstart', onPointerDown, { passive: true }); window.addEventListener('touchmove', onPointerMove); window.addEventListener('touchend', onPointerUp);
         setCarouselRadius(); window.addEventListener('resize', setCarouselRadius);
     }
+
+    // ========================================
+    // ===== LOGIKA UNTUK FAB BARU DIMULAI =====
+    // ========================================
+    const fabOpenBtn = document.getElementById('fab-open');
+    const fabCloseBtn = document.getElementById('fab-close');
+    const fabMenuContainer = document.getElementById('fab-menu');
+    const fabMenuItems = document.querySelectorAll('.fab-menu-item');
+
+    if (fabOpenBtn && fabCloseBtn && fabMenuContainer) {
+        
+        const openMenu = () => {
+            fabOpenBtn.classList.add('hidden');
+            fabMenuContainer.classList.remove('hidden');
+            setTimeout(() => {
+                fabMenuContainer.classList.add('active');
+                const menuItems = fabMenuContainer.querySelectorAll('.fab-menu-item, .fab-close');
+                menuItems.forEach((item, index) => {
+                    item.style.transitionDelay = `${index * 0.05 + 0.1}s`;
+                });
+            }, 10);
+        };
+
+        const closeMenu = () => {
+            fabMenuContainer.classList.remove('active');
+            setTimeout(() => {
+                fabMenuContainer.classList.add('hidden');
+                fabOpenBtn.classList.remove('hidden');
+            }, 300); 
+        };
+
+        // Buka menu saat tombol FAB utama diklik
+        fabOpenBtn.addEventListener('click', openMenu);
+        
+        // Tutup menu saat tombol 'X' diklik
+        fabCloseBtn.addEventListener('click', closeMenu);
+        
+        // Tutup menu jika mengklik latar belakang overlay
+        fabMenuContainer.addEventListener('click', (e) => {
+            if (e.target === fabMenuContainer) {
+                closeMenu();
+            }
+        });
+
+        // Tutup menu saat link di dalamnya (Shop, Collection, About) diklik
+        fabMenuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Tunda penutupan menu sedikit agar navigasi scroll terasa lebih mulus
+                setTimeout(closeMenu, 150);
+            });
+        });
+
+    }
+    // ===== AKHIR LOGIKA FAB BARU =====
 });
+
