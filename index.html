@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIAZ* Collective Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font yang dibutuhkan untuk FAB baru -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
@@ -50,15 +54,44 @@
             <section class="py-0 md:py-0 px-0 md:px-0"><div class="grid grid-cols-1 gap-px md:gap-px"><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s7p1"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P1" alt="Product" loading="lazy"></a></div></div><div class="bg-gray-100 overflow-hidden product-grid-item"><div class="aspect-ratio-3-2"><a href="#" class="quick-view-trigger" data-product-id="s7p2"><img src="https://placehold.co/900x600/f3f4f6/333333?text=S7+P2" alt="Product" loading="lazy"></a></div></div></div></section>
         </main>
         
-        <div class="fab-container fixed bottom-12 left-1/2 -translate-x-1/2 z-40">
-            <div class="relative bg-white text-black py-3 px-6 rounded-full flex items-center justify-between fab-shadow hover:opacity-90 transition-opacity duration-200" style="min-width: 280px;"><a href="#shop-section" class="fab-link text-xs font-light hover:opacity-80 transition-opacity duration-200">Shop</a><a href="#collection-section" class="fab-link text-xs font-light hover:opacity-80 transition-opacity duration-200 absolute left-1/2 transform -translate-x-1/2">Collection</a><a href="#about-section" class="fab-link text-xs font-light hover:opacity-80 transition-opacity duration-200">About</a></div>
-        </div>
+        <!-- FAB LAMA DIHAPUS DARI SINI -->
         
         <footer id="about-section" class="bg-gray-100 text-gray-800 py-6 mt-10"><div class="max-w-7xl mx-auto px-6 md:px-10 text-center"><p class="text-sm">© 2025 SIAZ*. All rights reserved.</p><div class="flex justify-center space-x-4 mt-2"><a href="#" class="text-gray-600 hover:text-black transition duration-200">Privacy Policy</a><a href="#" class="text-gray-600 hover:text-black transition duration-200">Terms of Service</a></div></div></footer>
     </div>
+    
+    <!-- MODAL (tidak diubah) -->
     <div id="info-modal" class="fixed inset-0 z-[60] items-center justify-center hidden bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 opacity-0"><div class="bg-white rounded-lg shadow-xl w-11/12 p-1 m-4 transform transition-transform duration-300 scale-95 opacity-0"><div id="modal-content"></div><button id="close-modal-btn" class="absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors z-10"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div></div>
     
+    <!-- KODE FAB BARU DITAMBAHKAN DI SINI -->
+    <!-- Floating Action Button (FAB) -->
+    <button id="fab-open" class="fab-open">
+        <!-- Ikon Plus SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+    </button>
+
+    <!-- Kontainer Menu FAB -->
+    <div id="fab-menu" class="fab-menu-container hidden">
+        <div class="fab-menu-content">
+            <!-- Item Menu dengan link yang sudah disesuaikan -->
+            <a href="#shop-section" class="fab-menu-item">Shop</a>
+            <a href="#collection-section" class="fab-menu-item">Collection</a>
+            <a href="#about-section" class="fab-menu-item">About</a>
+
+            <!-- Tombol Tutup -->
+            <button id="fab-close" class="fab-close">
+                 <!-- Ikon Tutup SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    <!-- AKHIR DARI KODE FAB BARU -->
+
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
+
